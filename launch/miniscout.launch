@@ -1,0 +1,8 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="verbose" value="true"/>
+    <arg name="world_name" value="worlds/miniscout.world"/>
+  </include>
+</launch>
