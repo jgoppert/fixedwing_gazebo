@@ -4,7 +4,7 @@
 
     <gui>
       <!-- A plugin for controlling the Cessna with the keyboard -->
-      <plugin name="keyboard" filename="libCessnaGUIPlugin.so"/>
+      <plugin name="keyboard" filename="libKeyboardGUIPlugin.so"/>
 
       <camera name="user_camera">
         <track_visual>
@@ -21,6 +21,7 @@
     <include>
       <uri>model://sun</uri>
     </include>
+
     <include>
       <uri>model://hangar4</uri>
     </include>
@@ -30,182 +31,6 @@
      <include>
        <uri>model://miniscout</uri>
      </include>
-
-      <!-- Debug - Centers of pressure -->
-      <!--<link name="debug">-->
-        <!--<inertial>-->
-          <!--<mass>1e-10</mass>-->
-          <!--<inertia>-->
-            <!--<ixx>1e-10</ixx>-->
-            <!--<iyy>1e-10</iyy>-->
-            <!--<izz>1e-10</izz>-->
-          <!--</inertia>-->
-        <!--</inertial>-->
- 
-        <!--<pose>0 0 0.2 0 0 0</pose>-->
-        <!--<visual name="cp_left_wing">-->
-          <!--<pose>-0.12 -0.15 0 0 0 0</pose>-->
-          <!--<geometry>-->
-            <!--<sphere><radius>0.02</radius></sphere>-->
-          <!--</geometry>-->
-        <!--</visual>-->
-
-        <!--<visual name="cp_right_wing">-->
-          <!--<pose>-0.12 0.15 0 0 0 0</pose>-->
-          <!--<geometry>-->
-            <!--<sphere><radius>0.02</radius></sphere>-->
-          <!--</geometry>-->
-        <!--</visual>-->
-
-        <!--<visual name="cp_htail">-->
-          <!--<pose>-0.42 0.0 0 0 0 0</pose>-->
-          <!--<geometry>-->
-            <!--<sphere><radius>0.02</radius></sphere>-->
-          <!--</geometry>-->
-        <!--</visual>-->
-
-        <!--<visual name="cp_vtail">-->
-          <!--<pose>-0.42 0.0 0.05 0 0 0</pose>-->
-          <!--<geometry>-->
-            <!--<sphere><radius>0.02</radius></sphere>-->
-          <!--</geometry>-->
-        <!--</visual>-->
-
-      <!--</link>-->
-
-      <joint name="debug_joint" type="fixed">
-        <parent>body</parent>
-        <child>debug</child>
-      </joint>
-
-     <!--<plugin name="control" filename="libCessnaPlugin.so">-->
-       <!--<propeller>miniscout::propeller_joint</propeller>-->
-       <!--<propeller_max_rpm>10000</propeller_max_rpm>-->
-       <!--<left_aileron>miniscout::left_aileron_joint</left_aileron>-->
-       <!--<left_flap>miniscout::left_flap_joint</left_flap>-->
-       <!--<right_aileron>miniscout::right_aileron_joint</right_aileron>-->
-       <!--<right_flap>miniscout::right_flap_joint</right_flap>-->
-       <!--<elevators>miniscout::elevators_joint</elevators>-->
-       <!--<rudder>miniscout::rudder_joint</rudder>-->
-       <!--<propeller_p_gain>10000</propeller_p_gain>-->
-       <!--<propeller_i_gain>0</propeller_i_gain>-->
-       <!--<propeller_d_gain>0</propeller_d_gain>-->
-       <!--<surfaces_p_gain>2000</surfaces_p_gain>-->
-       <!--<surfaces_i_gain>0</surfaces_i_gain>-->
-       <!--<surfaces_d_gain>0</surfaces_d_gain>-->
-     <!--</plugin>-->
-
-     <plugin name="propeller_top_blade" filename="libLiftDragPlugin.so">
-        <a0>0.4</a0>
-        <cla>4.752798721</cla>
-        <cda>0.6417112299</cda>
-        <cma>0</cma>
-        <alpha_stall>1.5</alpha_stall>
-        <cla_stall>-3.85</cla_stall>
-        <cda_stall>-0.9233984055</cda_stall>
-        <cma_stall>0</cma_stall>
-        <cp>0 0 0.05</cp>
-        <area>2e-4</area>
-        <air_density>1.2041</air_density>
-        <forward>0 -1 0</forward>
-        <upward>1 0 0</upward>
-        <link_name>miniscout::propeller</link_name>
-      </plugin>
-
-      <plugin name="propeller_bottom_blade" filename="libLiftDragPlugin.so">
-        <a0>0.4</a0>
-        <cla>4.752798721</cla>
-        <cda>0.6417112299</cda>
-        <cma>0</cma>
-        <alpha_stall>1.5</alpha_stall>
-        <cla_stall>-3.85</cla_stall>
-        <cda_stall>-0.9233984055</cda_stall>
-        <cma_stall>0</cma_stall>
-        <cp>0 0 -0.05</cp>
-        <area>2e-4</area>
-        <air_density>1.2041</air_density>
-        <forward>0 1 0</forward>
-        <upward>1 0 0</upward>
-        <link_name>miniscout::propeller</link_name>
-      </plugin>
-
-      <plugin name="left_wing" filename="libLiftDragPlugin.so">
-        <a0>0.05984281113</a0>
-        <cla>4.752798721</cla>
-        <cda>0.6417112299</cda>
-        <cma>-1.8</cma>
-        <alpha_stall>0.3391428111</alpha_stall>
-        <cla_stall>-3.85</cla_stall>
-        <cda_stall>-0.9233984055</cda_stall>
-        <cma_stall>0</cma_stall>
-        <cp>-0.12 -0.15 0</cp>
-        <area>0.1</area>
-        <air_density>1.2041</air_density>
-        <forward>1 0 0</forward>
-        <upward>0 0 1</upward>
-        <link_name>miniscout::body</link_name>
-        <!--<control_joint_name>miniscout::left_aileron_joint</control_joint_name>-->
-        <!--<control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>-->
-      </plugin>
-
-      <plugin name="right_wing" filename="libLiftDragPlugin.so">
-        <a0>0.05984281113</a0>
-        <cla>4.752798721</cla>
-        <cda>0.6417112299</cda>
-        <cma>-1.8</cma>
-        <alpha_stall>0.3391428111</alpha_stall>
-        <cla_stall>-3.85</cla_stall>
-        <cda_stall>-0.9233984055</cda_stall>
-        <cma_stall>0</cma_stall>
-        <cp>0.12 0.15 0</cp>
-        <area>0.1</area>
-        <air_density>1.2041</air_density>
-        <forward>1 0 0</forward>
-        <upward>0 0 1</upward>
-        <link_name>miniscout::body</link_name>
-        <!--<control_joint_name>-->
-          <!--miniscout::right_aileron_joint-->
-        <!--</control_joint_name>-->
-        <!--<control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>-->
-      </plugin>
-
-      <plugin name="htail" filename="libLiftDragPlugin.so">
-        <a0>0</a0>
-        <cla>4.752798721</cla>
-        <cda>0.6417112299</cda>
-        <cma>-1.8</cma>
-        <alpha_stall>0.3391428111</alpha_stall>
-        <cla_stall>-3.85</cla_stall>
-        <cda_stall>-0.9233984055</cda_stall>
-        <cma_stall>0</cma_stall>
-        <cp>-0.42 0 0</cp>
-        <area>0.05</area>
-        <air_density>1.2041</air_density>
-        <forward>1 0 0</forward>
-        <upward>0 0 1</upward>
-        <link_name>miniscout::body</link_name>
-        <control_joint_name>miniscout::elevators_joint</control_joint_name>
-        <control_joint_rad_to_cl>-4.0</control_joint_rad_to_cl>
-      </plugin>
-
-      <plugin name="vtail" filename="libLiftDragPlugin.so">
-        <a0>0</a0>
-        <cla>4.752798721</cla>
-        <cda>0.6417112299</cda>
-        <cma>-1.8</cma>
-        <alpha_stall>0.3391428111</alpha_stall>
-        <cla_stall>-3.85</cla_stall>
-        <cda_stall>-0.9233984055</cda_stall>
-        <cma_stall>0</cma_stall>
-        <cp>-0.42 0 0.05</cp>
-        <area>0.1</area>
-        <air_density>1.2041</air_density>
-        <forward>1 0 0</forward>
-        <upward>0 1 0</upward>
-        <link_name>miniscout::body</link_name>
-        <control_joint_name>miniscout::rudder_joint</control_joint_name>
-        <control_joint_rad_to_cl>4.0</control_joint_rad_to_cl>
-      </plugin>
 
     </model>
   </world>

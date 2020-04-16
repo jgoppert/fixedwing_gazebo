@@ -118,8 +118,9 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
+  ${GAZEBO_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -151,6 +152,14 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+
+add_library(PlanePlugin
+  src/fixedwing_gazebo/PlanePlugin.cc
+)
+target_link_libraries(PlanePlugin
+  ${GAZEBO_LIBRARIES}
+)
+
 
 #############
 ## Install ##
