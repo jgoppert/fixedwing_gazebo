@@ -84,6 +84,36 @@ struct EngineControl
 
   /// \brief Torque applied to engine joint
   public: double torque;
+
+  /// \brief Pointer to the propeller link
+  public: physics::LinkPtr propeller;
+
+  /// \brief Propeller diameter
+  public: double diameter;
+
+  /// \brief CT coefficients
+  public: double ct_coeff[5];
+
+  /// \brief CP coefficients
+  public: double cp_coeff[5];
+
+  /// \brief kV of motor
+  public: double kV;
+
+  /// \brief battery voltage (max voltage)
+  public: double battV;
+
+  /// \brief current voltage
+  public: double curV;
+
+  /// \brief zero torque current
+  public: double i0;
+
+  /// \brief motor resistance
+  public: double r0;
+
+  /// \brief axis of rotation, 0-x, 1-y, 2-z
+  public: int axis_num;
 };
 
 /// \brief Thruster force controller
@@ -141,6 +171,9 @@ class gazebo::PlanePluginPrivate
 
   /// \brief A list of controls for the joint
   public: std::vector<JointControl> jointControls;
+
+  /// \brief A list of propellers
+  // public: std::vector<PropulsionModel> propModels;
 
   /// \brief Last update sim time
   public: common::Time lastUpdateTime;
@@ -217,7 +250,6 @@ void PlanePlugin::Load(physics::ModelPtr _model,
           if (enginePtr->HasElement("min_val"))
             ec.minVal = enginePtr->Get<double>("min_val");
           ec.torque = 0;
-          this->dataPtr->engineControls.push_back(ec);
           gzdbg << "joint [" << jointName << "] controlled by keyboard"
                 << " t[" << ec.maxTorque
                 << "] +[" << ec.incKey
@@ -226,7 +258,66 @@ void PlanePlugin::Load(physics::ModelPtr _model,
                 << "] max[" << ec.maxVal
                 << "] min[" << ec.minVal
                 << "].\n";
+
+          if (enginePtr->HasElement("prop_name"))
+          {
+            std::string propName = enginePtr->Get<std::string>("prop_name");
+            physics::LinkPtr propeller = this->dataPtr->model->GetLink(propName);
+            if (propeller.get() != NULL)
+            {
+              ec.propeller = propeller;
+              if (enginePtr->HasElement("diameter"))
+              {
+                ec.diameter = enginePtr->Get<double>("diameter");
+              }
+              if (enginePtr->HasElement("ct"))
+              {
+                std::string ct = enginePtr->Get<std::string>("ct");
+                std::istringstream ss(ct);
+                for (int i = 0; i < 5; i++) {
+                  double cti;
+                  ss >> cti;
+                  gzdbg << cti << std::endl;
+                  ec.ct_coeff[i] = cti;
+                }
+              }
+              if (enginePtr->HasElement("cp"))
+              {
+                std::string cp = enginePtr->Get<std::string>("cp");
+                std::istringstream ss(cp);
+                for (int i = 0; i < 5; i++) {
+                  double cpi;
+                  ss >> cpi;
+                  gzdbg << cpi << std::endl;
+                  ec.cp_coeff[i] = cpi;
+                }
+              }
+              if (enginePtr->HasElement("kV"))
+              {
+                ec.kV = enginePtr->Get<double>("kV");
+              }
+              if (enginePtr->HasElement("i0"))
+              {
+                ec.i0 = enginePtr->Get<double>("i0");
+              }
+              if (enginePtr->HasElement("r0"))
+              {
+                ec.r0 = enginePtr->Get<double>("r0");
+              }
+              if (enginePtr->HasElement("battV"))
+              {
+                ec.battV = enginePtr->Get<double>("battV");
+              }
+              if (enginePtr->HasElement("axis_num"))
+              {
+                ec.axis_num = enginePtr->Get<int>("axis_num");
+                gzdbg << ec.axis_num << std::endl;
+              }
+            }
+          }
+          this->dataPtr->engineControls.push_back(ec);
         }
+        
       }
       // get next element
       enginePtr = enginePtr->GetNextElement("engine");
@@ -372,8 +463,53 @@ void PlanePlugin::OnUpdate()
         this->dataPtr->engineControls.begin();
         ei != this->dataPtr->engineControls.end(); ++ei)
     {
-      // spin up engine
-      ei->joint->SetForce(0, ei->torque);
+      double rho = 2.335e-3;
+      double lb2n = 4.44822;
+      double lbft2nm = 1.3558;
+      auto vel = ei->propeller->RelativeLinearVel();
+      auto omega = ei->propeller->RelativeAngularVel();
+      double rps = omega[ei->axis_num]/(2*M_PI);
+      double J = vel[ei->axis_num]/(rps*ei->diameter*0.0254);
+      if (J < 0)
+      {
+        J = 0;
+      }
+      if (J > 1)
+      {
+        J = 1;
+      }
+      double CT = ei->ct_coeff[0] + ei->ct_coeff[1]*J + ei->ct_coeff[2]*pow(J, 2.0)
+                + ei->ct_coeff[3]*pow(J, 3.0) + ei->ct_coeff[4]*pow(J, 4.0);
+      double thrust = CT*rho*pow(rps, 2.0)*pow(ei->diameter/12, 4.0)*lb2n; // Newton
+
+      double CP = ei->cp_coeff[0] + ei->cp_coeff[1]*J + ei->cp_coeff[2]*pow(J, 2.0)
+                + ei->cp_coeff[3]*pow(J, 3.0) + ei->cp_coeff[4]*pow(J, 4.0);
+      double power = CP*rho*pow(rps, 3.0)*pow(ei->diameter/12, 5.0); // lb-ft/s
+      double aero_torque = power/(2*M_PI*rps)*lbft2nm; // N-m
+
+      gzdbg << "CT: " << CT << std::endl;
+      gzdbg << "CP: " << CP << std::endl;
+      gzdbg << "Thrust: " << thrust << std::endl;
+      gzdbg << "torque: " << aero_torque << std::endl;
+      gzdbg << "Current Voltage: " << ei->curV << std::endl;
+      
+      // GZ_ASSERT(isfinite(thrust), "non finite force");
+      // GZ_ASSERT(isfinite(aero_torque), "non finite torque");
+      
+      if (isfinite(thrust))
+      {
+        if (ei->axis_num==0)
+          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(thrust, 0, 0));
+        if (ei->axis_num==1)
+          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, thrust, 0));
+        if (ei->axis_num==2)
+          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, 0, thrust));
+      }
+      if (isfinite(aero_torque))
+      {
+        // spin up engine
+        ei->joint->SetForce(0, ei->torque);
+      }
     }
 
     for (std::vector<ThrusterControl>::iterator
@@ -396,6 +532,7 @@ void PlanePlugin::OnUpdate()
           curTime - this->dataPtr->lastUpdateTime);
       ji->joint->SetForce(0, force);
     }
+
     this->dataPtr->lastUpdateTime = curTime;
   }
 }
@@ -416,19 +553,26 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
     if (static_cast<int>(ch) == ei->incKey)
     {
       // spin up motor
-      ei->torque += ei->incVal;
+      ei->curV += ei->incVal;
     }
     else if (static_cast<int>(ch) == ei->decKey)
     {
-      ei->torque -= ei->incVal;
+      ei->curV -= ei->incVal;
     }
     else
     {
       // ungetc( ch, stdin );
       // gzerr << (int)ch << " : " << this->clIncKey << "\n";
     }
-    ei->torque = ignition::math::clamp(ei->torque, ei->minVal, ei->maxVal);
-    gzdbg << "torque: " << ei->torque << "\n";
+
+    double kT = 1355/ei->kV*0.007062; // N-m/A
+    auto omega = ei->propeller->RelativeAngularVel();
+    double rpm = omega[ei->axis_num]/(2*M_PI)*60;
+
+    ei->curV = ignition::math::clamp(ei->curV, 0.0, ei->battV);
+    ei->torque = kT*(ei->curV - omega[ei->axis_num]/(ei->kV*M_PI/30))/ei->r0;
+    // ei->torque = ignition::math::clamp(ei->torque, ei->minVal, ei->maxVal);
+    gzerr << "torque: " << ei->torque << "\n";
   }
 
   for (std::vector<ThrusterControl>::iterator
@@ -455,7 +599,7 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
       ignition::math::clamp(ti->force.Y(), ti->minVal.Y(), ti->maxVal.Y());
     ti->force.Z() =
       ignition::math::clamp(ti->force.Z(), ti->minVal.Z(), ti->maxVal.Z());
-    gzdbg << "force: " << ti->force << "\n";
+    gzerr << "force: " << ti->force << "\n";
   }
 
   for (std::vector<JointControl>::iterator
@@ -468,7 +612,7 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
       ji->cmd += ji->incVal;
       ji->cmd = ignition::math::clamp(ji->cmd, ji->minVal, ji->maxVal);
       ji->pid.SetCmd(ji->cmd);
-      gzdbg << ji->joint->GetName()
+      gzerr << ji->joint->GetName()
             << " cur: " << ji->joint->Position(0)
             << " cmd: " << ji->cmd << "\n";
     }
@@ -477,7 +621,7 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
       ji->cmd -= ji->incVal;
       ji->cmd = ignition::math::clamp(ji->cmd, ji->minVal, ji->maxVal);
       ji->pid.SetCmd(ji->cmd);
-      gzdbg << ji->joint->GetName()
+      gzerr << ji->joint->GetName()
             << " cur: " << ji->joint->Position(0)
             << " cmd: " << ji->cmd << "\n";
     }
@@ -485,7 +629,7 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
     {
       ji->cmd = 0;
       ji->pid.SetCmd(ji->cmd);
-      gzdbg << ji->joint->GetName()
+      gzerr << ji->joint->GetName()
             << " cur: " << ji->joint->Position(0)
             << " cmd: " << ji->cmd << "\n";
     }

@@ -1,0 +1,609 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="t12">
+    <pose>0 0 0 0 0 0</pose>
+    <link name="body">
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.04 5e-4 -0.01 0 0 0</pose>
+        <mass>0.272</mass>
+        <inertia>
+          <ixx>3.11e-3</ixx>
+          <iyy>5.91e-3</iyy>
+          <izz>8.86e-3</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision_body">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/fuselage.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.05</mu>
+              <mu2>0.05</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <max_vel>0.1</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+      <visual name="visual_body">
+        <cast_shadows>1</cast_shadows>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/fuselage.stl</uri>
+            <!-- <uri>model://t12/meshes/aircraft_body.stl</uri> -->
+          </mesh>
+        </geometry>
+      </visual>
+
+      <visual name='cp_htail'>
+        <pose>-0.365 0 0.015 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+
+      <visual name='cp_vtail'>
+        <pose>-0.375 0 0.05 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- <link name='wing'>
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1e-4</mass>
+        <inertia>
+          <ixx>3.805e-3</ixx>
+          <iyy>1e-6</iyy>
+          <izz>3.805e-3</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision_wing'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/wing.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='visual_wing'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/wing.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_leftwing'>
+        <pose>0.013 0.2 -0.022 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+      <visual name='cp_rightwing'>
+        <pose>0.013 -0.2 -0.022 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link> -->
+    
+    <link name='rudder'>
+      <pose>-0.39 0 0.016 0 0 3.14</pose>
+      <inertial>
+        <pose>0.015 0 0.03 0 0 0</pose>
+        <mass>0.0018</mass>
+        <inertia>
+          <ixx>3.36e-4</ixx>
+          <iyy>3.44e-4</iyy>
+          <izz>7.10e-6</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual_rudder'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/rudder.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='elevator'>
+      <pose>-0.39 0 0.005 0 0 3.14</pose>
+      <inertial>
+        <pose>0.015 0 0 0 0 0</pose>
+        <mass>0.002</mass>
+        <inertia>
+          <ixx>9.41e-4</ixx>
+          <iyy>2.50e-5</iyy>
+          <izz>9.63e-4</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual_elevator'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/elevator.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='aileron_left'>
+      <pose>-0.08 0.320 -0.0174 -0.181 -0.173 1.604</pose>
+      <inertial>
+        <pose>0 0.015 0 0 0 0</pose>
+        <mass>0.0015</mass>
+        <inertia>
+          <ixx>2.95e-5</ixx>
+          <iyy>1.65e-4</iyy>
+          <izz>1.94e-4</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual_aileron_left'>
+        <geometry>
+          <mesh>
+            <scale>0.98 1 1</scale>
+            <uri>model://t12/meshes/aileron_left.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='aileron_right'>
+      <pose>-0.08 -0.320 -0.0174 -0.181 0.173 1.538</pose>
+      <inertial>
+        <pose>0 0.015 0 0 0 0</pose>
+        <mass>0.0015</mass>
+        <inertia>
+          <ixx>2.95e-5</ixx>
+          <iyy>1.65e-4</iyy>
+          <izz>1.94e-4</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual_aileron_right'>
+        <geometry>
+          <mesh>
+            <scale>0.98 1 1</scale>
+            <uri>model://t12/meshes/aileron_right.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='left_wheel'>
+      <pose>0.1833 0.0605 -0.1030 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.0005</mass>
+        <inertia>
+          <ixx>1.4e-5</ixx>
+          <iyy>7.64e-6</iyy>
+          <izz>1.4e-5</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision_left_wheel'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/wheel.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.3</mu>
+              <mu2>0.3</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <max_vel>0.1</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+      <visual name='visual_left_wheel'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/wheel.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='right_wheel'>
+      <pose>0.1833 -0.0605 -0.1030 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.0025</mass>
+        <inertia>
+          <ixx>1.4e-5</ixx>
+          <iyy>7.64e-6</iyy>
+          <izz>1.4e-5</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision_right_wheel'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/wheel.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.3</mu>
+              <mu2>0.3</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <max_vel>0.1</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+      <visual name='visual_right_wheel'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/wheel.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name='propeller'>
+      <pose>0.2175 0 -0.0111 1.57 0 1.57</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0.01</pose>
+        <mass>0.0084</mass>
+        <inertia>
+          <ixx>8e-6</ixx>
+          <iyy>2.76e-4</iyy>
+          <izz>2.76e-4</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision_propeller'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/prop.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='visual_propeller'>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://t12/meshes/prop.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_leftblade'>
+        <pose>0.045 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+      <visual name='cp_rightblade'>
+        <pose>-.045 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name='left_wheel_joint' type='revolute'>
+      <parent>body</parent>
+      <child>left_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>1e-3</damping>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <joint name='right_wheel_joint' type='revolute'>
+      <parent>body</parent>
+      <child>right_wheel</child>
+      <axis>
+        <xyz>0 1  0</xyz>
+        <dynamics>
+          <damping>1e-3</damping>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <joint name='elevator_joint' type='revolute'>
+      <parent>body</parent>
+      <child>elevator</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>1e-3</damping>
+        </dynamics>
+        <limit>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
+        </limit>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint name='rudder_joint' type='revolute'>
+      <parent>body</parent>
+      <child>rudder</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <dynamics>
+          <damping>1e-3</damping>
+        </dynamics>
+        <limit>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
+        </limit>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint name='left_aileron_joint' type='revolute'>
+      <parent>body</parent>
+      <child>aileron_left</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <dynamics>
+          <damping>1e-3</damping>
+        </dynamics>
+        <limit>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
+        </limit>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint name='right_aileron_joint' type='revolute'>
+      <parent>body</parent>
+      <child>aileron_right</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <dynamics>
+          <damping>1e-3</damping>
+        </dynamics>
+        <limit>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
+        </limit>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <joint name='prop_joint' type='revolute'>
+      <parent>body</parent>
+      <child>propeller</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <dynamics>
+          <damping>1e-5</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+      <sensor name='thrust_sensor' type='force_torque'>
+        <update_rate>30</update_rate>
+      </sensor>
+    </joint>
+
+    <!-- <joint name='wing_body_joint' type='fixed'>
+      <parent>body</parent>
+      <child>wing</child>
+      <sensor name='lift_sensor' type='force_torque'>
+        <update_rate>30</update_rate>
+      </sensor>
+    </joint> -->
+
+    <plugin name='leftwing_aero' filename='libLiftDragPlugin.so'>
+      <link_name>body</link_name>
+      <a0>-0.14</a0>
+      <cla>7.75</cla>
+      <cda>0.49</cda>
+      <cma>-0.788</cma>
+      <alpha_stal>0.122</alpha_stal>
+      <cla_stall>-4</cla_stall>
+      <cda_stall>1</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>0.013 0.08 -0.022</cp>
+      <area>0.06</area>
+      <air_density>1.255</air_density>
+      <forward>1 0 0</forward>
+      <upward>0 -0.57 1</upward>
+      <control_joint_name>left_aileron_joint</control_joint_name>
+      <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
+    </plugin>
+
+    <plugin name='rightwing_aero' filename='libLiftDragPlugin.so'>
+      <link_name>body</link_name>
+      <a0>-0.14</a0>
+      <cla>7.75</cla>
+      <cda>0.49</cda>
+      <cma>-0.788</cma>
+      <alpha_stal>0.122</alpha_stal>
+      <cla_stall>-4</cla_stall>
+      <cda_stall>1</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>0.013 -0.08 -0.022</cp>
+      <area>0.06</area>
+      <air_density>1.255</air_density>
+      <forward>1 0 0</forward>
+      <upward>0 0.57 1</upward>
+      <control_joint_name>right_aileron_joint</control_joint_name>
+      <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
+    </plugin>
+
+    <plugin name='vtail' filename='libLiftDragPlugin.so'>
+      <link_name>body</link_name>
+      <a0>0</a0>
+      <cla>5.73</cla>
+      <cda>0.458</cda>
+      <cma>-1.95</cma>
+      <alpha_stal>0.174</alpha_stal>
+      <cla_stall>-2.65</cla_stall>
+      <cda_stall>-0.802</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>-0.365 0 0.05</cp>
+      <area>0.03</area>
+      <air_density>1.225</air_density>
+      <forward>1 0 0</forward>
+      <upward>0 1 0</upward>
+      <control_joint_name>rudder_joint</control_joint_name>
+      <control_joint_rad_to_cl>4.0</control_joint_rad_to_cl>
+    </plugin>
+
+    <plugin name='htail' filename='libLiftDragPlugin.so'>
+      <link_name>body</link_name>
+      <a0>0</a0>
+      <cla>5.73</cla>
+      <cda>0.458</cda>
+      <cma>-1.8</cma>
+      <alpha_stal>0.174</alpha_stal>
+      <cla_stall>-2.65</cla_stall>
+      <cda_stall>-0.802</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>-0.36 0 0.015</cp>
+      <area>0.03</area>
+      <air_density>1.225</air_density>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
+      <control_joint_name>elevator_joint</control_joint_name>
+      <control_joint_rad_to_cl>4.0</control_joint_rad_to_cl>
+    </plugin>
+
+    <plugin name="plane_demo_plugin" filename='libPlanePlugin.so'>
+      <engine>
+        <joint_name>prop_joint</joint_name>
+        <inc_key>101</inc_key>
+        <dec_key>113</dec_key>
+        <inc_val>0.5</inc_val>
+        <!-- <max_val>0.1</max_val> -->
+        <!-- <min_val>0.0</min_val> -->
+        <prop_name>propeller</prop_name>
+        <diameter>6</diameter>
+        <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
+        <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
+        <kV>3750</kV>
+        <i0>0.6</i0>
+        <r0>0.098</r0>
+        <battV>11.1</battV>
+        <axis_num>2</axis_num>
+      </engine>
+
+      <control name='elevator_control'>
+        <joint_name>elevator_joint</joint_name>
+        <inc_key>119</inc_key>
+        <dec_key>115</dec_key>
+        <inc_val>0.04</inc_val>
+        <max_val>0.4</max_val>
+        <min_val>-0.4</min_val>
+        <p>1</p>
+        <i>0</i>
+        <d>0</d>
+        <cmd_max>1</cmd_max>
+        <cmd_min>-1</cmd_min>
+      </control>
+
+      <control name='rudder_control'>
+        <joint_name>rudder_joint</joint_name>
+        <inc_key>100</inc_key>
+        <dec_key>97</dec_key>
+        <inc_val>0.04</inc_val>
+        <max_val>0.4</max_val>
+        <min_val>-0.4</min_val>
+        <p>5</p>
+        <i>0</i>
+        <d>0</d>
+        <cmd_max>1</cmd_max>
+        <cmd_min>-1</cmd_min>
+      </control>
+
+      <control name='l_aileron_control'>
+        <joint_name>left_aileron_joint</joint_name>
+        <inc_key>106</inc_key>
+        <dec_key>108</dec_key>
+        <inc_val>0.04</inc_val>
+        <max_val>0.4</max_val>
+        <min_val>-0.4</min_val>
+        <p>5</p>
+        <i>0</i>
+        <d>0</d>
+        <cmd_max>1</cmd_max>
+        <cmd_min>-1</cmd_min>
+      </control>
+
+      <control name='r_aileron_control'>
+        <joint_name>right_aileron_joint</joint_name>
+        <inc_key>108</inc_key>
+        <dec_key>106</dec_key>
+        <inc_val>0.04</inc_val>
+        <max_val>0.4</max_val>
+        <min_val>-0.4</min_val>
+        <p>5</p>
+        <i>0</i>
+        <d>0</d>
+        <cmd_max>1</cmd_max>
+        <cmd_min>-1</cmd_min>
+      </control>
+    </plugin>
+  </model>
+</sdf>
