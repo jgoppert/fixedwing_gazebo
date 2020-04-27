@@ -645,6 +645,15 @@
           <dec_key>q</dec_key>
           <min_val>0.0</min_val>
           <max_val>0.03</max_val>
+          <prop_name>propeller</prop_name>
+          <diameter>6</diameter> <!-- inches -->
+          <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
+          <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
+          <kV>3750</kV>
+          <i0>0.6</i0>
+          <r0>0.098</r0>
+          <battV>11.1</battV> <!-- used to saturate voltage -->
+          <axis_num>0</axis_num> <!-- axis of rotation, x-0, y-1, z-2 -->
         </engine>
         <control name="elevator_control">
           <joint_name>elevator_joint</joint_name>
