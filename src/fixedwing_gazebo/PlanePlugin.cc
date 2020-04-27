@@ -428,7 +428,7 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
       // gzerr << (int)ch << " : " << this->clIncKey << "\n";
     }
     ei->torque = ignition::math::clamp(ei->torque, ei->minVal, ei->maxVal);
-    gzerr << "torque: " << ei->torque << "\n";
+    gzdbg << "torque: " << ei->torque << "\n";
   }
 
   for (std::vector<ThrusterControl>::iterator
@@ -455,7 +455,7 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
       ignition::math::clamp(ti->force.Y(), ti->minVal.Y(), ti->maxVal.Y());
     ti->force.Z() =
       ignition::math::clamp(ti->force.Z(), ti->minVal.Z(), ti->maxVal.Z());
-    gzerr << "force: " << ti->force << "\n";
+    gzdbg << "force: " << ti->force << "\n";
   }
 
   for (std::vector<JointControl>::iterator
@@ -468,7 +468,7 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
       ji->cmd += ji->incVal;
       ji->cmd = ignition::math::clamp(ji->cmd, ji->minVal, ji->maxVal);
       ji->pid.SetCmd(ji->cmd);
-      gzerr << ji->joint->GetName()
+      gzdbg << ji->joint->GetName()
             << " cur: " << ji->joint->Position(0)
             << " cmd: " << ji->cmd << "\n";
     }
@@ -477,7 +477,7 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
       ji->cmd -= ji->incVal;
       ji->cmd = ignition::math::clamp(ji->cmd, ji->minVal, ji->maxVal);
       ji->pid.SetCmd(ji->cmd);
-      gzerr << ji->joint->GetName()
+      gzdbg << ji->joint->GetName()
             << " cur: " << ji->joint->Position(0)
             << " cmd: " << ji->cmd << "\n";
     }
@@ -485,7 +485,7 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
     {
       ji->cmd = 0;
       ji->pid.SetCmd(ji->cmd);
-      gzerr << ji->joint->GetName()
+      gzdbg << ji->joint->GetName()
             << " cur: " << ji->joint->Position(0)
             << " cmd: " << ji->cmd << "\n";
     }

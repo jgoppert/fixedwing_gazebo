@@ -1,0 +1,110 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name="miniscout">
+    <link name='base_link'>
+      <inertial>
+        <pose>-0.15 0 0 0 0 0</pose>
+        <mass>0.270</mass>
+        <inertia>
+          <ixx>1e-3</ixx>
+          <iyy>1e-3</iyy>
+          <izz>1e-3</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <mesh>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://tiny_trainer/meshes/stl/TinyTrainer_AllCATPart_Main.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <max_vel>0.1</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+      <visual name='visual-body'>
+        <geometry>
+          <mesh>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://tiny_trainer/meshes/stl/TinyTrainer_AllCATPart_Main.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.678 0.529 0.384 1</ambient>
+          <diffuse>0.678 0.529 0.384 1</diffuse>
+          <specular>0.678 0.529 0.384 1</specular>
+        </material>
+      </visual>
+      <!--<visual name='visual-left-aileron'>-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<geometry>-->
+          <!--<mesh>-->
+            <!--<scale>0.0254 0.0254 0.0254</scale>-->
+            <!--<uri>model://tiny_trainer/meshes/stl/TinyTrainer_AllCATPart_LAil.stl</uri>-->
+          <!--</mesh>-->
+        <!--</geometry>-->
+        <!--<material>-->
+          <!--<script>-->
+            <!--<name>Gazebo/White</name>-->
+          <!--</script>-->
+        <!--</material>-->
+      <!--</visual>-->
+      <!--<visual name='visual-right-aileron'>-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<geometry>-->
+          <!--<mesh>-->
+            <!--<scale>0.0254 0.0254 0.0254</scale>-->
+            <!--<uri>model://tiny_trainer/meshes/stl/TinyTrainer_AllCATPart_RAil.stl</uri>-->
+          <!--</mesh>-->
+        <!--</geometry>-->
+        <!--<material>-->
+          <!--<script>-->
+            <!--<name>Gazebo/White</name>-->
+          <!--</script>-->
+        <!--</material>-->
+      <!--</visual>-->
+      <visual name='visual-rudder'>
+        <cast_shadows>0</cast_shadows>
+        <geometry>
+          <mesh>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://tiny_trainer/meshes/stl/TinyTrainer_AllCATPart_Rudder.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+          </script>
+        </material>
+      </visual>
+      <!--<visual name='visual-elevator'>-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<geometry>-->
+          <!--<mesh>-->
+            <!--<scale>0.0254 0.0254 0.0254</scale>-->
+            <!--<uri>model://tiny_trainer/meshes/stl/TinyTrainer_AllCATPart_Elev.stl</uri>-->
+          <!--</mesh>-->
+        <!--</geometry>-->
+        <!--<material>-->
+          <!--<script>-->
+            <!--<name>Gazebo/White</name>-->
+          <!--</script>-->
+        <!--</material>-->
+      <!--</visual>-->
+    </link>
+  </model>
+
+</sdf>
+
+<!-- vim: set et fenc=utf-8 ft=xml ff=unix sts=0 sw=2 ts=2 : -->

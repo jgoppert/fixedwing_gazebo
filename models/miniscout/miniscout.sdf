@@ -1,11 +1,11 @@
 <?xml version='1.0'?>
 <sdf version='1.6'>
   <model name="miniscout">
-    <pose>0 0 0.2 0 0 0</pose>
-    <link name='body'>
+    <pose>0 0 0.1 0 0 0</pose>
+    <link name='base_link'>
       <inertial>
         <pose>-0.12 0 0 0 0 0</pose>
-        <mass>0.3</mass>
+        <mass>0.270</mass>
         <inertia>
           <ixx>1e-3</ixx>
           <iyy>1e-3</iyy>
@@ -75,37 +75,37 @@
           </script>
         </material>
       </visual>
-        <visual name="cp_left_wing">
-          <cast_shadows>0</cast_shadows>
-          <pose>-0.12 -0.15 0 0 0 0</pose>
-          <geometry>
-            <sphere><radius>0.01</radius></sphere>
-          </geometry>
-        </visual>
+        <!--<visual name="cp_left_wing">-->
+          <!--<cast_shadows>0</cast_shadows>-->
+          <!--<pose>-0.12 0.15 0.01 0 0 0</pose>-->
+          <!--<geometry>-->
+            <!--<sphere><radius>0.01</radius></sphere>-->
+          <!--</geometry>-->
+        <!--</visual>-->
 
-        <visual name="cp_right_wing">
-          <cast_shadows>0</cast_shadows>
-          <pose>-0.12 0.15 0 0 0 0</pose>
-          <geometry>
-            <sphere><radius>0.01</radius></sphere>
-          </geometry>
-        </visual>
+        <!--<visual name="cp_right_wing">-->
+          <!--<cast_shadows>0</cast_shadows>-->
+          <!--<pose>-0.12 -0.15 0.01 0 0 0</pose>-->
+          <!--<geometry>-->
+            <!--<sphere><radius>0.01</radius></sphere>-->
+          <!--</geometry>-->
+        <!--</visual>-->
 
-        <visual name="cp_htail">
-          <cast_shadows>0</cast_shadows>
-          <pose>-0.42 0.0 0 0 0 0</pose>
-          <geometry>
-            <sphere><radius>0.01</radius></sphere>
-          </geometry>
-        </visual>
+        <!--<visual name="cp_htail">-->
+          <!--<cast_shadows>0</cast_shadows>-->
+          <!--<pose>-0.40 0.0 0.02 0 0 0</pose>-->
+          <!--<geometry>-->
+            <!--<sphere><radius>0.01</radius></sphere>-->
+          <!--</geometry>-->
+        <!--</visual>-->
 
-        <visual name="cp_vtail">
-          <cast_shadows>0</cast_shadows>
-          <pose>-0.42 0.0 0.05 0 0 0</pose>
-          <geometry>
-            <sphere><radius>0.01</radius></sphere>
-          </geometry>
-        </visual>
+        <!--<visual name="cp_vtail">-->
+          <!--<cast_shadows>0</cast_shadows>-->
+          <!--<pose>-0.42 0.0 0.05 0 0 0</pose>-->
+          <!--<geometry>-->
+            <!--<sphere><radius>0.01</radius></sphere>-->
+          <!--</geometry>-->
+        <!--</visual>-->
 
     </link>
 
@@ -425,7 +425,7 @@
     </link>
 
     <link name='propeller'>
-      <pose>0.01 0 0.01 0 0 0.1</pose>
+      <pose>0.01 0 0.01 0 0 -0.2</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>
@@ -449,20 +449,20 @@
           </script>
         </material>
       </visual>
-        <visual name="cp_top">
-          <cast_shadows>0</cast_shadows>
-          <pose>0 0 0.05 0 0 0 0</pose>
-          <geometry>
-            <sphere><radius>0.01</radius></sphere>
-          </geometry>
-        </visual>
-        <visual name="cp_bottom">
-          <cast_shadows>0</cast_shadows>
-          <pose>0 0 -0.05 0 0 0 0</pose>
-          <geometry>
-            <sphere><radius>0.01</radius></sphere>
-          </geometry>
-        </visual>
+        <!--<visual name="cp_top">-->
+          <!--<cast_shadows>0</cast_shadows>-->
+          <!--<pose>0 0 0.05 0 0 0 0</pose>-->
+          <!--<geometry>-->
+            <!--<sphere><radius>0.01</radius></sphere>-->
+          <!--</geometry>-->
+        <!--</visual>-->
+        <!--<visual name="cp_bottom">-->
+          <!--<cast_shadows>0</cast_shadows>-->
+          <!--<pose>0 0 -0.05 0 0 0 0</pose>-->
+          <!--<geometry>-->
+            <!--<sphere><radius>0.01</radius></sphere>-->
+          <!--</geometry>-->
+        <!--</visual>-->
     </link>
 
     <joint name='elevator_joint' type='revolute'>
@@ -567,11 +567,11 @@
         <cla_stall>-3.85</cla_stall>
         <cda_stall>-0.9233984055</cda_stall>
         <cma_stall>0</cma_stall>
-        <cp>-0.12 -0.15 0</cp>
+        <cp>-0.12 0.15 0.01</cp>
         <area>0.1</area>
         <air_density>1.2041</air_density>
         <forward>1 0 0</forward>
-        <upward>0 0.1 0.9</upward>
+        <upward>0 -0.087 0.996</upward>
         <link_name>body</link_name>
         <!--<control_joint_name>left_aileron_joint</control_joint_name>-->
         <!--<control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>-->
@@ -586,11 +586,11 @@
         <cla_stall>-3.85</cla_stall>
         <cda_stall>-0.9233984055</cda_stall>
         <cma_stall>0</cma_stall>
-        <cp>0.12 0.15 0</cp>
+        <cp>-0.12 -0.15 0.01</cp>
         <area>0.1</area>
         <air_density>1.2041</air_density>
         <forward>1 0 0</forward>
-        <upward>0 -0.1 0.9</upward>
+        <upward>0 0.087 0.996</upward>
         <link_name>body</link_name>
         <!--<control_joint_name>-->
           <!--right_aileron_joint-->
@@ -599,7 +599,7 @@
       </plugin>
 
       <plugin name="htail" filename="libLiftDragPlugin.so">
-        <a0>0</a0>
+        <a0>-0.1</a0>
         <cla>4.752798721</cla>
         <cda>0.6417112299</cda>
         <cma>-1.8</cma>
@@ -607,7 +607,7 @@
         <cla_stall>-3.85</cla_stall>
         <cda_stall>-0.9233984055</cda_stall>
         <cma_stall>0</cma_stall>
-        <cp>-0.42 0 0</cp>
+        <cp>-0.40 0 0.02</cp>
         <area>0.05</area>
         <air_density>1.2041</air_density>
         <forward>1 0 0</forward>
@@ -627,7 +627,7 @@
         <cda_stall>-0.9233984055</cda_stall>
         <cma_stall>0</cma_stall>
         <cp>-0.42 0 0.05</cp>
-        <area>0.1</area>
+        <area>0.05</area>
         <air_density>1.2041</air_density>
         <forward>1 0 0</forward>
         <upward>0 1 0</upward>
@@ -643,36 +643,43 @@
           <dec_key>113</dec_key>
           <inc_val>0.005</inc_val>
           <dec_key>q</dec_key>
-          <max_val>0.02</max_val>
           <min_val>0.0</min_val>
+          <max_val>0.03</max_val>
         </engine>
         <control name="elevator_control">
           <joint_name>elevator_joint</joint_name>
           <inc_key>115</inc_key>
           <dec_key>119</dec_key>
-          <inc_val>0.02</inc_val>
-          <max_val>0.2</max_val>
+          <inc_val>0.05</inc_val>
           <min_val>-0.2</min_val>
+          <max_val>0.2</max_val>
           <p>100</p>
           <i>0</i>
           <d>0</d>
-          <cmd_max>1.0</cmd_max>
-          <cmd_min>-1.0</cmd_min>
+          <cmd_max>-0.2</cmd_max>
+          <cmd_min>0.2</cmd_min>
         </control>
         <control name="rudder_control">
           <joint_name>rudder_joint</joint_name>
           <inc_key>100</inc_key>
-          <inc_val>0.02</inc_val>
+          <inc_val>0.05</inc_val>
           <dec_key>97</dec_key>
-          <max_val>0.2</max_val>
           <min_val>-0.2</min_val>
+          <max_val>0.2</max_val>
           <p>100</p>
           <i>0</i>
           <d>0</d>
-          <cmd_max>1.0</cmd_max>
-          <cmd_min>-1.0</cmd_min>
+          <cmd_max>-0.2</cmd_max>
+          <cmd_min>0.2</cmd_min>
         </control>
       </plugin>
+
+     <plugin name="groundtruth" filename="libgazebo_ros_p3d.so">
+       <bodyName>base_link</bodyName>
+       <topicName>groundtruth</topicName>
+       <frameName>map</frameName>
+       <updateRate>100</updateRate>
+     </plugin>
 
   </model>
 
