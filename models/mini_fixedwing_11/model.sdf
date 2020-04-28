@@ -1,0 +1,57 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name="mini_fixedwing_11">
+    <pose>0 0 0 0 0 0</pose>
+    <link name='fuselage'>
+      <inertial>
+        <pose>-0.17 0 0.015 0 0 0</pose>
+        <mass>0.228</mass>
+        <inertia>
+          <ixx>2.54e-3</ixx>
+          <iyy>1.08e-2</iyy>
+          <izz>1.29e-2</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://mini_fixedwing_11/stl/fuselage.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <max_vel>0.1</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+      <visual name='visual-body'>
+        <pose>-2 -2 -2 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://mini_fixedwing_11/stl/fuselage.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.678 0.529 0.384 1</ambient>
+          <diffuse>0.678 0.529 0.384 1</diffuse>
+          <specular>0.678 0.529 0.384 1</specular>
+        </material>
+      </visual>
+    </link>
+
+  </model>
+
+</sdf>
+
+<!-- vim: set et fenc=utf-8 ft=xml ff=unix sts=0 sw=2 ts=2 : -->

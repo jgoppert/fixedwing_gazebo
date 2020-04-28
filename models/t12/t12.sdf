@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
   <model name="t12">
-    <pose>0 0 0 0 0 0</pose>
+    <pose>0 0 0.2 0 0 0</pose>
     <link name="body">
       <pose>0 0 0 0 0 0</pose>
       <inertial>
@@ -63,6 +63,24 @@
           </sphere>
         </geometry>
       </visual>
+
+      <visual name='cp_leftwing'>
+        <pose>0.013 0.2 -0.022 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+      <visual name='cp_rightwing'>
+        <pose>0.013 -0.2 -0.022 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+
     </link>
 
     <!-- <link name='wing'>
@@ -198,7 +216,7 @@
       <pose>0.1833 0.0605 -0.1030 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
-        <mass>0.0005</mass>
+        <mass>0.0025</mass>
         <inertia>
           <ixx>1.4e-5</ixx>
           <iyy>7.64e-6</iyy>
@@ -206,11 +224,12 @@
         </inertia>
       </inertial>
       <collision name='collision_left_wheel'>
+        <pose>0 0 0 1.57 0 0</pose>
         <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>model://t12/meshes/wheel.stl</uri>
-          </mesh>
+          <cylinder> 
+            <radius>0.025</radius>
+            <length>0.02</length>
+          </cylinder>
         </geometry>
         <surface>
           <friction>
@@ -249,11 +268,12 @@
         </inertia>
       </inertial>
       <collision name='collision_right_wheel'>
+        <pose>0 0 0 1.57 0 0</pose>
         <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>model://t12/meshes/wheel.stl</uri>
-          </mesh>
+          <cylinder> 
+            <radius>0.025</radius>
+            <length>0.02</length>
+          </cylinder>
         </geometry>
         <surface>
           <friction>
@@ -291,14 +311,14 @@
           <izz>2.76e-4</izz>
         </inertia>
       </inertial>
-      <collision name='collision_propeller'>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>model://t12/meshes/prop.stl</uri>
-          </mesh>
-        </geometry>
-      </collision>
+      <!--<collision name='collision_propeller'>-->
+        <!--<geometry>-->
+          <!--<mesh>-->
+            <!--<scale>1 1 1</scale>-->
+            <!--<uri>model://t12/meshes/prop.stl</uri>-->
+          <!--</mesh>-->
+        <!--</geometry>-->
+      <!--</collision>-->
       <visual name='visual_propeller'>
         <geometry>
           <mesh>
@@ -456,7 +476,7 @@
 
     <plugin name='leftwing_aero' filename='libLiftDragPlugin.so'>
       <link_name>body</link_name>
-      <a0>-0.14</a0>
+      <a0>0.14</a0>
       <cla>7.75</cla>
       <cda>0.49</cda>
       <cma>-0.788</cma>
@@ -464,18 +484,18 @@
       <cla_stall>-4</cla_stall>
       <cda_stall>1</cda_stall>
       <cma_stall>0</cma_stall>
-      <cp>0.013 0.08 -0.022</cp>
+      <cp>0.013 0.2 -0.022</cp>
       <area>0.06</area>
       <air_density>1.255</air_density>
       <forward>1 0 0</forward>
-      <upward>0 -0.57 1</upward>
+      <upward>0 -0.26 0.97</upward>
       <control_joint_name>left_aileron_joint</control_joint_name>
       <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
     </plugin>
 
     <plugin name='rightwing_aero' filename='libLiftDragPlugin.so'>
       <link_name>body</link_name>
-      <a0>-0.14</a0>
+      <a0>0.14</a0>
       <cla>7.75</cla>
       <cda>0.49</cda>
       <cma>-0.788</cma>
@@ -483,11 +503,11 @@
       <cla_stall>-4</cla_stall>
       <cda_stall>1</cda_stall>
       <cma_stall>0</cma_stall>
-      <cp>0.013 -0.08 -0.022</cp>
+      <cp>0.013 -0.2 -0.022</cp>
       <area>0.06</area>
       <air_density>1.255</air_density>
       <forward>1 0 0</forward>
-      <upward>0 0.57 1</upward>
+      <upward>0 0.26 0.97</upward>
       <control_joint_name>right_aileron_joint</control_joint_name>
       <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
     </plugin>

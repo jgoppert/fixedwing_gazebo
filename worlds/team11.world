@@ -1,19 +1,28 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <sdf version="1.5">
   <world name="default">
+    <scene>
+      <grid>false</grid>
+      <sky>
+        <clouds>
+          <speed>10</speed>
+        </clouds>
+      </sky>
+    </scene>
     <gui>
       <!-- A plugin for controlling the Cessna with the keyboard -->
+      <plugin name="keyboard" filename="libKeyboardGUIPlugin.so"/>
+
       <camera name="user_camera">
         <track_visual>
-          <static>1</static>
-          <xyz>-4 0 1</xyz>
-          <name>t12</name>
+          <inherit_yaw>false</inherit_yaw>
+          <static>true</static>
+          <xyz>-2 0 0.2</xyz>
+          <name>plane</name>
           <min_dist>1</min_dist>
           <max_dist>6</max_dist>
         </track_visual>
-        <!--<projection_type>orthographic</projection_type>-->
       </camera>
-      <plugin name="keyboard" filename="libKeyboardGUIPlugin.so"/>
     </gui>
 
     <!-- A global light source -->
@@ -22,17 +31,18 @@
     </include>
 
     <include>
-      <uri>model://columns</uri>
-    </include>
-
-    <include>
       <uri>model://hangar4</uri>
     </include>
 
     <include>
-      <pose>-25 0 0.3 0 0 0</pose>
-      <uri>model://t12</uri>
+      <uri>model://columns</uri>
     </include>
+
+    <model name="plane">
+     <include>
+       <uri>model://mini_fixedwing_11</uri>
+     </include>
+    </model>
 
   </world>
 </sdf>
