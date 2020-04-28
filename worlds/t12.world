@@ -1,6 +1,15 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
   <world name="default">
+    <scene>
+      <grid>false</grid>
+      <sky>
+        <clouds>
+          <speed>10</speed>
+        </clouds>
+      </sky>
+    </scene>
+
     <gui>
       <!-- A plugin for controlling the Cessna with the keyboard -->
       <camera name="user_camera">
