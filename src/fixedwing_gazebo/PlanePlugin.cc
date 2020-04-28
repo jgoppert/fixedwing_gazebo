@@ -481,13 +481,12 @@ void PlanePlugin::OnUpdate()
         this->dataPtr->engineControls.begin();
         ei != this->dataPtr->engineControls.end(); ++ei)
     {
-      double slowdown = 1;
       double rho = 2.335e-3;
       double lb2n = 4.44822;
       double lbft2nm = 1.3558;
       auto vel = ei->propeller->RelativeLinearVel();
       auto omega_vect = ei->propeller->RelativeAngularVel();
-      double omega = ignition::math::clamp(slowdown*omega_vect[ei->axis_num], 0.0, 1000*slowdown);
+      double omega = ignition::math::clamp(omega_vect[ei->axis_num], 0.0, 1000.0);
       double rps = omega/M_2_PI;
       double J = 0;
       double aero_torque = 0;
@@ -541,7 +540,7 @@ void PlanePlugin::OnUpdate()
         ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, 0, thrust));
         ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, 0, -aero_torque));
       }
-      ei->joint->SetForce(0, (ei->torque - aero_torque)/slowdown/slowdown);
+      ei->joint->SetForce(0, (ei->torque - aero_torque));
     }
 
     for (std::vector<ThrusterControl>::iterator

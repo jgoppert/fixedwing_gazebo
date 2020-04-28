@@ -2,7 +2,7 @@
 <sdf version='1.6'>
   <model name="miniscout">
     <pose>0 0 0.1 0 0 0</pose>
-    <link name='base_link'>
+    <link name='body'>
       <inertial>
         <pose>-0.12 0 0 0 0 0</pose>
         <mass>0.270</mass>
@@ -429,7 +429,7 @@
       <inertial>
         <mass>0.001</mass>
         <inertia>
-          <ixx>1e-6</ixx>
+          <ixx>1e-4</ixx>
           <iyy>1e-6</iyy>
           <izz>1e-6</izz>
         </inertia>
@@ -510,9 +510,9 @@
       <child>propeller</child>
       <axis>
         <xyz>1 0 0</xyz>
-        <dynamics>
-          <damping>1e-5</damping>
-        </dynamics>
+        <!--<dynamics>-->
+          <!--<damping>1e-5</damping>-->
+        <!--</dynamics>-->
       </axis>
       <physics>
         <ode>
@@ -641,18 +641,18 @@
           <joint_name>propeller_joint</joint_name>
           <inc_key>101</inc_key>
           <dec_key>113</dec_key>
-          <inc_val>0.005</inc_val>
+          <inc_val>1.0</inc_val>
           <dec_key>q</dec_key>
           <min_val>0.0</min_val>
-          <max_val>0.03</max_val>
+          <max_val>7.4</max_val>
           <prop_name>propeller</prop_name>
           <diameter>6</diameter> <!-- inches -->
           <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
           <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
-          <kV>3750</kV>
+          <kV>2280</kV>
           <i0>0.6</i0>
-          <r0>0.098</r0>
-          <battV>11.1</battV> <!-- used to saturate voltage -->
+          <r0>0.4</r0>
+          <battV>7.4</battV> <!-- used to saturate voltage -->
           <axis_num>0</axis_num> <!-- axis of rotation, x-0, y-1, z-2 -->
         </engine>
         <control name="elevator_control">
