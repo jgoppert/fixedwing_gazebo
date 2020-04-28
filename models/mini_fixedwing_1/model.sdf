@@ -465,9 +465,9 @@
       <inertial>
         <mass>0.0008287</mass>
         <inertia>
-          <ixx>5.6e-7</ixx>
-          <iyy>8e-7</iyy>
-          <izz>9.2e-7</izz>
+          <ixx>1e-4</ixx>
+          <iyy>1e-6</iyy>
+          <izz>1e-6</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -635,11 +635,21 @@
         <joint_name>propeller_joint</joint_name>
         <inc_key>101</inc_key>
         <dec_key>113</dec_key>
-        <inc_val>0.01</inc_val>
+        <inc_val>1.0</inc_val>
         <dec_key>q</dec_key>
         <min_val>0.0</min_val>
-        <max_val>0.1</max_val>
+        <max_val>7.4</max_val>
+        <prop_name>propeller</prop_name>
+        <diameter>6</diameter> <!-- inches -->
+        <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
+        <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
+        <kV>2280</kV>
+        <i0>0.6</i0>
+        <r0>0.4</r0>
+        <battV>7.4</battV> <!-- used to saturate voltage -->
+        <axis_num>0</axis_num> <!-- axis of rotation, x-0, y-1, z-2 -->
       </engine>
+
       <control name="elevator_control">
         <joint_name>elevator_joint</joint_name>
         <inc_key>115</inc_key>
