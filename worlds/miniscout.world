@@ -38,22 +38,9 @@
       <uri>model://columns</uri>
     </include>
 
-    <model name="miniscout">
-     <include>
-       <uri>model://miniscout</uri>
-     </include>
-
-     <include>
-       <pose>-0.12 0 0.15 0 0 0</pose>
-       <uri>model://tiny_hokuyo</uri>
-     </include>
-
-     <joint name="laser" type="fixed">
-       <parent>miniscout::body</parent>
-       <child>tiny_hokuyo::link</child>
-     </joint>
-
-    </model>
+   <include>
+     <uri>model://miniscout</uri>
+   </include>
 
   </world>
 </sdf>

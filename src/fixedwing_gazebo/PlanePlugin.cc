@@ -481,68 +481,67 @@ void PlanePlugin::OnUpdate()
         this->dataPtr->engineControls.begin();
         ei != this->dataPtr->engineControls.end(); ++ei)
     {
+      double slowdown = 1;
       double rho = 2.335e-3;
       double lb2n = 4.44822;
       double lbft2nm = 1.3558;
       auto vel = ei->propeller->RelativeLinearVel();
-      auto omega = ei->propeller->RelativeAngularVel();
-      double rps = omega[ei->axis_num]/(2*M_PI);
-      double J = vel[ei->axis_num]/(rps*ei->diameter*0.0254);
-      if (J < 0)
-      {
-        J = 0;
-      }
-      if (J > 1)
-      {
-        J = 1;
-      }
-      double CT = ei->ct_coeff[0] + ei->ct_coeff[1]*J + ei->ct_coeff[2]*pow(J, 2.0)
-                + ei->ct_coeff[3]*pow(J, 3.0) + ei->ct_coeff[4]*pow(J, 4.0);
-      double thrust = CT*rho*pow(rps, 2.0)*pow(ei->diameter/12, 4.0)*lb2n; // Newton
-
-      double CP = ei->cp_coeff[0] + ei->cp_coeff[1]*J + ei->cp_coeff[2]*pow(J, 2.0)
-                + ei->cp_coeff[3]*pow(J, 3.0) + ei->cp_coeff[4]*pow(J, 4.0);
-      double power = CP*rho*pow(rps, 3.0)*pow(ei->diameter/12, 5.0); // lb-ft/s
-
+      auto omega_vect = ei->propeller->RelativeAngularVel();
+      double omega = ignition::math::clamp(slowdown*omega_vect[ei->axis_num], 0.0, 1000*slowdown);
+      double rps = omega/M_2_PI;
+      double J = 0;
       double aero_torque = 0;
-      if (fabs(rps) > 1.0) {
-          aero_torque = power/(2*M_PI*rps)*lbft2nm; // N-m
+      double power = 0;
+      double thrust = 0;
+      double CT = 0;
+      double CP = 0;
+      if (fabs(rps) > 0.1) {
+        J = ignition::math::clamp(vel[ei->axis_num]/(rps*ei->diameter*0.0254), 0.0, 1.0);
+        CT = ei->ct_coeff[0] + ei->ct_coeff[1]*J + ei->ct_coeff[2]*pow(J, 2.0)
+          + ei->ct_coeff[3]*pow(J, 3.0) + ei->ct_coeff[4]*pow(J, 4.0);
+        thrust = CT*rho*pow(rps, 2.0)*pow(ei->diameter/12, 4.0)*lb2n; // Newton
+        CP = ei->cp_coeff[0] + ei->cp_coeff[1]*J + ei->cp_coeff[2]*pow(J, 2.0)
+          + ei->cp_coeff[3]*pow(J, 3.0) + ei->cp_coeff[4]*pow(J, 4.0);
+        power = CP*rho*pow(rps, 3.0)*pow(ei->diameter/12, 5.0); // lb-ft/s
+        aero_torque = power/(2*M_PI*rps)*lbft2nm; // N-m
       }
-       
+
+      // see
+      // http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
+      double kV = ei->kV*(M_PI/30); // kV in SI units of (rad/sec)/V
+      ei->i = ignition::math::clamp((ei->V - omega/kV)/ei->r0, 0.0, 20.0);
+      ei->torque = ignition::math::clamp((ei->i - ei->i0)/kV, 0.0, 1.0);
       ei->aero_torque = aero_torque;
-      ei->thrust = thrust;
+      ei->thrust = ignition::math::clamp(thrust, 0.0, 10.0);
       ei->CT = CT;
       ei->CP = CP;
       ei->J = J;
 
-      gzdbg << std::setw(10) << std::fixed
-       << "J:" <<  ei->J
-       << " CP:" << ei->CP
-       << " CT:" << ei->CT
-       << " Thrust:" << ei->thrust
-       << " Motr Trq:" << ei->torque
-       << " Aero Trq:" << ei->aero_torque
-       << " Volts:" << ei->V
-       << " Amps:" << ei->i
-       << " RPM:" << rps*60
+      gzdbg << std::fixed
+       << "J:" <<  std::setw(5) << ei->J
+       << " CP:" << std::setw(5) << ei->CP
+       << " CT:" << std::setw(5) << ei->CT
+       << " Thrust:" << std::setw(5) << ei->thrust
+       << " Motr Trq:" << std::setw(5) << ei->torque
+       << " Aero Trq:" << std::setw(5) << ei->aero_torque
+       << " Volts:" << std::setw(5) << ei->V
+       << " Amps:" << std::setw(5) << ei->i
+       << " RPM:" << std::setw(10) << rps*60
        << std::endl;
-      //GZ_ASSERT(isfinite(thrust), "non finite force");
-      //GZ_ASSERT(isfinite(aero_torque), "non finite torque");
-      
-      if (isfinite(thrust) && isfinite(ei->torque) && isfinite(aero_torque))
-      {
-        if (ei->axis_num==0) {
-          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(thrust, 0, 0));
-          ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(-aero_torque, 0, 0));
-        } else if (ei->axis_num==1) {
-          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, thrust, 0));
-          ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, -aero_torque, 0));
-        } else if (ei->axis_num==2) {
-          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, 0, thrust));
-          ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, 0, -aero_torque));
-        }
-        ei->joint->SetForce(0, ei->torque - aero_torque);
+      GZ_ASSERT(isfinite(thrust), "non finite force");
+      GZ_ASSERT(isfinite(ei->torque), "non finite torque");
+      GZ_ASSERT(isfinite(aero_torque), "non finite aero torque");
+      if (ei->axis_num==0) {
+        ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(thrust, 0, 0));
+        ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(-aero_torque, 0, 0));
+      } else if (ei->axis_num==1) {
+        ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, thrust, 0));
+        ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, -aero_torque, 0));
+      } else if (ei->axis_num==2) {
+        ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, 0, thrust));
+        ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, 0, -aero_torque));
       }
+      ei->joint->SetForce(0, (ei->torque - aero_torque)/slowdown/slowdown);
     }
 
     for (std::vector<ThrusterControl>::iterator
@@ -597,15 +596,7 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
       // ungetc( ch, stdin );
       // gzerr << (int)ch << " : " << this->clIncKey << "\n";
     }
-
-    // see
-    // http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
-    double kV = ei->kV*(M_PI/30); // kV in SI units of (rad/sec)/V
-    auto omega = ei->propeller->RelativeAngularVel();
     ei->V = ignition::math::clamp(ei->V, 0.0, ei->battV);
-    ei->i = (ei->V - omega[ei->axis_num]/kV)/ei->r0;
-    ei->torque = (ei->i - ei->i0)/kV;
-    // ei->torque = ignition::math::clamp(ei->torque, ei->minVal, ei->maxVal);
   }
 
   for (std::vector<ThrusterControl>::iterator
