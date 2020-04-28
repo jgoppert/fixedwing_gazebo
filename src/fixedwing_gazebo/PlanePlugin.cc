@@ -82,8 +82,14 @@ struct EngineControl
   /// \brief Min joint angle command
   public: double minVal;
 
-  /// \brief Torque applied to engine joint
+  /// \brief Torque applied to engine joint by motor
   public: double torque;
+
+  /// \brief Reaction torque from prop aerodynamics
+  public: double aero_torque;
+
+  /// \brief Thrust applied to engine joint
+  public: double thrust;
 
   /// \brief Pointer to the propeller link
   public: physics::LinkPtr propeller;
@@ -100,11 +106,23 @@ struct EngineControl
   /// \brief kV of motor
   public: double kV;
 
+  /// \brief CT of prop
+  public: double CT;
+
+  /// \brief CP of prop
+  public: double CP;
+
+  /// \brief J of prop
+  public: double J;
+
   /// \brief battery voltage (max voltage)
   public: double battV;
 
-  /// \brief current voltage
-  public: double curV;
+  /// \brief voltage
+  public: double V;
+
+  /// \brief current
+  public: double i;
 
   /// \brief zero torque current
   public: double i0;
@@ -485,32 +503,44 @@ void PlanePlugin::OnUpdate()
       double CP = ei->cp_coeff[0] + ei->cp_coeff[1]*J + ei->cp_coeff[2]*pow(J, 2.0)
                 + ei->cp_coeff[3]*pow(J, 3.0) + ei->cp_coeff[4]*pow(J, 4.0);
       double power = CP*rho*pow(rps, 3.0)*pow(ei->diameter/12, 5.0); // lb-ft/s
-	  double aero_torque = 0;
-	  if (fabs(rps) > 1.0) {
-      	aero_torque = power/(2*M_PI*rps)*lbft2nm; // N-m
-	  }
-      gzdbg << "CT: " << CT << std::endl;
-      gzdbg << "CP: " << CP << std::endl;
-      gzdbg << "Thrust: " << thrust << std::endl;
-      gzdbg << "Engine Torque: " << ei->torque << std::endl;
-      gzdbg << "Aero Torque: " << aero_torque << std::endl;
-      gzdbg << "Current Voltage: " << ei->curV << std::endl;
-      
-	  //GZ_ASSERT(isfinite(thrust), "non finite force");
-	  //GZ_ASSERT(isfinite(aero_torque), "non finite torque");
-	  
-      if (isfinite(thrust))
-      {
-        if (ei->axis_num==0)
-          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(thrust, 0, 0));
-        if (ei->axis_num==1)
-          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, thrust, 0));
-        if (ei->axis_num==2)
-          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, 0, thrust));
+
+      double aero_torque = 0;
+      if (fabs(rps) > 1.0) {
+          aero_torque = power/(2*M_PI*rps)*lbft2nm; // N-m
       }
-      if (isfinite(aero_torque))
+       
+      ei->aero_torque = aero_torque;
+      ei->thrust = thrust;
+      ei->CT = CT;
+      ei->CP = CP;
+      ei->J = J;
+
+      gzdbg << std::setw(10) << std::fixed
+       << "J:" <<  ei->J
+       << " CP:" << ei->CP
+       << " CT:" << ei->CT
+       << " Thrust:" << ei->thrust
+       << " Motr Trq:" << ei->torque
+       << " Aero Trq:" << ei->aero_torque
+       << " Volts:" << ei->V
+       << " Amps:" << ei->i
+       << " RPM:" << rps*60
+       << std::endl;
+      //GZ_ASSERT(isfinite(thrust), "non finite force");
+      //GZ_ASSERT(isfinite(aero_torque), "non finite torque");
+      
+      if (isfinite(thrust) && isfinite(ei->torque) && isfinite(aero_torque))
       {
-        // spin up engine
+        if (ei->axis_num==0) {
+          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(thrust, 0, 0));
+          ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(-aero_torque, 0, 0));
+        } else if (ei->axis_num==1) {
+          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, thrust, 0));
+          ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, -aero_torque, 0));
+        } else if (ei->axis_num==2) {
+          ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, 0, thrust));
+          ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, 0, -aero_torque));
+        }
         ei->joint->SetForce(0, ei->torque - aero_torque);
       }
     }
@@ -556,11 +586,11 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
     if (static_cast<int>(ch) == ei->incKey)
     {
       // spin up motor
-      ei->curV += ei->incVal;
+      ei->V += ei->incVal;
     }
     else if (static_cast<int>(ch) == ei->decKey)
     {
-      ei->curV -= ei->incVal;
+      ei->V -= ei->incVal;
     }
     else
     {
@@ -568,14 +598,14 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
       // gzerr << (int)ch << " : " << this->clIncKey << "\n";
     }
 
-	// see
-	// http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
-	double kV = ei->kV*(M_PI/30); // kV in SI units of (rad/sec)/V
+    // see
+    // http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
+    double kV = ei->kV*(M_PI/30); // kV in SI units of (rad/sec)/V
     auto omega = ei->propeller->RelativeAngularVel();
-    ei->curV = ignition::math::clamp(ei->curV, 0.0, ei->battV);
-    ei->torque = (ei->curV - omega[ei->axis_num]/kV)/ei->r0/kV;
+    ei->V = ignition::math::clamp(ei->V, 0.0, ei->battV);
+    ei->i = (ei->V - omega[ei->axis_num]/kV)/ei->r0;
+    ei->torque = (ei->i - ei->i0)/kV;
     // ei->torque = ignition::math::clamp(ei->torque, ei->minVal, ei->maxVal);
-    gzerr << "torque: " << ei->torque << "\n";
   }
 
   for (std::vector<ThrusterControl>::iterator
@@ -644,3 +674,5 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
   }
   //std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
+
+/* vim: set et fenc=utf-8 ff=unix sts=0 sw=2 ts=2 : */
