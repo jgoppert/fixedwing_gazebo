@@ -115,6 +115,9 @@ struct EngineControl
   /// \brief J of prop
   public: double J;
 
+  /// \brief throttle (0-1)
+  public: double throttle;
+
   /// \brief battery voltage (max voltage)
   public: double battV;
 
@@ -123,6 +126,9 @@ struct EngineControl
 
   /// \brief current
   public: double i;
+
+  /// \brief max current
+  public: double iMax;
 
   /// \brief zero torque current
   public: double i0;
@@ -295,7 +301,7 @@ void PlanePlugin::Load(physics::ModelPtr _model,
                 for (int i = 0; i < 5; i++) {
                   double cti;
                   ss >> cti;
-                  gzdbg << cti << std::endl;
+                  //gzdbg << cti << std::endl;
                   ec.ct_coeff[i] = cti;
                 }
               }
@@ -306,7 +312,7 @@ void PlanePlugin::Load(physics::ModelPtr _model,
                 for (int i = 0; i < 5; i++) {
                   double cpi;
                   ss >> cpi;
-                  gzdbg << cpi << std::endl;
+                  //gzdbg << cpi << std::endl;
                   ec.cp_coeff[i] = cpi;
                 }
               }
@@ -326,10 +332,14 @@ void PlanePlugin::Load(physics::ModelPtr _model,
               {
                 ec.battV = enginePtr->Get<double>("battV");
               }
+              if (enginePtr->HasElement("iMax"))
+              {
+                ec.iMax = enginePtr->Get<double>("iMax");
+              }
               if (enginePtr->HasElement("axis_num"))
               {
                 ec.axis_num = enginePtr->Get<int>("axis_num");
-                gzdbg << ec.axis_num << std::endl;
+                //gzdbg << ec.axis_num << std::endl;
               }
             }
           }
@@ -481,37 +491,38 @@ void PlanePlugin::OnUpdate()
         this->dataPtr->engineControls.begin();
         ei != this->dataPtr->engineControls.end(); ++ei)
     {
-      double rho = 2.335e-3;
-      double lb2n = 4.44822;
-      double lbft2nm = 1.3558;
-      auto vel = ei->propeller->RelativeLinearVel();
+      const double rho = 1.225;
+      auto vel_vect = ei->propeller->RelativeLinearVel();
+      double v = vel_vect[ei->axis_num];
       auto omega_vect = ei->propeller->RelativeAngularVel();
-      double omega = ignition::math::clamp(omega_vect[ei->axis_num], 0.0, 1000.0);
-      double rps = omega/M_2_PI;
+      double omega = ignition::math::clamp(omega_vect[ei->axis_num], 0.0, 10000.0);
+      double n = omega/(2*M_PI);
+      double kV = ei->kV*(M_PI/30); // kV in SI units of (rad/sec)/V
       double J = 0;
       double aero_torque = 0;
       double power = 0;
       double thrust = 0;
       double CT = 0;
       double CP = 0;
-      if (fabs(rps) > 0.1) {
-        J = ignition::math::clamp(vel[ei->axis_num]/(rps*ei->diameter*0.0254), 0.0, 1.0);
-        CT = ei->ct_coeff[0] + ei->ct_coeff[1]*J + ei->ct_coeff[2]*pow(J, 2.0)
-          + ei->ct_coeff[3]*pow(J, 3.0) + ei->ct_coeff[4]*pow(J, 4.0);
-        thrust = CT*rho*pow(rps, 2.0)*pow(ei->diameter/12, 4.0)*lb2n; // Newton
-        CP = ei->cp_coeff[0] + ei->cp_coeff[1]*J + ei->cp_coeff[2]*pow(J, 2.0)
-          + ei->cp_coeff[3]*pow(J, 3.0) + ei->cp_coeff[4]*pow(J, 4.0);
-        power = CP*rho*pow(rps, 3.0)*pow(ei->diameter/12, 5.0); // lb-ft/s
-        aero_torque = power/(2*M_PI*rps)*lbft2nm; // N-m
+      const double in2m = 0.0254;
+      if (fabs(n) > 0.1) {
+        double D = ei->diameter*in2m;
+        J = ignition::math::clamp(v/(n*D), 0.0, 1.0);
+        CT = ei->ct_coeff[0] + ei->ct_coeff[1]*J + ei->ct_coeff[2]*pow(J, 2)
+          + ei->ct_coeff[3]*pow(J, 3) + ei->ct_coeff[4]*pow(J, 4);
+        thrust = CT*rho*pow(n, 2)*pow(D, 4); // Newton
+        CP = ei->cp_coeff[0] + ei->cp_coeff[1]*J + ei->cp_coeff[2]*pow(J, 2)
+          + ei->cp_coeff[3]*pow(J, 3) + ei->cp_coeff[4]*pow(J, 4);
+        aero_torque = (CP/(2*M_PI))*rho*pow(n, 2)*pow(D, 5);
       }
 
       // see
       // http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
-      double kV = ei->kV*(M_PI/30); // kV in SI units of (rad/sec)/V
-      ei->i = ignition::math::clamp((ei->V - omega/kV)/ei->r0, 0.0, 20.0);
-      ei->torque = ignition::math::clamp((ei->i - ei->i0)/kV, 0.0, 1.0);
+      ei->V = ei->throttle * ei->battV;
+      ei->i = ignition::math::clamp((ei->V - omega/kV)/ei->r0, 0.0, ei->iMax);
+      ei->torque = ignition::math::clamp((ei->i - ei->i0)/kV, 0.0, 1000.0);
       ei->aero_torque = aero_torque;
-      ei->thrust = ignition::math::clamp(thrust, 0.0, 10.0);
+      ei->thrust = ignition::math::clamp(thrust, 0.0, 1000.0);
       ei->CT = CT;
       ei->CP = CP;
       ei->J = J;
@@ -521,11 +532,15 @@ void PlanePlugin::OnUpdate()
        << " CP:" << std::setw(5) << ei->CP
        << " CT:" << std::setw(5) << ei->CT
        << " Thrust:" << std::setw(5) << ei->thrust
-       << " Motr Trq:" << std::setw(5) << ei->torque
-       << " Aero Trq:" << std::setw(5) << ei->aero_torque
+       << " Q Mtr:" << std::setw(5) << ei->torque
+       << " Q Aero:" << std::setw(5) << ei->aero_torque
        << " Volts:" << std::setw(5) << ei->V
+       //<< " KV:" << std::setw(5) << kV
+       //<< " n:" << std::setw(5) << n
+       //<< " omega:" << std::setw(5) << omega
+       //<< " EMF:" << std::setw(5) << omega/kV
        << " Amps:" << std::setw(5) << ei->i
-       << " RPM:" << std::setw(10) << rps*60
+       << " RPM:" << std::setw(7) << n*60
        << std::endl;
       GZ_ASSERT(isfinite(thrust), "non finite force");
       GZ_ASSERT(isfinite(ei->torque), "non finite torque");
@@ -540,7 +555,7 @@ void PlanePlugin::OnUpdate()
         ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, 0, thrust));
         ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, 0, -aero_torque));
       }
-      ei->joint->SetForce(0, (ei->torque - aero_torque));
+      ei->joint->SetForce(0, ei->torque);
     }
 
     for (std::vector<ThrusterControl>::iterator
@@ -584,18 +599,18 @@ void PlanePluginPrivate::OnKeyHit(ConstAnyPtr &_msg)
     if (static_cast<int>(ch) == ei->incKey)
     {
       // spin up motor
-      ei->V += ei->incVal;
+      ei->throttle += ei->incVal;
     }
     else if (static_cast<int>(ch) == ei->decKey)
     {
-      ei->V -= ei->incVal;
+      ei->throttle -= ei->incVal;
     }
     else
     {
       // ungetc( ch, stdin );
       // gzerr << (int)ch << " : " << this->clIncKey << "\n";
     }
-    ei->V = ignition::math::clamp(ei->V, 0.0, ei->battV);
+    ei->throttle = ignition::math::clamp(ei->throttle, ei->minVal, ei->maxVal);
   }
 
   for (std::vector<ThrusterControl>::iterator

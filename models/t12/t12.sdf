@@ -555,16 +555,17 @@
         <joint_name>prop_joint</joint_name>
         <inc_key>101</inc_key>
         <dec_key>113</dec_key>
-        <inc_val>0.5</inc_val>
-        <!-- <max_val>0.1</max_val> -->
-        <!-- <min_val>0.0</min_val> -->
+        <inc_val>0.1</inc_val>
+		<min_val>0.0</min_val> 
+		<max_val>1.0</max_val> 
         <prop_name>propeller</prop_name>
         <diameter>6</diameter>
         <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
         <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
         <kV>3750</kV>
-        <i0>0.6</i0>
-        <r0>0.098</r0>
+        <iMax>30</iMax>
+        <i0>0.5</i0>
+		<r0>0.098</r0>
         <battV>11.1</battV>
         <axis_num>2</axis_num>
       </engine>
@@ -576,7 +577,7 @@
         <inc_val>0.04</inc_val>
         <max_val>0.4</max_val>
         <min_val>-0.4</min_val>
-        <p>1</p>
+        <p>10</p>
         <i>0</i>
         <d>0</d>
         <cmd_max>1</cmd_max>
@@ -585,12 +586,12 @@
 
       <control name='rudder_control'>
         <joint_name>rudder_joint</joint_name>
-        <inc_key>100</inc_key>
-        <dec_key>97</dec_key>
-        <inc_val>0.04</inc_val>
-        <max_val>0.4</max_val>
-        <min_val>-0.4</min_val>
-        <p>5</p>
+        <inc_key>46</inc_key>
+        <dec_key>44</dec_key>
+        <inc_val>0.02</inc_val>
+        <min_val>-0.2</min_val>
+        <max_val>0.2</max_val>
+        <p>10</p>
         <i>0</i>
         <d>0</d>
         <cmd_max>1</cmd_max>
@@ -599,12 +600,12 @@
 
       <control name='l_aileron_control'>
         <joint_name>left_aileron_joint</joint_name>
-        <inc_key>106</inc_key>
-        <dec_key>108</dec_key>
+        <inc_key>97</inc_key>
+        <dec_key>100</dec_key>
         <inc_val>0.04</inc_val>
-        <max_val>0.4</max_val>
-        <min_val>-0.4</min_val>
-        <p>5</p>
+        <max_val>0.2</max_val>
+        <min_val>-0.2</min_val>
+        <p>10</p>
         <i>0</i>
         <d>0</d>
         <cmd_max>1</cmd_max>
@@ -613,12 +614,12 @@
 
       <control name='r_aileron_control'>
         <joint_name>right_aileron_joint</joint_name>
-        <inc_key>108</inc_key>
-        <dec_key>106</dec_key>
-        <inc_val>0.04</inc_val>
-        <max_val>0.4</max_val>
-        <min_val>-0.4</min_val>
-        <p>5</p>
+        <inc_key>97</inc_key>
+        <dec_key>100</dec_key>
+        <inc_val>-0.04</inc_val>
+        <max_val>0.2</max_val>
+        <min_val>-0.2</min_val>
+        <p>10</p>
         <i>0</i>
         <d>0</d>
         <cmd_max>1</cmd_max>

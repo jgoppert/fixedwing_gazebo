@@ -21,7 +21,9 @@
         </geometry>
         <material>
           <script>
-            <name>Gazebo/Grey</name>
+            <uri>model://column/materials/scripts</uri>
+            <uri>model://column/materials/textures</uri>
+            <name>vrc/granite</name>
           </script>
         </material>
       </visual>

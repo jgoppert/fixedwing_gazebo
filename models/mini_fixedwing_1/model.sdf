@@ -636,7 +636,6 @@
         <inc_key>101</inc_key>
         <dec_key>113</dec_key>
         <inc_val>1.0</inc_val>
-        <dec_key>q</dec_key>
         <min_val>0.0</min_val>
         <max_val>7.4</max_val>
         <prop_name>propeller</prop_name>
@@ -645,7 +644,8 @@
         <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
         <kV>2280</kV>
         <i0>0.6</i0>
-        <r0>0.4</r0>
+        <iMax>30</iMax>
+        <r0>0.004</r0>
         <battV>7.4</battV> <!-- used to saturate voltage -->
         <axis_num>0</axis_num> <!-- axis of rotation, x-0, y-1, z-2 -->
       </engine>
@@ -666,8 +666,8 @@
       <control name="rudder_control">
         <joint_name>rudder_joint</joint_name>
         <inc_key>46</inc_key>
-        <inc_val>0.05</inc_val>
         <dec_key>44</dec_key>
+        <inc_val>0.04</inc_val>
         <min_val>-0.2</min_val>
         <max_val>0.2</max_val>
         <p>100</p>
