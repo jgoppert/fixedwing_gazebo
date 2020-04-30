@@ -1,0 +1,13 @@
+<launch>
+  <arg name="vehicle" default="miniscout"/>
+  <include file="$(find px4)/launch/mavros_posix_sitl.launch">
+    <arg name="x" value="0"/>
+    <arg name="y" value="0"/>
+    <arg name="z" value="0.2"/>
+    <arg name="vehicle" value="plane_ret"/>
+    <arg name="sdf" default="$(find fixedwing_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
+    <arg name="world" default="$(find fixedwing_gazebo)/worlds/hangar4.world"/>
+    <arg name="verbose" value="true"/>
+    <arg name="paused" value="false"/>
+  </include>
+</launch>

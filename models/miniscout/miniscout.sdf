@@ -75,6 +75,23 @@
           </script>
         </material>
       </visual>
+
+      <visual name='visual-gear-wire'>
+       <pose>-0.07 0 0 0 0 0</pose>
+        <cast_shadows>0</cast_shadows>
+        <geometry>
+          <mesh>
+            <scale>0.01 0.01 0.01</scale>
+            <uri>model://miniscout/meshes/stl/gear_wire.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+          </script>
+        </material>
+      </visual>
+
         <!--<visual name="cp_left_wing">-->
           <!--<cast_shadows>0</cast_shadows>-->
           <!--<pose>-0.12 0.15 0.01 0 0 0</pose>-->
@@ -108,53 +125,38 @@
         <!--</visual>-->
 
     </link>
-
-    <link name='gear'>
+    <link name='imu_link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
       <inertial>
-        <pose>-0.07 0 0 0 0 0</pose>
-        <mass>0.001</mass>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.015</mass>
         <inertia>
-          <ixx>1e-4</ixx>
-          <iyy>1e-4</iyy>
-          <izz>1e-4</izz>
+          <ixx>1e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1e-05</izz>
         </inertia>
       </inertial>
-      <visual name='visual-gear-wire'>
-       <pose>-0.07 0 0 0 0 0</pose>
-        <cast_shadows>0</cast_shadows>
-        <geometry>
-          <mesh>
-            <scale>0.01 0.01 0.01</scale>
-            <uri>model://miniscout/meshes/stl/gear_wire.stl</uri>
-          </mesh>
-        </geometry>
-        <material>
-          <script>
-            <name>Gazebo/DarkGrey</name>
-          </script>
-        </material>
-      </visual>
     </link>
-
-    <joint name='gear_joint' type='prismatic'>
+    <joint name='imu_joint' type='revolute'>
+      <child>imu_link</child>
       <parent>body</parent>
-      <child>gear</child>
       <axis>
-        <xyz>0 0 1</xyz>
-        <dynamics>
-          <spring_stiffness>500.0</spring_stiffness>
-          <damping>10</damping>
-        </dynamics>
+        <xyz>1 0 0</xyz>
         <limit>
-          <lower>-0.05</lower>
-          <upper>0.05</upper>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
         </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
-      <physics>
-        <ode>
-          <implicit_spring_damper>1</implicit_spring_damper>
-        </ode>
-      </physics>
     </joint>
 
     <!--<link name='rear_wheel'>-->
@@ -292,7 +294,7 @@
     </link>
 
     <joint name='left_wheel_joint' type='revolute'>
-      <parent>gear</parent>
+      <parent>body</parent>
       <child>left_wheel</child>
       <axis>
         <xyz>0 1 0</xyz>
@@ -363,7 +365,7 @@
     </link>
 
     <joint name='right_wheel_joint' type='revolute'>
-      <parent>gear</parent>
+      <parent>body</parent>
       <child>right_wheel</child>
       <axis>
         <xyz>0 1 0</xyz>
@@ -425,13 +427,13 @@
     </link>
 
     <link name='propeller'>
-      <pose>0.01 0 0.01 0 0 -0.1</pose>
+      <pose>0.01 0 0.01 0 0 0</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>
-          <ixx>1e-6</ixx>
-          <iyy>1e-8</iyy>
-          <izz>1e-8</izz>
+          <ixx>1e-4</ixx>
+          <iyy>1e-6</iyy>
+          <izz>1e-6</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -636,52 +638,52 @@
       <control_joint_rad_to_cl>4.0</control_joint_rad_to_cl>
     </plugin>
 
-    <plugin name="plane_plugin" filename="libPlanePlugin.so">
-      <engine>
-        <joint_name>propeller_joint</joint_name>
-        <inc_key>101</inc_key>
-        <dec_key>113</dec_key>
-        <inc_val>0.1</inc_val>
-        <min_val>0.0</min_val>
-        <max_val>1.0</max_val>
-        <prop_name>propeller</prop_name>
-        <diameter>6</diameter> <!-- inches -->
-        <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
-        <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
-        <kV>2280</kV>
-        <i0>0.5</i0>
-        <iMax>20</iMax>
-        <r0>0.098</r0>
-        <battV>7.4</battV> <!-- used to saturate voltage -->
-        <axis_num>0</axis_num> <!-- axis of rotation, x-0, y-1, z-2 -->
-      </engine>
-      <control name="elevator_control">
-        <joint_name>elevator_joint</joint_name>
-        <inc_key>115</inc_key>
-        <dec_key>119</dec_key>
-        <inc_val>0.1</inc_val>
-        <min_val>-0.4</min_val>
-        <max_val>0.4</max_val>
-        <p>100</p>
-        <i>0</i>
-        <d>0</d>
-        <cmd_max>-0.4</cmd_max>
-        <cmd_min>0.4</cmd_min>
-      </control>
-      <control name="rudder_control">
-        <joint_name>rudder_joint</joint_name>
-        <inc_key>100</inc_key>
-        <inc_val>0.1</inc_val>
-        <dec_key>97</dec_key>
-        <min_val>-0.4</min_val>
-        <max_val>0.4</max_val>
-        <p>100</p>
-        <i>0</i>
-        <d>0</d>
-        <cmd_max>-0.4</cmd_max>
-        <cmd_min>0.4</cmd_min>
-      </control>
-    </plugin>
+    <!--<plugin name="plane_plugin" filename="libPlanePlugin.so">-->
+      <!--<engine>-->
+        <!--<joint_name>propeller_joint</joint_name>-->
+        <!--<inc_key>101</inc_key>-->
+        <!--<dec_key>113</dec_key>-->
+        <!--<inc_val>0.1</inc_val>-->
+        <!--<min_val>0.0</min_val>-->
+        <!--<max_val>1.0</max_val>-->
+        <!--<prop_name>propeller</prop_name>-->
+        <!--<diameter>6</diameter> [> inches <]-->
+        <!--<ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>-->
+        <!--<cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>-->
+        <!--<kV>2280</kV>-->
+        <!--<i0>0.5</i0>-->
+        <!--<iMax>20</iMax>-->
+        <!--<r0>0.098</r0>-->
+        <!--<battV>7.4</battV> [> used to saturate voltage <]-->
+        <!--<axis_num>0</axis_num> [> axis of rotation, x-0, y-1, z-2 <]-->
+      <!--</engine>-->
+      <!--<control name="elevator_control">-->
+        <!--<joint_name>elevator_joint</joint_name>-->
+        <!--<inc_key>115</inc_key>-->
+        <!--<dec_key>119</dec_key>-->
+        <!--<inc_val>0.1</inc_val>-->
+        <!--<min_val>-0.4</min_val>-->
+        <!--<max_val>0.4</max_val>-->
+        <!--<p>100</p>-->
+        <!--<i>0</i>-->
+        <!--<d>0</d>-->
+        <!--<cmd_max>-0.4</cmd_max>-->
+        <!--<cmd_min>0.4</cmd_min>-->
+      <!--</control>-->
+      <!--<control name="rudder_control">-->
+        <!--<joint_name>rudder_joint</joint_name>-->
+        <!--<inc_key>100</inc_key>-->
+        <!--<inc_val>0.1</inc_val>-->
+        <!--<dec_key>97</dec_key>-->
+        <!--<min_val>-0.4</min_val>-->
+        <!--<max_val>0.4</max_val>-->
+        <!--<p>100</p>-->
+        <!--<i>0</i>-->
+        <!--<d>0</d>-->
+        <!--<cmd_max>-0.4</cmd_max>-->
+        <!--<cmd_min>0.4</cmd_min>-->
+      <!--</control>-->
+    <!--</plugin>-->
 
      <!--<plugin name="groundtruth" filename="libgazebo_ros_p3d.so">-->
        <!--<bodyName>body</bodyName>-->
@@ -689,6 +691,138 @@
        <!--<frameName>map</frameName>-->
        <!--<updateRate>100</updateRate>-->
      <!--</plugin>--> 
+
+    <!--<plugin name='puller' filename='libgazebo_motor_model.so'>-->
+      <!--<robotNamespace></robotNamespace>-->
+      <!--<jointName>propeller_joint</jointName>-->
+      <!--<linkName>propeller</linkName>-->
+      <!--<turningDirection>ccw</turningDirection>-->
+      <!--<timeConstantUp>0.0125</timeConstantUp>-->
+      <!--<timeConstantDown>0.025</timeConstantDown>-->
+      <!--<maxRotVelocity>10000</maxRotVelocity>-->
+      <!--<motorConstant>8.0e-6</motorConstant>-->
+      <!--<momentConstant>0</momentConstant>-->
+      <!--<commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>-->
+      <!--<motorNumber>4</motorNumber>-->
+      <!--<rotorDragCoefficient>0</rotorDragCoefficient>-->
+      <!--<rollingMomentCoefficient>0</rollingMomentCoefficient>-->
+      <!--<motorSpeedPubTopic>/motor_speed/4</motorSpeedPubTopic>-->
+      <!--<rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>-->
+      <!--<robotNamespace></robotNamespace>-->
+      <!--[><windSubTopic>/wind</windSubTopic><]-->
+    <!--</plugin>-->
+
+    <plugin name='gazebo_imu_plugin' filename='libgazebo_imu_plugin.so'>
+      <robotNamespace></robotNamespace>
+      <linkName>imu_link</linkName>
+      <imuTopic>/imu</imuTopic>
+      <gyroscopeNoiseDensity>0.0003394</gyroscopeNoiseDensity>
+      <gyroscopeRandomWalk>3.8785e-05</gyroscopeRandomWalk>
+      <gyroscopeBiasCorrelationTime>1000.0</gyroscopeBiasCorrelationTime>
+      <gyroscopeTurnOnBiasSigma>0.0087</gyroscopeTurnOnBiasSigma>
+      <accelerometerNoiseDensity>0.004</accelerometerNoiseDensity>
+      <accelerometerRandomWalk>0.006</accelerometerRandomWalk>
+      <accelerometerBiasCorrelationTime>300.0</accelerometerBiasCorrelationTime>
+      <accelerometerTurnOnBiasSigma>0.196</accelerometerTurnOnBiasSigma>
+    </plugin>
+    <!--<plugin name='wind_plugin' filename='libgazebo_wind_plugin.so'>-->
+      <!--<frameId>body</frameId>-->
+      <!--<linkName>body</linkName>-->
+      <!--<robotNamespace/>-->
+      <!--<xyzOffset>1 0 0</xyzOffset>-->
+      <!--<windDirection>0 1 0</windDirection>-->
+      <!--<windVelocityMean>0.7</windVelocityMean>-->
+      <!--<windGustDirection>0 0 0</windGustDirection>-->
+      <!--<windGustDuration>0</windGustDuration>-->
+      <!--<windGustStart>0</windGustStart>-->
+      <!--<windGustVelocityMean>0</windGustVelocityMean>-->
+      <!--<windPubTopic>/wind</windPubTopic>-->
+    <!--</plugin>-->
+    <plugin name="gps_plugin" filename="libgazebo_gps_plugin.so">
+        <robotNamespace></robotNamespace>
+        <gpsNoise>true</gpsNoise>
+    </plugin>
+    <plugin name='magnetometer_plugin' filename='libgazebo_magnetometer_plugin.so'>
+      <robotNamespace/>
+      <pubRate>100</pubRate>
+      <noiseDensity>0.0004</noiseDensity>
+      <randomWalk>6.4e-06</randomWalk>
+      <biasCorrelationTime>600</biasCorrelationTime>
+      <magTopic>/mag</magTopic>
+    </plugin>
+    <plugin name='barometer_plugin' filename='libgazebo_barometer_plugin.so'>
+      <robotNamespace/>
+      <pubRate>50</pubRate>
+      <baroTopic>/baro</baroTopic>
+    </plugin>
+
+    <plugin name='motor_plugin' filename='libMotorPlugin.so'>
+      <gztopic>/throttle1</gztopic>
+      <joint_name>propeller_joint</joint_name>
+      <prop_name>propeller</prop_name>
+      <diameter>6</diameter>
+      <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
+      <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
+      <kV>2280</kV>
+      <i0>0.5</i0>
+      <iMax>20</iMax>
+      <r0>0.098</r0>
+      <battV>7.4</battV>
+      <axis_num>0</axis_num>
+    </plugin>
+
+    <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
+      <robotNamespace></robotNamespace>
+      <imuSubTopic>/imu</imuSubTopic>
+      <gpsSubTopic>/gps</gpsSubTopic>
+      <magSubTopic>/mag</magSubTopic>
+      <baroSubTopic>/baro</baroSubTopic>
+      <mavlink_addr>INADDR_ANY</mavlink_addr>
+      <mavlink_udp_port>14560</mavlink_udp_port>
+      <serialEnabled>false</serialEnabled>
+      <serialDevice>/dev/ttyACM0</serialDevice>
+      <baudRate>921600</baudRate>
+      <qgc_addr>INADDR_ANY</qgc_addr>
+      <qgc_udp_port>14550</qgc_udp_port>
+      <sdk_addr>INADDR_ANY</sdk_addr>
+      <sdk_udp_port>14540</sdk_udp_port>
+      <hil_mode>false</hil_mode>
+      <hil_state_level>false</hil_state_level>
+      <enable_lockstep>true</enable_lockstep>
+      <use_tcp>true</use_tcp>
+      <motorSpeedCommandPubTopic>/gazebo/command/motor_speed</motorSpeedCommandPubTopic>
+      <control_channels>
+        <channel name="rudder">
+          <input_index>0</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>1.0</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>0</zero_position_armed>
+          <joint_control_type>position_kinematic</joint_control_type>
+          <joint_name>rudder_joint</joint_name>
+        </channel>
+        <channel name="elevator">
+          <input_index>1</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>-1.0</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>0</zero_position_armed>
+          <joint_control_type>position_kinematic</joint_control_type>
+          <joint_name>elevator_joint</joint_name>
+        </channel>
+        <channel name="puller">
+          <input_index>3</input_index>
+          <input_offset>1</input_offset>
+          <input_scaling>0.5</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>0</zero_position_armed>
+          <joint_control_type>position_gztopic</joint_control_type>
+          <gztopic>/throttle1</gztopic>
+          <joint_name>propeller_joint</joint_name>
+        </channel>
+      </control_channels>
+    </plugin>
+
   </model>
 
 </sdf>

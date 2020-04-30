@@ -160,6 +160,13 @@ target_link_libraries(PlanePlugin
   ${GAZEBO_LIBRARIES}
 )
 
+add_library(MotorPlugin
+  src/fixedwing_gazebo/MotorPlugin.cc
+)
+target_link_libraries(MotorPlugin
+  ${GAZEBO_LIBRARIES}
+)
+
 
 #############
 ## Install ##
