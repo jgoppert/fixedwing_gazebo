@@ -527,20 +527,20 @@ void PlanePlugin::OnUpdate()
       ei->CP = CP;
       ei->J = J;
 
-      gzdbg << std::fixed
-       << "J:" <<  std::setw(5) << ei->J
-       << " CP:" << std::setw(5) << ei->CP
-       << " CT:" << std::setw(5) << ei->CT
-       << " Thrust:" << std::setw(5) << ei->thrust
-       << " Q Mtr:" << std::setw(5) << ei->torque
-       << " Q Aero:" << std::setw(5) << ei->aero_torque
-       << " Volts:" << std::setw(5) << ei->V
-       //<< " KV:" << std::setw(5) << kV
-       //<< " n:" << std::setw(5) << n
-       //<< " omega:" << std::setw(5) << omega
-       //<< " EMF:" << std::setw(5) << omega/kV
-       << " Amps:" << std::setw(5) << ei->i
-       << " RPM:" << std::setw(7) << n*60
+      gzdbg << std::fixed << std::setw(7)
+       << "J:" <<  ei->J
+       << " CP:" << ei->CP
+       << " CT:" << ei->CT
+       << " Thrust:" << ei->thrust
+       << " Q Mtr:" << ei->torque
+       << " Q Aero:" << ei->aero_torque
+       << " Volts:" << ei->V
+       //<< " KV:" << kV
+       //<< " n:" << n
+       //<< " omega:" << omega
+       //<< " EMF:" << omega/kV
+       << " Amps:" << ei->i
+       << " RPM:" << n*60
        << std::endl;
       GZ_ASSERT(isfinite(thrust), "non finite force");
       GZ_ASSERT(isfinite(ei->torque), "non finite torque");
