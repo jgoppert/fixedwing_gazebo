@@ -41,7 +41,7 @@
    <include>
      <name>aircraft</name>
      <pose>-25 0 0.3 0 0 0</pose>
-     <uri>model://mini_fixedwing_12</uri>
+     <uri>model://mini_fixedwing_01</uri>
    </include>
 
   </world>

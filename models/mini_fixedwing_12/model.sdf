@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
-  <model name="t12">
+  <model name="mini_fixedwing_12">
     <pose>0 0 0.2 0 0 0</pose>
     <link name="body">
       <pose>0 0 0 0 0 0</pose>
@@ -17,7 +17,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://t12/meshes/fuselage.stl</uri>
+            <uri>model://mini_fixedwing_12/meshes/fuselage.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -45,8 +45,8 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://t12/meshes/fuselage.stl</uri>
-            <!-- <uri>model://t12/meshes/aircraft_body.stl</uri> -->
+            <uri>model://mini_fixedwing_12/meshes/fuselage.stl</uri>
+            <!-- <uri>model://mini_fixedwing_12/meshes/aircraft_body.stl</uri> -->
           </mesh>
         </geometry>
       </visual>
@@ -101,7 +101,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://t12/meshes/wing.stl</uri>
+            <uri>model://mini_fixedwing_12/meshes/wing.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -109,7 +109,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://t12/meshes/wing.stl</uri>
+            <uri>model://mini_fixedwing_12/meshes/wing.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -151,7 +151,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://t12/meshes/rudder.stl</uri>
+            <uri>model://mini_fixedwing_12/meshes/rudder.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -177,7 +177,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://t12/meshes/elevator.stl</uri>
+            <uri>model://mini_fixedwing_12/meshes/elevator.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -203,7 +203,7 @@
         <geometry>
           <mesh>
             <scale>0.98 1 1</scale>
-            <uri>model://t12/meshes/aileron_left.stl</uri>
+            <uri>model://mini_fixedwing_12/meshes/aileron_left.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -229,7 +229,7 @@
         <geometry>
           <mesh>
             <scale>0.98 1 1</scale>
-            <uri>model://t12/meshes/aileron_right.stl</uri>
+            <uri>model://mini_fixedwing_12/meshes/aileron_right.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -278,7 +278,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://t12/meshes/wheel.stl</uri>
+            <uri>model://mini_fixedwing_12/meshes/wheel.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -327,7 +327,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://t12/meshes/wheel.stl</uri>
+            <uri>model://mini_fixedwing_12/meshes/wheel.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -348,7 +348,7 @@
         <!--<geometry>-->
           <!--<mesh>-->
             <!--<scale>1 1 1</scale>-->
-            <!--<uri>model://t12/meshes/prop.stl</uri>-->
+            <!--<uri>model://mini_fixedwing_12/meshes/prop.stl</uri>-->
           <!--</mesh>-->
         <!--</geometry>-->
       <!--</collision>-->
@@ -361,7 +361,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://t12/meshes/prop.stl</uri>
+            <uri>model://mini_fixedwing_12/meshes/prop.stl</uri>
           </mesh>
         </geometry>
       </visual>
