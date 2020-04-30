@@ -476,7 +476,7 @@
         <geometry>
           <mesh>
             <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_1/stl/propeller.STL</uri>
+            <uri>model://mini_fixedwing_02/stl/prop.dae</uri>
           </mesh>
         </geometry>
         <material>
