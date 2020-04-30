@@ -49,34 +49,34 @@
           <specular>0.678 0.529 0.384 1</specular>
         </material>
       </visual>
-      <visual name="cp_vtail">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.6 0 0.0748</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
-      <visual name="cp_htail">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.6 0 0.012</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
-      <visual name="cp_left_wing">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.153 0.193 0.064</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
-      <visual name="cp_right_wing">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.153 -0.193 0.064</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
+      <!--<visual name="cp_vtail">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.6 0 0.0748</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name="cp_htail">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.6 0 0.012</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name="cp_left_wing">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.153 0.193 0.064</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name="cp_right_wing">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.153 -0.193 0.064</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
     </link>
 
     <link name='left_wheel'>
@@ -461,7 +461,7 @@
     </joint>
 
     <link name='propeller'>
-      <pose>0.02 0 0 0 0 0</pose>
+      <pose>0.02 0 0 0 0 -0.08</pose>
       <inertial>
         <mass>0.0008287</mass>
         <inertia>
@@ -485,20 +485,20 @@
           </script>
         </material>
       </visual>
-      <visual name="cp_top">
-        <cast_shadows>0</cast_shadows>
-        <pose>0 0 0.05 0 0 0 0</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
-      <visual name="cp_bottom">
-        <cast_shadows>0</cast_shadows>
-        <pose>0 0 -0.05 0 0 0</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
+      <!--<visual name="cp_top">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>0 0 0.05 0 0 0 0</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name="cp_bottom">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>0 0 -0.05 0 0 0</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
     </link>
 
     <joint name='propeller_joint' type='revolute'>
@@ -520,39 +520,39 @@
       </sensor>
     </joint>
 
-    <plugin name="propeller_top_blade" filename="libLiftDragPlugin.so">
-      <a0>0.4</a0>
-      <cla>4.752798721</cla>
-      <cda>0.6417112299</cda>
-      <cma>0</cma>
-      <alpha_stall>1.5</alpha_stall>
-      <cla_stall>-3.85</cla_stall>
-      <cda_stall>-0.9233984055</cda_stall>
-      <cma_stall>0</cma_stall>
-      <cp>0 0 0.05</cp>
-      <area>2e-4</area>
-      <air_density>1.2041</air_density>
-      <forward>0 -1 0</forward>
-      <upward>1 0 0</upward>
-      <link_name>propeller</link_name>
-    </plugin>
+    <!--<plugin name="propeller_top_blade" filename="libLiftDragPlugin.so">-->
+      <!--<a0>0.4</a0>-->
+      <!--<cla>4.752798721</cla>-->
+      <!--<cda>0.6417112299</cda>-->
+      <!--<cma>0</cma>-->
+      <!--<alpha_stall>1.5</alpha_stall>-->
+      <!--<cla_stall>-3.85</cla_stall>-->
+      <!--<cda_stall>-0.9233984055</cda_stall>-->
+      <!--<cma_stall>0</cma_stall>-->
+      <!--<cp>0 0 0.05</cp>-->
+      <!--<area>2e-4</area>-->
+      <!--<air_density>1.2041</air_density>-->
+      <!--<forward>0 -1 0</forward>-->
+      <!--<upward>1 0 0</upward>-->
+      <!--<link_name>propeller</link_name>-->
+    <!--</plugin>-->
 
-    <plugin name="propeller_bottom_blade" filename="libLiftDragPlugin.so">
-      <a0>0.4</a0>
-      <cla>4.752798721</cla>
-      <cda>0.6417112299</cda>
-      <cma>0</cma>
-      <alpha_stall>1.5</alpha_stall>
-      <cla_stall>-3.85</cla_stall>
-      <cda_stall>-0.9233984055</cda_stall>
-      <cma_stall>0</cma_stall>
-      <cp>0 0 -0.05</cp>
-      <area>2e-4</area>
-      <air_density>1.2041</air_density>
-      <forward>0 1 0</forward>
-      <upward>1 0 0</upward>
-      <link_name>propeller</link_name>
-    </plugin>
+    <!--<plugin name="propeller_bottom_blade" filename="libLiftDragPlugin.so">-->
+      <!--<a0>0.4</a0>-->
+      <!--<cla>4.752798721</cla>-->
+      <!--<cda>0.6417112299</cda>-->
+      <!--<cma>0</cma>-->
+      <!--<alpha_stall>1.5</alpha_stall>-->
+      <!--<cla_stall>-3.85</cla_stall>-->
+      <!--<cda_stall>-0.9233984055</cda_stall>-->
+      <!--<cma_stall>0</cma_stall>-->
+      <!--<cp>0 0 -0.05</cp>-->
+      <!--<area>2e-4</area>-->
+      <!--<air_density>1.2041</air_density>-->
+      <!--<forward>0 1 0</forward>-->
+      <!--<upward>1 0 0</upward>-->
+      <!--<link_name>propeller</link_name>-->
+    <!--</plugin>-->
 
     <plugin name="vtail" filename="libLiftDragPlugin.so">
       <a0>0</a0>
@@ -635,18 +635,18 @@
         <joint_name>propeller_joint</joint_name>
         <inc_key>101</inc_key>
         <dec_key>113</dec_key>
-        <inc_val>1.0</inc_val>
+        <inc_val>0.1</inc_val>
         <min_val>0.0</min_val>
-        <max_val>7.4</max_val>
+        <max_val>1.0</max_val>
         <prop_name>propeller</prop_name>
         <diameter>6</diameter> <!-- inches -->
         <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
         <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
-        <kV>2280</kV>
-        <i0>0.6</i0>
-        <iMax>30</iMax>
-        <r0>0.004</r0>
-        <battV>7.4</battV> <!-- used to saturate voltage -->
+        <kV>1800</kV>
+        <i0>0.5</i0>
+        <iMax>20</iMax>
+        <r0>0.2</r0>
+        <battV>11.1</battV> <!-- used to saturate voltage -->
         <axis_num>0</axis_num> <!-- axis of rotation, x-0, y-1, z-2 -->
       </engine>
 

@@ -37,6 +37,11 @@
       </collision>
       <visual name="visual_body">
         <cast_shadows>1</cast_shadows>
+        <material>
+          <ambient>0.678 0.529 0.384 1</ambient>
+          <diffuse>0.678 0.529 0.384 1</diffuse>
+          <specular>0.678 0.529 0.384 1</specular>
+        </material>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -46,40 +51,38 @@
         </geometry>
       </visual>
 
-      <visual name='cp_htail'>
-        <pose>-0.365 0 0.015 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-      </visual>
-
-      <visual name='cp_vtail'>
-        <pose>-0.375 0 0.05 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-      </visual>
-
-      <visual name='cp_leftwing'>
-        <pose>0.013 0.2 -0.022 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-      </visual>
-      <visual name='cp_rightwing'>
-        <pose>0.013 -0.2 -0.022 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-      </visual>
+      <!--<visual name='cp_htail'>-->
+        <!--<pose>-0.365 0 0.015 0 0 0</pose>-->
+        <!--<geometry>-->
+          <!--<sphere>-->
+            <!--<radius>0.01</radius>-->
+          <!--</sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name='cp_vtail'>-->
+        <!--<pose>-0.375 0 0.05 0 0 0</pose>-->
+        <!--<geometry>-->
+          <!--<sphere>-->
+            <!--<radius>0.01</radius>-->
+          <!--</sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name='cp_leftwing'>-->
+        <!--<pose>0.013 0.2 -0.022 0 0 0</pose>-->
+        <!--<geometry>-->
+          <!--<sphere>-->
+            <!--<radius>0.01</radius>-->
+          <!--</sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name='cp_rightwing'>-->
+        <!--<pose>0.013 -0.2 -0.022 0 0 0</pose>-->
+        <!--<geometry>-->
+          <!--<sphere>-->
+            <!--<radius>0.01</radius>-->
+          <!--</sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
 
     </link>
 
@@ -140,6 +143,11 @@
         </inertia>
       </inertial>
       <visual name='visual_rudder'>
+        <material>
+          <ambient>0.678 0.529 0.384 1</ambient>
+          <diffuse>0.678 0.529 0.384 1</diffuse>
+          <specular>0.678 0.529 0.384 1</specular>
+        </material>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -161,6 +169,11 @@
         </inertia>
       </inertial>
       <visual name='visual_elevator'>
+        <material>
+          <ambient>0.678 0.529 0.384 1</ambient>
+          <diffuse>0.678 0.529 0.384 1</diffuse>
+          <specular>0.678 0.529 0.384 1</specular>
+        </material>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -182,6 +195,11 @@
         </inertia>
       </inertial>
       <visual name='visual_aileron_left'>
+        <material>
+          <ambient>0.678 0.529 0.384 1</ambient>
+          <diffuse>0.678 0.529 0.384 1</diffuse>
+          <specular>0.678 0.529 0.384 1</specular>
+        </material>
         <geometry>
           <mesh>
             <scale>0.98 1 1</scale>
@@ -203,6 +221,11 @@
         </inertia>
       </inertial>
       <visual name='visual_aileron_right'>
+        <material>
+          <ambient>0.678 0.529 0.384 1</ambient>
+          <diffuse>0.678 0.529 0.384 1</diffuse>
+          <specular>0.678 0.529 0.384 1</specular>
+        </material>
         <geometry>
           <mesh>
             <scale>0.98 1 1</scale>
@@ -247,6 +270,11 @@
         </surface>
       </collision>
       <visual name='visual_left_wheel'>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+          </script>
+        </material>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -291,6 +319,11 @@
         </surface>
       </collision>
       <visual name='visual_right_wheel'>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+          </script>
+        </material>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -320,6 +353,11 @@
         <!--</geometry>-->
       <!--</collision>-->
       <visual name='visual_propeller'>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+          </script>
+        </material>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
