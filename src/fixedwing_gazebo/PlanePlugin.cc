@@ -504,6 +504,7 @@ void PlanePlugin::OnUpdate()
       double thrust = 0;
       double CT = 0;
       double CP = 0;
+      double eta = 0;
       const double in2m = 0.0254;
       if (fabs(n) > 0.1) {
         double D = ei->diameter*in2m;
@@ -513,6 +514,7 @@ void PlanePlugin::OnUpdate()
         thrust = CT*rho*pow(n, 2)*pow(D, 4); // Newton
         CP = ei->cp_coeff[0] + ei->cp_coeff[1]*J + ei->cp_coeff[2]*pow(J, 2)
           + ei->cp_coeff[3]*pow(J, 3) + ei->cp_coeff[4]*pow(J, 4);
+        eta = CT*J/CP;
         aero_torque = (CP/(2*M_PI))*rho*pow(n, 2)*pow(D, 5);
       }
 
@@ -526,21 +528,21 @@ void PlanePlugin::OnUpdate()
       ei->CT = CT;
       ei->CP = CP;
       ei->J = J;
-
-      gzdbg << std::fixed << std::setw(7)
-       << "J:" <<  ei->J
-       << " CP:" << ei->CP
-       << " CT:" << ei->CT
-       << " Thrust:" << ei->thrust
-       << " Q Mtr:" << ei->torque
-       << " Q Aero:" << ei->aero_torque
-       << " Volts:" << ei->V
+      gzdbg << std::fixed << std::setprecision(3)
+       << "J:" <<  std::setw(5) << ei->J
+       << " eta:" << std::setw(5) << eta
+       << " CP:" << std::setw(5) << ei->CP
+       << " CT:" << std::setw(5) << ei->CT
+       << " Thrust:" << std::setw(5) << ei->thrust
+       << " Q Mtr:" << std::setw(5) << ei->torque
+       << " Q Aero:" << std::setw(5) << ei->aero_torque
+       << " Volts:" << std::setw(5) << ei->V
        //<< " KV:" << kV
        //<< " n:" << n
-       //<< " omega:" << omega
-       //<< " EMF:" << omega/kV
-       << " Amps:" << ei->i
-       << " RPM:" << n*60
+       //<< " omega:" << std::setw(5) << omega
+       //<< " EMF:" << std::setw(5) << omega/kV
+       << " Amps:" << std::setw(5) << ei->i
+       << " RPM:" << std::setw(5) << std::setprecision(0) << n*60
        << std::endl;
       GZ_ASSERT(isfinite(thrust), "non finite force");
       GZ_ASSERT(isfinite(ei->torque), "non finite torque");
