@@ -578,7 +578,7 @@
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin.so">
-      <a0>0.0</a0>
+      <a0>-0.3</a0>
       <cla>4.75</cla>
       <cda>0.6417112299</cda>
       <cma>-1.8</cma>
@@ -762,7 +762,7 @@
         </channel>
         <channel name="elevator">
           <input_index>7</input_index>
-          <input_offset>0.6</input_offset>
+          <input_offset>0</input_offset>
           <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
