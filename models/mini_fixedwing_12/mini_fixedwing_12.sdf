@@ -337,11 +337,15 @@
       <pose>0.2175 0 -0.0111 1.57 0 1.57</pose>
       <inertial>
         <pose>0 0 0 0 0 0.01</pose>
-        <mass>0.0084</mass>
+        <!--<mass>0.0084</mass>-->
+        <mass>0.001</mass>
         <inertia>
-          <ixx>8e-6</ixx>
-          <iyy>2.76e-4</iyy>
-          <izz>2.76e-4</izz>
+          <ixx>1e-6</ixx>
+          <iyy>1e-6</iyy>
+          <izz>1e-6</izz>
+          <!--<ixx>8e-6</ixx>-->
+          <!--<iyy>2.76e-4</iyy>-->
+          <!--<izz>2.76e-4</izz>-->
         </inertia>
       </inertial>
       <!--<collision name='collision_propeller'>-->
@@ -485,7 +489,7 @@
       </physics>
     </joint>
 
-    <joint name='prop_joint' type='revolute'>
+    <joint name='propeller_joint' type='revolute'>
       <parent>body</parent>
       <child>propeller</child>
       <axis>
@@ -588,81 +592,270 @@
       <control_joint_rad_to_cl>4.0</control_joint_rad_to_cl>
     </plugin>
 
-    <plugin name="plane_demo_plugin" filename='libPlanePlugin.so'>
-      <engine>
-        <joint_name>prop_joint</joint_name>
-        <inc_key>101</inc_key>
-        <dec_key>113</dec_key>
-        <inc_val>0.1</inc_val>
-		<min_val>0.0</min_val> 
-		<max_val>1.0</max_val> 
-        <prop_name>propeller</prop_name>
-        <diameter>6</diameter>
-        <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
-        <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
-        <kV>3750</kV>
-        <iMax>30</iMax>
-        <i0>0.5</i0>
-		<r0>0.098</r0>
-        <battV>11.1</battV>
-        <axis_num>2</axis_num>
-      </engine>
+    <!--<plugin name="plane_demo_plugin" filename='libPlanePlugin.so'>-->
+      <!--<engine>-->
+        <!--<joint_name>propeller_joint</joint_name>-->
+        <!--<inc_key>101</inc_key>-->
+        <!--<dec_key>113</dec_key>-->
+        <!--<inc_val>0.1</inc_val>-->
+        <!--<min_val>0.0</min_val> -->
+        <!--<max_val>1.0</max_val> -->
+        <!--<prop_name>propeller</prop_name>-->
+        <!--<diameter>6</diameter>-->
+        <!--<ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>-->
+        <!--<cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>-->
+        <!--<kV>3750</kV>-->
+        <!--<iMax>30</iMax>-->
+        <!--<i0>0.5</i0>-->
+        <!--<r0>0.098</r0>-->
+        <!--<battV>11.1</battV>-->
+        <!--<axis_num>2</axis_num>-->
+      <!--</engine>-->
 
-      <control name='elevator_control'>
-        <joint_name>elevator_joint</joint_name>
-        <inc_key>119</inc_key>
-        <dec_key>115</dec_key>
-        <inc_val>0.04</inc_val>
-        <max_val>0.4</max_val>
-        <min_val>-0.4</min_val>
-        <p>10</p>
-        <i>0</i>
-        <d>0</d>
-        <cmd_max>1</cmd_max>
-        <cmd_min>-1</cmd_min>
-      </control>
+      <!--<control name='elevator_control'>-->
+        <!--<joint_name>elevator_joint</joint_name>-->
+        <!--<inc_key>119</inc_key>-->
+        <!--<dec_key>115</dec_key>-->
+        <!--<inc_val>0.04</inc_val>-->
+        <!--<max_val>0.4</max_val>-->
+        <!--<min_val>-0.4</min_val>-->
+        <!--<p>10</p>-->
+        <!--<i>0</i>-->
+        <!--<d>0</d>-->
+        <!--<cmd_max>1</cmd_max>-->
+        <!--<cmd_min>-1</cmd_min>-->
+      <!--</control>-->
 
-      <control name='rudder_control'>
-        <joint_name>rudder_joint</joint_name>
-        <inc_key>46</inc_key>
-        <dec_key>44</dec_key>
-        <inc_val>0.02</inc_val>
-        <min_val>-0.2</min_val>
-        <max_val>0.2</max_val>
-        <p>10</p>
-        <i>0</i>
-        <d>0</d>
-        <cmd_max>1</cmd_max>
-        <cmd_min>-1</cmd_min>
-      </control>
+      <!--<control name='rudder_control'>-->
+        <!--<joint_name>rudder_joint</joint_name>-->
+        <!--<inc_key>46</inc_key>-->
+        <!--<dec_key>44</dec_key>-->
+        <!--<inc_val>0.02</inc_val>-->
+        <!--<min_val>-0.2</min_val>-->
+        <!--<max_val>0.2</max_val>-->
+        <!--<p>10</p>-->
+        <!--<i>0</i>-->
+        <!--<d>0</d>-->
+        <!--<cmd_max>1</cmd_max>-->
+        <!--<cmd_min>-1</cmd_min>-->
+      <!--</control>-->
 
-      <control name='l_aileron_control'>
-        <joint_name>left_aileron_joint</joint_name>
-        <inc_key>97</inc_key>
-        <dec_key>100</dec_key>
-        <inc_val>0.04</inc_val>
-        <max_val>0.2</max_val>
-        <min_val>-0.2</min_val>
-        <p>10</p>
-        <i>0</i>
-        <d>0</d>
-        <cmd_max>1</cmd_max>
-        <cmd_min>-1</cmd_min>
-      </control>
+      <!--<control name='l_aileron_control'>-->
+        <!--<joint_name>left_aileron_joint</joint_name>-->
+        <!--<inc_key>97</inc_key>-->
+        <!--<dec_key>100</dec_key>-->
+        <!--<inc_val>0.04</inc_val>-->
+        <!--<max_val>0.2</max_val>-->
+        <!--<min_val>-0.2</min_val>-->
+        <!--<p>10</p>-->
+        <!--<i>0</i>-->
+        <!--<d>0</d>-->
+        <!--<cmd_max>1</cmd_max>-->
+        <!--<cmd_min>-1</cmd_min>-->
+      <!--</control>-->
 
-      <control name='r_aileron_control'>
-        <joint_name>right_aileron_joint</joint_name>
-        <inc_key>97</inc_key>
-        <dec_key>100</dec_key>
-        <inc_val>-0.04</inc_val>
-        <max_val>0.2</max_val>
-        <min_val>-0.2</min_val>
-        <p>10</p>
-        <i>0</i>
-        <d>0</d>
-        <cmd_max>1</cmd_max>
-        <cmd_min>-1</cmd_min>
-      </control>
+      <!--<control name='r_aileron_control'>-->
+        <!--<joint_name>right_aileron_joint</joint_name>-->
+        <!--<inc_key>97</inc_key>-->
+        <!--<dec_key>100</dec_key>-->
+        <!--<inc_val>-0.04</inc_val>-->
+        <!--<max_val>0.2</max_val>-->
+        <!--<min_val>-0.2</min_val>-->
+        <!--<p>10</p>-->
+        <!--<i>0</i>-->
+        <!--<d>0</d>-->
+        <!--<cmd_max>1</cmd_max>-->
+        <!--<cmd_min>-1</cmd_min>-->
+      <!--</control>-->
+    <!--</plugin>-->
+
+    <link name='imu_link'>
+      <pose>0.04 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>1e-05</ixx>
+          <iyy>1e-05</iyy>
+          <izz>1e-05</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name='imu_joint' type='revolute'>
+      <child>imu_link</child>
+      <parent>body</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+
+    <plugin name='gazebo_imu_plugin' filename='libgazebo_imu_plugin.so'>
+      <robotNamespace></robotNamespace>
+      <linkName>imu_link</linkName>
+      <imuTopic>/imu</imuTopic>
+      <gyroscopeNoiseDensity>0.0003394</gyroscopeNoiseDensity>
+      <gyroscopeRandomWalk>3.8785e-05</gyroscopeRandomWalk>
+      <gyroscopeBiasCorrelationTime>1000.0</gyroscopeBiasCorrelationTime>
+      <gyroscopeTurnOnBiasSigma>0.0087</gyroscopeTurnOnBiasSigma>
+      <accelerometerNoiseDensity>0.004</accelerometerNoiseDensity>
+      <accelerometerRandomWalk>0.006</accelerometerRandomWalk>
+      <accelerometerBiasCorrelationTime>300.0</accelerometerBiasCorrelationTime>
+      <accelerometerTurnOnBiasSigma>0.196</accelerometerTurnOnBiasSigma>
     </plugin>
+
+    <plugin name="gps_plugin" filename="libgazebo_gps_plugin.so">
+        <robotNamespace></robotNamespace>
+        <gpsNoise>true</gpsNoise>
+    </plugin>
+
+    <plugin name='magnetometer_plugin' filename='libgazebo_magnetometer_plugin.so'>
+      <robotNamespace/>
+      <pubRate>100</pubRate>
+      <noiseDensity>0.0004</noiseDensity>
+      <randomWalk>6.4e-06</randomWalk>
+      <biasCorrelationTime>600</biasCorrelationTime>
+      <magTopic>/mag</magTopic>
+    </plugin>
+
+    <plugin name='barometer_plugin' filename='libgazebo_barometer_plugin.so'>
+      <robotNamespace/>
+      <pubRate>50</pubRate>
+      <baroTopic>/baro</baroTopic>
+    </plugin>
+
+    <plugin name='motor_plugin' filename='libMotorPlugin.so'>
+      <gztopic>/throttle1</gztopic>
+      <joint_name>propeller_joint</joint_name>
+      <prop_name>propeller</prop_name>
+      <diameter>6</diameter>
+      <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
+      <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
+      <kV>3750</kV>
+      <iMax>30</iMax>
+      <i0>0.5</i0>
+      <r0>0.098</r0>
+      <battV>11.1</battV>
+      <axis_num>2</axis_num>
+    </plugin>
+
+    <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
+      <robotNamespace></robotNamespace>
+      <imuSubTopic>/imu</imuSubTopic>
+      <gpsSubTopic>/gps</gpsSubTopic>
+      <magSubTopic>/mag</magSubTopic>
+      <baroSubTopic>/baro</baroSubTopic>
+      <mavlink_addr>INADDR_ANY</mavlink_addr>
+      <mavlink_udp_port>14560</mavlink_udp_port>
+      <serialEnabled>false</serialEnabled>
+      <serialDevice>/dev/ttyACM0</serialDevice>
+      <baudRate>921600</baudRate>
+      <qgc_addr>INADDR_ANY</qgc_addr>
+      <qgc_udp_port>14550</qgc_udp_port>
+      <sdk_addr>INADDR_ANY</sdk_addr>
+      <sdk_udp_port>14540</sdk_udp_port>
+      <hil_mode>false</hil_mode>
+      <hil_state_level>false</hil_state_level>
+      <enable_lockstep>true</enable_lockstep>
+      <use_tcp>true</use_tcp>
+      <motorSpeedCommandPubTopic>/gazebo/command/motor_speed</motorSpeedCommandPubTopic>
+      <control_channels>
+        <channel name="rudder">
+          <input_index>2</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>1</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>0</zero_position_armed>
+          <joint_control_type>position</joint_control_type>
+          <joint_name>rudder_joint</joint_name>
+          <joint_control_pid>
+            <p>1.0</p>
+            <i>0</i>
+            <d>0</d>
+            <iMax>0</iMax>
+            <iMin>0</iMin>
+            <cmdMax>1</cmdMax>
+            <cmdMin>-1</cmdMin>
+          </joint_control_pid>
+        </channel>
+        <channel name="puller">
+          <input_index>4</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>1</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>0</zero_position_armed>
+          <joint_control_type>position_gztopic</joint_control_type>
+          <gztopic>/throttle1</gztopic>
+          <joint_name>propeller_joint</joint_name>
+        </channel>
+        <channel name="left_aileron">
+          <input_index>5</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>1</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>0</zero_position_armed>
+          <joint_control_type>position</joint_control_type>
+          <joint_name>left_aileron_joint</joint_name>
+          <joint_control_pid>
+            <p>1.0</p>
+            <i>0</i>
+            <d>0</d>
+            <iMax>0</iMax>
+            <iMin>0</iMin>
+            <cmdMax>1</cmdMax>
+            <cmdMin>-1</cmdMin>
+          </joint_control_pid>
+        </channel>
+        <channel name="right_aileron">
+          <input_index>6</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>1</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>0</zero_position_armed>
+          <joint_control_type>position</joint_control_type>
+          <joint_name>right_aileron_joint</joint_name>
+          <joint_control_pid>
+            <p>1.0</p>
+            <i>0</i>
+            <d>0</d>
+            <iMax>0</iMax>
+            <iMin>0</iMin>
+            <cmdMax>1</cmdMax>
+            <cmdMin>-1</cmdMin>
+          </joint_control_pid>
+        </channel>
+        <channel name="elevator">
+          <input_index>7</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>-1</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>0</zero_position_armed>
+          <joint_control_type>position</joint_control_type>
+          <joint_name>elevator_joint</joint_name>
+          <joint_control_pid>
+            <p>1.0</p>
+            <i>0</i>
+            <d>0</d>
+            <iMax>0</iMax>
+            <iMin>0</iMin>
+            <cmdMax>1</cmdMax>
+            <cmdMin>-1</cmdMin>
+          </joint_control_pid>
+        </channel>
+      </control_channels>
+
+    </plugin>
+
   </model>
 </sdf>
+
+<!-- vim: set et fenc=utf-8 ff=unix sts=0 sw=2 ts=2 : -->

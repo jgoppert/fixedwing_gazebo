@@ -218,6 +218,7 @@ void MotorPlugin::OnUpdate()
   double t = current_time.Double();
 
   double omega = data->joint->GetVelocity(0);
+  //double omega = data->omega;
   const double rho = 1.225;
   auto vel_vect = data->propeller->RelativeLinearVel();
   double vel = vel_vect[data->axis_num];
@@ -244,8 +245,8 @@ void MotorPlugin::OnUpdate()
     CP = clamp(data->cp_coeff[0] + data->cp_coeff[1]*J + data->cp_coeff[2]*pow(J, 2)
       + data->cp_coeff[3]*pow(J, 3) + data->cp_coeff[4]*pow(J, 4), 0.0, 1.0);
     eta = CT*J/CP;
-    aero_torque = clamp((CP/(2*M_PI))*rho*pow(n, 2)*pow(D, 5), -10.0, 10.0);
-    thrust = clamp(thrust, 0.0, 10.0);
+    aero_torque = clamp((CP/(2*M_PI))*rho*pow(n, 2)*pow(D, 5), -100.0, 100.0);
+    thrust = clamp(thrust, 0.0, 100.0);
   }
 
   // see http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
@@ -287,7 +288,7 @@ void MotorPlugin::OnUpdate()
   // approximate approach
   //double tau = 0.1;
   //double alpha = exp(dt*(-1/tau));
-  //data->omega = alpha*data->omega + (1 - alpha)*(kV*V);
+  //data->omega = alpha*data->omega + (1 - alpha)*(0.8*kV*V);
   //data->joint->SetVelocity(0, data->omega*0.01);
   
   data->joint->SetForce(0, torque);
