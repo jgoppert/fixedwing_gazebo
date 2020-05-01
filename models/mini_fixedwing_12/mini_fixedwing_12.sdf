@@ -416,12 +416,8 @@
       <axis>
         <xyz>0 1 0</xyz>
         <dynamics>
-          <damping>1e-3</damping>
+          <damping>1.0</damping>
         </dynamics>
-        <limit>
-          <lower>-0.5</lower>
-          <upper>0.5</upper>
-        </limit>
       </axis>
       <physics>
         <ode>
@@ -436,12 +432,8 @@
       <axis>
         <xyz>0 0 1</xyz>
         <dynamics>
-          <damping>1e-3</damping>
+          <damping>1.0</damping>
         </dynamics>
-        <limit>
-          <lower>-0.5</lower>
-          <upper>0.5</upper>
-        </limit>
       </axis>
       <physics>
         <ode>
@@ -773,8 +765,8 @@
             <d>0</d>
             <iMax>0</iMax>
             <iMin>0</iMin>
-            <cmdMax>20</cmdMax>
-            <cmdMin>-20</cmdMin>
+            <cmdMax>0.28</cmdMax>
+            <cmdMin>-0.28</cmdMin>
           </joint_control_pid>
         </channel>
         <channel name="puller">
@@ -801,8 +793,8 @@
             <d>0</d>
             <iMax>0</iMax>
             <iMin>0</iMin>
-            <cmdMax>20</cmdMax>
-            <cmdMin>-20</cmdMin>
+            <cmdMax>0.28</cmdMax>
+            <cmdMin>-0.28</cmdMin>
           </joint_control_pid>
         </channel>
         <channel name="right_aileron">
@@ -814,13 +806,13 @@
           <joint_control_type>position</joint_control_type>
           <joint_name>right_aileron_joint</joint_name>
           <joint_control_pid>
-            <p>1</p>
+            <p>5</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
             <iMin>0</iMin>
-            <cmdMax>20</cmdMax>
-            <cmdMin>-20</cmdMin>
+            <cmdMax>0.28</cmdMax>
+            <cmdMin>-0.28</cmdMin>
           </joint_control_pid>
         </channel>
         <channel name="elevator">
@@ -832,13 +824,13 @@
           <joint_control_type>position</joint_control_type>
           <joint_name>elevator_joint</joint_name>
           <joint_control_pid>
-            <p>1</p>
+            <p>5</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
             <iMin>0</iMin>
-            <cmdMax>20</cmdMax>
-            <cmdMin>-20</cmdMin>
+            <cmdMax>0.28</cmdMax>
+            <cmdMin>-0.28</cmdMin>
           </joint_control_pid>
         </channel>
       </control_channels>
