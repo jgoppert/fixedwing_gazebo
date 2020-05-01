@@ -20,7 +20,7 @@
                 "frame": 2,
                 "params": [
                     0,
-                    5,
+                    6,
                     -1,
                     0,
                     0,
@@ -30,7 +30,7 @@
                 "type": "SimpleItem"
             },
             {
-                "AMSLAltAboveTerrain": 10,
+                "AMSLAltAboveTerrain": null,
                 "Altitude": 10,
                 "AltitudeMode": 1,
                 "autoContinue": true,
@@ -42,14 +42,14 @@
                     0,
                     0,
                     null,
-                    47.39771288111724,
-                    8.547525901789271,
+                    47.3977127,
+                    8.5475264,
                     10
                 ],
                 "type": "SimpleItem"
             },
             {
-                "AMSLAltAboveTerrain": 10,
+                "AMSLAltAboveTerrain": null,
                 "Altitude": 10,
                 "AltitudeMode": 1,
                 "autoContinue": true,
@@ -61,14 +61,14 @@
                     0,
                     0,
                     null,
-                    47.398518324881344,
-                    8.547543007608994,
+                    47.3985176,
+                    8.5475426,
                     10
                 ],
                 "type": "SimpleItem"
             },
             {
-                "AMSLAltAboveTerrain": 10,
+                "AMSLAltAboveTerrain": null,
                 "Altitude": 10,
                 "AltitudeMode": 1,
                 "autoContinue": true,
@@ -80,8 +80,8 @@
                     0,
                     0,
                     null,
-                    47.39850943835294,
-                    8.544555385572664,
+                    47.398517575945924,
+                    8.544163973027821,
                     10
                 ],
                 "type": "SimpleItem"
@@ -90,15 +90,15 @@
                 "altitudesAreRelative": true,
                 "complexItemType": "fwLandingPattern",
                 "landCoordinate": [
-                    47.39769549956201,
-                    8.54563648361352,
+                    47.3976936,
+                    8.5456362,
                     0
                 ],
                 "loiterClockwise": false,
                 "loiterCoordinate": [
-                    47.39786591566906,
-                    8.544528304151788,
-                    8
+                    47.397880452073885,
+                    8.544113888627237,
+                    10
                 ],
                 "loiterRadius": 20,
                 "stopTakingPhotos": true,
@@ -109,9 +109,9 @@
             }
         ],
         "plannedHomePosition": [
-            47.397703142754644,
-            8.545786669267954,
-            490
+            47.397684738180715,
+            8.545616667161568,
+            489
         ],
         "vehicleType": 1,
         "version": 2

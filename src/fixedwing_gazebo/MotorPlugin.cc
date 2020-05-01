@@ -83,6 +83,9 @@ class gazebo::MotorPluginPrivate
   /// \brief motor resistance
   public: double r0;
 
+  /// \brief motor angular vel [rad/sec]
+  public: double omega{0};
+
   /// \brief axis of rotation, 0-x, 1-y, 2-z
   public: int axis_num;
 
@@ -97,6 +100,9 @@ class gazebo::MotorPluginPrivate
 
   /// \brief State subscriber.
   public: transport::SubscriberPtr throttleSub;
+
+  /// \brief last update time
+  public: common::Time last_time;
 };
 
 /////////////////////////////////////////////////
@@ -178,6 +184,12 @@ void MotorPlugin::Load(physics::ModelPtr _model,
     gztopic, &MotorPluginPrivate::OnThrottle,
     data.get());
 
+  #if GAZEBO_MAJOR_VERSION >= 9
+  data->last_time = data->world->SimTime();
+  #else
+  data->last_time = data->world->GetSimTime();
+  #endif
+
   gzdbg << "Load done.\n";
 }
 
@@ -195,13 +207,20 @@ void MotorPlugin::OnUpdate()
 {
   auto & data = this->dataPtr;;
   std::lock_guard<std::mutex> lock(data->mutex);
-  common::Time curTime = data->world->SimTime();
 
+#if GAZEBO_MAJOR_VERSION >= 9
+  common::Time current_time  = data->world->SimTime();
+#else
+  common::Time current_time  = data->world->GetSimTime();
+#endif
+  double dt = (current_time - data->last_time).Double();
+  data->last_time = current_time;
+  double t = current_time.Double();
+
+  double omega = data->joint->GetVelocity(0);
   const double rho = 1.225;
   auto vel_vect = data->propeller->RelativeLinearVel();
   double vel = vel_vect[data->axis_num];
-  auto omega_vect = data->propeller->RelativeAngularVel();
-  double omega = ignition::math::clamp(omega_vect[data->axis_num], 0.0, 10000.0);
   double n = omega/(2*M_PI);
   double kV = data->kV*(M_PI/30); // kV in SI units of (rad/sec)/V
   double J = 0;
@@ -212,40 +231,45 @@ void MotorPlugin::OnUpdate()
   double CP = 0;
   double eta = 0;
   const double in2m = 0.0254;
-  if (fabs(n) > 0.1) {
+
+  using ignition::math::clamp;
+
+  if (n > 0.1) {
+    // see https://m-selig.ae.illinois.edu/props/propDB.html
     double D = data->diameter*in2m;
-    J = ignition::math::clamp(vel/(n*D), 0.0, 1.0);
-    CT = data->ct_coeff[0] + data->ct_coeff[1]*J + data->ct_coeff[2]*pow(J, 2)
-      + data->ct_coeff[3]*pow(J, 3) + data->ct_coeff[4]*pow(J, 4);
+    J = clamp(vel/(n*D), 0.0, 1.0);
+    CT = clamp(data->ct_coeff[0] + data->ct_coeff[1]*J + data->ct_coeff[2]*pow(J, 2)
+      + data->ct_coeff[3]*pow(J, 3) + data->ct_coeff[4]*pow(J, 4), 0.0, 1.0);
     thrust = CT*rho*pow(n, 2)*pow(D, 4); // Newton
-    CP = data->cp_coeff[0] + data->cp_coeff[1]*J + data->cp_coeff[2]*pow(J, 2)
-      + data->cp_coeff[3]*pow(J, 3) + data->cp_coeff[4]*pow(J, 4);
+    CP = clamp(data->cp_coeff[0] + data->cp_coeff[1]*J + data->cp_coeff[2]*pow(J, 2)
+      + data->cp_coeff[3]*pow(J, 3) + data->cp_coeff[4]*pow(J, 4), 0.0, 1.0);
     eta = CT*J/CP;
-    aero_torque = (CP/(2*M_PI))*rho*pow(n, 2)*pow(D, 5);
-    thrust = ignition::math::clamp(thrust, 0.0, 10.0);
+    aero_torque = clamp((CP/(2*M_PI))*rho*pow(n, 2)*pow(D, 5), -10.0, 10.0);
+    thrust = clamp(thrust, 0.0, 10.0);
   }
 
-  // see
-  // http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
-  double V = ignition::math::clamp(data->throttle, 0.0, 1.0) * data->battV;
-  double i = ignition::math::clamp((V - omega/kV)/data->r0, 0.0, data->iMax);
-  double torque = ignition::math::clamp((i - data->i0)/kV, 0.0, 1.0);
-  //gzdbg << std::fixed << std::setprecision(3)
-   //<< "J:" <<  std::setw(5) << J
-   //<< " eta:" << std::setw(5) << eta
-   //<< " CP:" << std::setw(5) << CP
-   //<< " CT:" << std::setw(5) << CT
-   //<< " Thrust:" << std::setw(5) << thrust
-   //<< " Q Mtr:" << std::setw(5) << torque
-   //<< " Q Aero:" << std::setw(5) << aero_torque
-   //<< " Volts:" << std::setw(5) << V
+  // see http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
+  double V = clamp(data->throttle, 0.0, 1.0) * data->battV;
+  double i = clamp((V - omega/kV)/data->r0 + data->i0, 0.0, data->iMax);
+  double i_no_damping = i + omega/(kV*data->r0);
+  double torque = (i_no_damping - data->i0)/kV;
+  
+  gzdbg << std::fixed << std::setprecision(3)
+   << "J:" <<  std::setw(5) << J
+   << " eta:" << std::setw(5) << eta
+   << " CP:" << std::setw(5) << CP
+   << " CT:" << std::setw(5) << CT
+   << " Thrust:" << std::setw(5) << thrust
+   << " Q Mtr:" << std::setw(5) << torque
+   << " Q Aero:" << std::setw(5) << aero_torque
+   << " Volts:" << std::setw(5) << V
    //<< " KV:" << kV
    //<< " n:" << n
    //<< " omega:" << std::setw(5) << omega
    //<< " EMF:" << std::setw(5) << omega/kV
-   //<< " Amps:" << std::setw(5) << i
-   //<< " RPM:" << std::setw(5) << std::setprecision(0) << n*60
-   //<< std::endl;
+   << " Amps:" << std::setw(5) << i
+   << " RPM:" << std::setw(5) << std::setprecision(0) << n*60
+   << std::endl;
   GZ_ASSERT(isfinite(thrust), "non finite force");
   GZ_ASSERT(isfinite(torque), "non finite torque");
   GZ_ASSERT(isfinite(aero_torque), "non finite aero torque");
@@ -259,7 +283,15 @@ void MotorPlugin::OnUpdate()
     data->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, 0, thrust));
     data->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, 0, -aero_torque));
   }
+
+  // approximate approach
+  //double tau = 0.1;
+  //double alpha = exp(dt*(-1/tau));
+  //data->omega = alpha*data->omega + (1 - alpha)*(kV*V);
+  //data->joint->SetVelocity(0, data->omega*0.01);
+  
   data->joint->SetForce(0, torque);
+  data->joint->SetDamping(0, 1.0/(kV*kV*data->r0));
 }
 
 /////////////////////////////////////////////////
