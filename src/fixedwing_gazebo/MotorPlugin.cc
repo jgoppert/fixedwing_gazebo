@@ -217,7 +217,9 @@ void MotorPlugin::OnUpdate()
   data->last_time = current_time;
   double t = current_time.Double();
 
-  double omega = data->joint->GetVelocity(0);
+  using ignition::math::clamp;
+
+  double omega = clamp(data->joint->GetVelocity(0), 0.0, 10000.0);
   //double omega = data->omega;
   const double rho = 1.225;
   auto vel_vect = data->propeller->RelativeLinearVel();
@@ -232,8 +234,7 @@ void MotorPlugin::OnUpdate()
   double CP = 0;
   double eta = 0;
   const double in2m = 0.0254;
-
-  using ignition::math::clamp;
+  double V = clamp(data->throttle, 0.0, 1.0) * data->battV;
 
   if (n > 0.1) {
     // see https://m-selig.ae.illinois.edu/props/propDB.html
@@ -250,10 +251,8 @@ void MotorPlugin::OnUpdate()
   }
 
   // see http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
-  double V = clamp(data->throttle, 0.0, 1.0) * data->battV;
   double i = clamp((V - omega/kV)/data->r0 + data->i0, 0.0, data->iMax);
-  double i_no_damping = i + omega/(kV*data->r0);
-  double torque = (i_no_damping - data->i0)/kV;
+  double torque = (i - data->i0)/kV;
   
   gzdbg << std::fixed << std::setprecision(3)
    << "J:" <<  std::setw(5) << J
@@ -292,7 +291,6 @@ void MotorPlugin::OnUpdate()
   //data->joint->SetVelocity(0, data->omega*0.01);
   
   data->joint->SetForce(0, torque);
-  data->joint->SetDamping(0, 1.0/(kV*kV*data->r0));
 }
 
 /////////////////////////////////////////////////

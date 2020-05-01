@@ -471,10 +471,6 @@
         <dynamics>
           <damping>1.000</damping>
         </dynamics>
-        <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
-        </limit>
       </axis>
       <physics>
         <ode>
@@ -491,10 +487,6 @@
         <dynamics>
           <damping>1.000</damping>
         </dynamics>
-        <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
-        </limit>
       </axis>
       <physics>
         <ode>
@@ -546,9 +538,7 @@
     <!--</plugin>-->
 
     <plugin name="left_wing" filename="libLiftDragPlugin.so">
-      <!--necessary to balance torque of motor, effectively a static aileron deflection-->
-      <a0>0.088</a0>
-      <!--<a0>0.05984281113</a0>-->
+      <a0>0.05984281113</a0>
       <cla>4.752798721</cla>
       <cda>0.6417112299</cda>
       <cma>-1.8</cma>
@@ -588,7 +578,7 @@
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin.so">
-      <a0>-0.2</a0>
+      <a0>0.0</a0>
       <cla>4.75</cla>
       <cda>0.6417112299</cda>
       <cma>-1.8</cma>
@@ -622,7 +612,7 @@
       <upward>0 1 0</upward>
       <link_name>body</link_name>
       <control_joint_name>rudder_joint</control_joint_name>
-      <control_joint_rad_to_cl>8.0</control_joint_rad_to_cl>
+      <control_joint_rad_to_cl>4.0</control_joint_rad_to_cl>
     </plugin>
 
     <!--<plugin name="plane_plugin" filename="libPlanePlugin.so">-->
@@ -717,7 +707,7 @@
       <i0>0.465</i0>
       <iMax>20</iMax>
       <r0>0.13</r0>
-      <battV>11.1</battV>
+      <battV>7.4</battV>
       <axis_num>0</axis_num>
     </plugin>
 
@@ -742,24 +732,6 @@
       <use_tcp>true</use_tcp>
       <motorSpeedCommandPubTopic>/gazebo/command/motor_speed</motorSpeedCommandPubTopic>
       <control_channels>
-        <channel name="rudder">
-          <input_index>5</input_index>
-          <input_offset>0</input_offset>
-          <input_scaling>-1</input_scaling>
-          <zero_position_disarmed>0</zero_position_disarmed>
-          <zero_position_armed>0</zero_position_armed>
-          <joint_control_type>position_kinematic</joint_control_type>
-          <joint_name>rudder_joint</joint_name>
-        </channel>
-        <channel name="elevator">
-          <input_index>7</input_index>
-          <input_offset>0</input_offset>
-          <input_scaling>1</input_scaling>
-          <zero_position_disarmed>0</zero_position_disarmed>
-          <zero_position_armed>0</zero_position_armed>
-          <joint_control_type>position_kinematic</joint_control_type>
-          <joint_name>elevator_joint</joint_name>
-        </channel>
         <channel name="puller">
           <input_index>4</input_index>
           <input_offset>0</input_offset>
@@ -769,6 +741,42 @@
           <joint_control_type>position_gztopic</joint_control_type>
           <gztopic>/throttle1</gztopic>
           <joint_name>propeller_joint</joint_name>
+        </channel>
+        <channel name="rudder">
+          <input_index>5</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>-0.28</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>0</zero_position_armed>
+          <joint_control_type>position</joint_control_type>
+          <joint_name>rudder_joint</joint_name>
+          <joint_control_pid>
+            <p>10</p>
+            <i>0</i>
+            <d>0</d>
+            <iMax>0</iMax>
+            <iMin>0</iMin>
+            <cmdMax>0.28</cmdMax>
+            <cmdMin>-0.28</cmdMin>
+          </joint_control_pid>
+        </channel>
+        <channel name="elevator">
+          <input_index>7</input_index>
+          <input_offset>0.6</input_offset>
+          <input_scaling>0.28</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>0</zero_position_armed>
+          <joint_control_type>position</joint_control_type>
+          <joint_name>elevator_joint</joint_name>
+          <joint_control_pid>
+            <p>10</p>
+            <i>0</i>
+            <d>0</d>
+            <iMax>0</iMax>
+            <iMin>0</iMin>
+            <cmdMax>0.28</cmdMax>
+            <cmdMin>-0.28</cmdMin>
+          </joint_control_pid>
         </channel>
       </control_channels>
     </plugin>

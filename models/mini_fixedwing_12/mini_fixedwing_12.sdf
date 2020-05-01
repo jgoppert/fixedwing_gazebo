@@ -334,7 +334,7 @@
     </link>
 
     <link name='propeller'>
-      <pose>0.2175 0 -0.0111 1.57 0 1.57</pose>
+      <pose>0.2175 0 -0.0111 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0.01</pose>
         <!--<mass>0.0084</mass>-->
@@ -357,6 +357,7 @@
         <!--</geometry>-->
       <!--</collision>-->
       <visual name='visual_propeller'>
+        <pose>0 0 0 0 1.57 0</pose>
         <material>
           <script>
             <name>Gazebo/DarkGrey</name>
@@ -369,22 +370,22 @@
           </mesh>
         </geometry>
       </visual>
-      <visual name='cp_leftblade'>
-        <pose>0.045 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-      </visual>
-      <visual name='cp_rightblade'>
-        <pose>-.045 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-      </visual>
+      <!--<visual name='cp_top'>-->
+        <!--<pose>0 0 0.045 0 0 0</pose>-->
+        <!--<geometry>-->
+          <!--<sphere>-->
+            <!--<radius>0.01</radius>-->
+          <!--</sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name='cp_bottom'>-->
+        <!--<pose>0 0 -.045 0 0 0</pose>-->
+        <!--<geometry>-->
+          <!--<sphere>-->
+            <!--<radius>0.01</radius>-->
+          <!--</sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
     </link>
 
     <joint name='left_wheel_joint' type='revolute'>
@@ -458,8 +459,8 @@
           <damping>1e-3</damping>
         </dynamics>
         <limit>
-          <lower>-0.5</lower>
-          <upper>0.5</upper>
+          <lower>-0.28</lower>
+          <upper>0.28</upper>
         </limit>
       </axis>
       <physics>
@@ -478,8 +479,8 @@
           <damping>1e-3</damping>
         </dynamics>
         <limit>
-          <lower>-0.5</lower>
-          <upper>0.5</upper>
+          <lower>-0.28</lower>
+          <upper>0.28</upper>
         </limit>
       </axis>
       <physics>
@@ -493,19 +494,8 @@
       <parent>body</parent>
       <child>propeller</child>
       <axis>
-        <xyz>0 0 1</xyz>
-        <dynamics>
-          <damping>1e-5</damping>
-        </dynamics>
+        <xyz>1 0 0</xyz>
       </axis>
-      <physics>
-        <ode>
-          <implicit_spring_damper>1</implicit_spring_damper>
-        </ode>
-      </physics>
-      <sensor name='thrust_sensor' type='force_torque'>
-        <update_rate>30</update_rate>
-      </sensor>
     </joint>
 
     <!-- <joint name='wing_body_joint' type='fixed'>
@@ -744,8 +734,8 @@
       <iMax>30</iMax>
       <i0>0.5</i0>
       <r0>0.098</r0>
-      <battV>11.1</battV>
-      <axis_num>2</axis_num>
+      <battV>7.4</battV>
+      <axis_num>0</axis_num>
     </plugin>
 
     <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
@@ -772,19 +762,19 @@
         <channel name="rudder">
           <input_index>2</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>1</input_scaling>
+          <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
           <joint_name>rudder_joint</joint_name>
           <joint_control_pid>
-            <p>1.0</p>
+            <p>1</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
             <iMin>0</iMin>
-            <cmdMax>1</cmdMax>
-            <cmdMin>-1</cmdMin>
+            <cmdMax>20</cmdMax>
+            <cmdMin>-20</cmdMin>
           </joint_control_pid>
         </channel>
         <channel name="puller">
@@ -800,55 +790,55 @@
         <channel name="left_aileron">
           <input_index>5</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>1</input_scaling>
+          <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
           <joint_name>left_aileron_joint</joint_name>
           <joint_control_pid>
-            <p>1.0</p>
+            <p>1</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
             <iMin>0</iMin>
-            <cmdMax>1</cmdMax>
-            <cmdMin>-1</cmdMin>
+            <cmdMax>20</cmdMax>
+            <cmdMin>-20</cmdMin>
           </joint_control_pid>
         </channel>
         <channel name="right_aileron">
           <input_index>6</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>1</input_scaling>
+          <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
           <joint_name>right_aileron_joint</joint_name>
           <joint_control_pid>
-            <p>1.0</p>
+            <p>1</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
             <iMin>0</iMin>
-            <cmdMax>1</cmdMax>
-            <cmdMin>-1</cmdMin>
+            <cmdMax>20</cmdMax>
+            <cmdMin>-20</cmdMin>
           </joint_control_pid>
         </channel>
         <channel name="elevator">
           <input_index>7</input_index>
-          <input_offset>0</input_offset>
-          <input_scaling>-1</input_scaling>
+          <input_offset>-0.4</input_offset>
+          <input_scaling>-0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
           <joint_name>elevator_joint</joint_name>
           <joint_control_pid>
-            <p>1.0</p>
+            <p>1</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
             <iMin>0</iMin>
-            <cmdMax>1</cmdMax>
-            <cmdMin>-1</cmdMin>
+            <cmdMax>20</cmdMax>
+            <cmdMin>-20</cmdMin>
           </joint_control_pid>
         </channel>
       </control_channels>
