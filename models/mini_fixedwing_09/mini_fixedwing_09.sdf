@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.6'>
-  <model name="mini_fixedwing_05">
+  <model name="mini_fixedwing_09">
     <pose>0 0 0.15 0 0 0</pose>
     <link name='fuselage'>
       <inertial>
@@ -17,7 +17,7 @@
         <geometry>
           <mesh>
             <scale>0.0254 0.0254 0.0254</scale>
-            <uri>model://mini_fixedwing_05/stl/fuselage.stl</uri>
+            <uri>model://mini_fixedwing_09/stl/fuselage.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -40,7 +40,7 @@
         <geometry>
           <mesh>
             <scale>0.0254 0.0254 0.0254</scale>
-            <uri>model://mini_fixedwing_05/stl/fuselage.stl</uri>
+            <uri>model://mini_fixedwing_09/stl/fuselage.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -95,7 +95,7 @@
         <geometry>
           <mesh>
             <scale>0.0254 0.0254 0.0254</scale>
-            <uri>model://mini_fixedwing_05/stl/wheel_left.stl</uri>
+            <uri>model://mini_fixedwing_09/stl/wheel_left.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -154,7 +154,7 @@
         <geometry>
           <mesh>
             <scale>0.0254 0.0254 0.0254</scale>
-            <uri>model://mini_fixedwing_05/stl/wheel_left.stl</uri>
+            <uri>model://mini_fixedwing_09/stl/wheel_left.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -214,7 +214,7 @@
         <geometry>
           <mesh>
             <scale>0.0254 0.0254 0.0254</scale>
-            <uri>model://mini_fixedwing_05/stl/rudder.stl</uri>
+            <uri>model://mini_fixedwing_09/stl/rudder.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -262,7 +262,7 @@
         <geometry>
           <mesh>
             <scale>0.0254 0.0254 0.0254</scale>
-            <uri>model://mini_fixedwing_05/stl/elevator.stl</uri>
+            <uri>model://mini_fixedwing_09/stl/elevator.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -310,7 +310,7 @@
         <geometry>
           <mesh>
             <scale>0.0254 0.0254 0.0254</scale>
-            <uri>model://mini_fixedwing_05/stl/aileron_left.stl</uri>
+            <uri>model://mini_fixedwing_09/stl/aileron_left.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -358,7 +358,7 @@
         <geometry>
           <mesh>
             <scale>0.0254 0.0254 0.0254</scale>
-            <uri>model://mini_fixedwing_05/stl/aileron_right.stl</uri>
+            <uri>model://mini_fixedwing_09/stl/aileron_right.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -405,7 +405,7 @@
         <geometry>
           <mesh>
             <scale>0.0254 0.0254 0.0254</scale>
-            <uri>model://mini_fixedwing_05/stl/propeller.stl</uri>
+            <uri>model://mini_fixedwing_09/stl/propeller.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -580,6 +580,8 @@
       <r0>0.2</r0>
       <battV>11.1</battV>
       <axis_num>0</axis_num>
+      <motor_eff>0.35</motor_eff>
+      <verbose>1</verbose>
     </plugin>
 
     <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
