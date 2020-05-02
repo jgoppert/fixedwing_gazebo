@@ -196,7 +196,6 @@
         <mass>0.005</mass>
         <pose>-0.033 0 0</pose>
         <inertia>
-          <pose>-0.034 0 0</pose>
           <ixx>2e-6</ixx>
           <iyy>3.82e-5</iyy>
           <izz>4.02e-5</izz>
