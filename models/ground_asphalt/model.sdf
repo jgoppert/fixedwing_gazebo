@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
-  <model name="hangar4">
+  <model name="ground_asphalt">
     <static>true</static>
     <link name="link">
       <collision name="collision">
@@ -19,8 +19,8 @@
         </geometry>
         <material>
           <script>
-            <uri>model://hangar4/materials/scripts</uri>
-            <uri>model://hangar4/materials/textures</uri>
+            <uri>model://ground_asphalt/materials/scripts</uri>
+            <uri>model://ground_asphalt/materials/textures</uri>
             <name>vrc/asphalt</name>
           </script>
         </material>

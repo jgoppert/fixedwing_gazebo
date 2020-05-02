@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
-  <model name="ground_plane">
+  <model name="columns">
     <static>true</static>
 	<include>
 		<name>column1</name>
@@ -62,44 +62,6 @@
 		<pose>25 -5 0 0 0 0</pose>
 		<uri>model://column</uri>
 	</include>
-
-    <link name="link">
-      <collision name="collision">
-        <geometry>
-          <plane>
-            <normal>0 0 1</normal>
-            <size>60 30</size>
-          </plane>
-        </geometry>
-        <surface>
-          <contact>
-             <collide_bitmask>0xffff</collide_bitmask>
-          </contact>
-          <friction>
-            <ode>
-              <mu>100</mu>
-              <mu2>50</mu2>
-            </ode>
-          </friction>
-        </surface>
-      </collision>
-      <visual name="visual">
-        <cast_shadows>false</cast_shadows>
-        <geometry>
-          <plane>
-            <normal>0 0 1</normal>
-            <size>60 30</size>
-          </plane>
-        </geometry>
-        <material>
-          <script>
-            <uri>model://asphalt_plane/materials/scripts</uri>
-            <uri>model://asphalt_plane/materials/textures</uri>
-            <name>vrc/asphalt</name>
-          </script>
-        </material>
-      </visual>
-    </link>
   </model>
 </sdf>
 

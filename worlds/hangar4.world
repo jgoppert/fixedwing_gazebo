@@ -53,12 +53,13 @@
     </include>
 
     <include>
-      <uri>model://hangar4</uri>
+      <uri>model://ground_asphalt</uri>
     </include>
 
-    <!--<include>-->
-      <!--<uri>model://columns</uri>-->
-    <!--</include>-->
+    <include>
+      <uri>model://columns</uri>
+      <pose>30 30 0 0 0 0</pose>
+    </include>
 
   </world>
 </sdf>
