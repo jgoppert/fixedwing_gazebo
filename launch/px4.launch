@@ -33,6 +33,9 @@
     <env name="PX4_SIM_MODEL" value="plane" />
     <env name="PX4_ESTIMATOR" value="ekf2" />
 
+    <!--Prevent loading online database, helps speed up when parts are missing locally.-->
+    <env name="GAZEBO_MODEL_DATABASE_URI" value="" />
+
     <!-- PX4 SITL -->
     <arg unless="$(arg interactive)" name="px4_command_arg1" value="-d"/>
     <arg     if="$(arg interactive)" name="px4_command_arg1" value=""/>
