@@ -110,7 +110,7 @@
       <axis>
         <xyz>0 0 1</xyz>
         <dynamics>
-          <damping>1.000</damping>
+          <damping>0.1</damping>
         </dynamics>
         <limit>
           <lower>-0.28</lower>
@@ -157,7 +157,7 @@
       <axis>
         <xyz>0 1 0</xyz>
         <dynamics>
-          <damping>1.000</damping>
+          <damping>0.1</damping>
         </dynamics>
         <limit>
           <lower>-0.28</lower>
@@ -204,7 +204,7 @@
       <axis>
         <xyz>0 1 0</xyz>
         <dynamics>
-          <damping>1.000</damping>
+          <damping>0.1</damping>
         </dynamics>
         <limit>
           <lower>-0.28</lower>
@@ -251,7 +251,7 @@
       <axis>
         <xyz>0 1 0</xyz>
         <dynamics>
-          <damping>1.000</damping>
+          <damping>0.1</damping>
         </dynamics>
         <limit>
           <lower>-0.28</lower>
@@ -490,7 +490,7 @@
           <joint_control_type>position</joint_control_type>
           <joint_name>rudder_joint</joint_name>
           <joint_control_pid>
-            <p>2</p>
+            <p>10</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
@@ -518,7 +518,7 @@
           <joint_control_type>position</joint_control_type>
           <joint_name>left_aileron_joint</joint_name>
           <joint_control_pid>
-            <p>5</p>
+            <p>10</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
@@ -536,7 +536,7 @@
           <joint_control_type>position</joint_control_type>
           <joint_name>right_aileron_joint</joint_name>
           <joint_control_pid>
-            <p>5</p>
+            <p>10</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
@@ -554,7 +554,7 @@
           <joint_control_type>position</joint_control_type>
           <joint_name>elevator_joint</joint_name>
           <joint_control_pid>
-            <p>5</p>
+            <p>10</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>

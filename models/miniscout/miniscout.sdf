@@ -355,7 +355,7 @@
       <axis>
         <xyz>0 1 0</xyz>
         <dynamics>
-          <damping>1.000</damping>
+          <damping>0.1</damping>
         </dynamics>
       </axis>
       <physics>
@@ -371,7 +371,7 @@
       <axis>
         <xyz>0 0 1</xyz>
         <dynamics>
-          <damping>1.000</damping>
+          <damping>0.1</damping>
         </dynamics>
       </axis>
       <physics>
