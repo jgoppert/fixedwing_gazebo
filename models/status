@@ -6,10 +6,13 @@
 05: x      x
 06: x
 07: x
-08: 
-09: 
-10: 
+08: o      o 
+09: x 
+10: x 
 11: x      x 
 12: x      x      
 13:
 14:
+
+x: done
+o: need to talk to team

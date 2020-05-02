@@ -26,21 +26,14 @@
     <!-- PX4 configs -->
     <arg name="interactive" default="true"/>
 
-    <!-- Posix SITL environment launch script -->
-    <!-- launches PX4 SITL, Gazebo environment, and spawns vehicle -->
-    <!-- vehicle pose -->
-    <!-- vehicle model and world -->
-    <env name="PX4_SIM_MODEL" value="plane" />
-    <env name="PX4_ESTIMATOR" value="ekf2" />
-
-    <!--Prevent loading online database, helps speed up when parts are missing locally.-->
-    <env name="GAZEBO_MODEL_DATABASE_URI" value="" />
-
     <!-- PX4 SITL -->
     <arg unless="$(arg interactive)" name="px4_command_arg1" value="-d"/>
     <arg     if="$(arg interactive)" name="px4_command_arg1" value=""/>
     <node name="sitl" pkg="px4" type="px4" output="screen" launch-prefix="xterm -e"
-        args="$(find px4)/ROMFS/px4fmu_common -s etc/init.d-posix/rcS $(arg px4_command_arg1)" required="true"/>
+        args="$(find px4)/ROMFS/px4fmu_common -s etc/init.d-posix/rcS $(arg px4_command_arg1)" required="true">
+      <env name="PX4_SIM_MODEL" value="plane" />
+      <env name="PX4_ESTIMATOR" value="ekf2" />
+    </node>
 
     <!-- Gazebo sim -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -51,6 +44,7 @@
         <arg name="paused" value="$(arg paused)"/>
         <arg name="respawn_gazebo" value="$(arg respawn_gazebo)"/>
     </include>
+
     <!-- gazebo model -->
     <node name="$(anon vehicle_spawn)" pkg="gazebo_ros" type="spawn_model" output="screen" args="-sdf -file $(arg sdf) -model plane -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
 
