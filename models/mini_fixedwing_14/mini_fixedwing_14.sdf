@@ -256,21 +256,22 @@
           <izz>1.05e-3</izz>
         </inertia>
       </inertial>
-      <visual name='visual'>
-        <pose>0 0 0 0 0 0</pose>
-        <cast_shadows>0</cast_shadows>
-        <geometry>
-          <mesh>
-            <scale>0.0254 0.0254 0.0254</scale>
-            <uri>model://mini_fixedwing_14/stl/elevator.stl</uri>
-          </mesh>
-        </geometry>
-        <material>
-          <script>
-            <name>Gazebo/White</name>
-          </script>
-        </material>
-      </visual>
+      <!--elevator model missing-->
+      <!--<visual name='visual'>-->
+        <!--<pose>0 0 0 0 0 0</pose>-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<geometry>-->
+          <!--<mesh>-->
+            <!--<scale>0.0254 0.0254 0.0254</scale>-->
+            <!--<uri>model://mini_fixedwing_14/stl/elevator.stl</uri>-->
+          <!--</mesh>-->
+        <!--</geometry>-->
+        <!--<material>-->
+          <!--<script>-->
+            <!--<name>Gazebo/White</name>-->
+          <!--</script>-->
+        <!--</material>-->
+      <!--</visual>-->
     </link>
 
     <joint name='elevator_joint' type='revolute'>

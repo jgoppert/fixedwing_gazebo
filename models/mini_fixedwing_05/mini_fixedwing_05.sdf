@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.6'>
-  <model name="mini_fixedwing_06">
+  <model name="mini_fixedwing_05">
     <pose>0 0 0.15 0 0 0</pose>
     <link name='fuselage'>
       <inertial>
@@ -16,8 +16,8 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_06/stl/fuselage.stl</uri>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://mini_fixedwing_05/stl/fuselage.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -39,8 +39,8 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_06/stl/fuselage.stl</uri>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://mini_fixedwing_05/stl/fuselage.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -94,8 +94,8 @@
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_06/stl/wheel_left.stl</uri>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://mini_fixedwing_05/stl/wheel_left.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -153,8 +153,8 @@
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_06/stl/wheel_left.stl</uri>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://mini_fixedwing_05/stl/wheel_left.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -213,8 +213,8 @@
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_06/stl/rudder.stl</uri>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://mini_fixedwing_05/stl/rudder.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -261,8 +261,8 @@
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_06/stl/elevator.stl</uri>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://mini_fixedwing_05/stl/elevator.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -309,8 +309,8 @@
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_06/stl/aileron_left.stl</uri>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://mini_fixedwing_05/stl/aileron_left.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -357,8 +357,8 @@
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_06/stl/aileron_right.stl</uri>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://mini_fixedwing_05/stl/aileron_right.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -404,8 +404,8 @@
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_06/stl/propeller.stl</uri>
+            <scale>0.0254 0.0254 0.0254</scale>
+            <uri>model://mini_fixedwing_05/stl/propeller.stl</uri>
           </mesh>
         </geometry>
         <material>
