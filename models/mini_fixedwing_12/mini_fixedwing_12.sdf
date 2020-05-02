@@ -16,7 +16,6 @@
       <collision name="collision_fuselage">
         <geometry>
           <mesh>
-            <scale>1 1 1</scale>
             <uri>model://mini_fixedwing_12/meshes/fuselage.stl</uri>
           </mesh>
         </geometry>
@@ -44,7 +43,6 @@
         </material>
         <geometry>
           <mesh>
-            <scale>1 1 1</scale>
             <uri>model://mini_fixedwing_12/meshes/fuselage.stl</uri>
           </mesh>
         </geometry>
@@ -104,7 +102,6 @@
         </material>
         <geometry>
           <mesh>
-            <scale>1 1 1</scale>
             <uri>model://mini_fixedwing_12/meshes/rudder.stl</uri>
           </mesh>
         </geometry>
@@ -130,7 +127,6 @@
         </material>
         <geometry>
           <mesh>
-            <scale>1 1 1</scale>
             <uri>model://mini_fixedwing_12/meshes/elevator.stl</uri>
           </mesh>
         </geometry>
@@ -156,7 +152,6 @@
         </material>
         <geometry>
           <mesh>
-            <scale>0.98 1 1</scale>
             <uri>model://mini_fixedwing_12/meshes/aileron_left.stl</uri>
           </mesh>
         </geometry>
@@ -182,7 +177,6 @@
         </material>
         <geometry>
           <mesh>
-            <scale>0.98 1 1</scale>
             <uri>model://mini_fixedwing_12/meshes/aileron_right.stl</uri>
           </mesh>
         </geometry>
@@ -231,7 +225,6 @@
         </material>
         <geometry>
           <mesh>
-            <scale>1 1 1</scale>
             <uri>model://mini_fixedwing_12/meshes/wheel.stl</uri>
           </mesh>
         </geometry>
@@ -280,7 +273,6 @@
         </material>
         <geometry>
           <mesh>
-            <scale>1 1 1</scale>
             <uri>model://mini_fixedwing_12/meshes/wheel.stl</uri>
           </mesh>
         </geometry>
@@ -310,7 +302,6 @@
         </material>
         <geometry>
           <mesh>
-            <scale>1 1 1</scale>
             <uri>model://mini_fixedwing_12/meshes/prop.stl</uri>
           </mesh>
         </geometry>
@@ -377,7 +368,7 @@
       <axis>
         <xyz>1 0 0</xyz>
         <dynamics>
-          <damping>1e-3</damping>
+          <damping>0.1</damping>
         </dynamics>
         <limit>
           <lower>-0.28</lower>
@@ -397,7 +388,7 @@
       <axis>
         <xyz>1 0 0</xyz>
         <dynamics>
-          <damping>1e-3</damping>
+          <damping>0.1</damping>
         </dynamics>
         <limit>
           <lower>-0.28</lower>
