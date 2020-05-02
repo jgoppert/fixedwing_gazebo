@@ -51,3 +51,4 @@ qtcreator-*
 CATKIN_IGNORE
 
 .*.swp
+.*~lock.*xlsx*

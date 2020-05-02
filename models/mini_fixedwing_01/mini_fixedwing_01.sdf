@@ -63,14 +63,14 @@
           <!--<sphere><radius>0.01</radius></sphere>-->
         <!--</geometry>-->
       <!--</visual>-->
-      <!--<visual name="cp_left_wing">-->
+      <!--<visual name="cp_wing_left">-->
         <!--<cast_shadows>0</cast_shadows>-->
         <!--<pose>-0.153 0.193 0.064</pose>-->
         <!--<geometry>-->
           <!--<sphere><radius>0.01</radius></sphere>-->
         <!--</geometry>-->
       <!--</visual>-->
-      <!--<visual name="cp_right_wing">-->
+      <!--<visual name="cp_wing_right">-->
         <!--<cast_shadows>0</cast_shadows>-->
         <!--<pose>-0.153 -0.193 0.064</pose>-->
         <!--<geometry>-->
@@ -79,7 +79,7 @@
       <!--</visual>-->
     </link>
 
-    <link name='left_wheel'>
+    <link name='wheel_left'>
       <pose>-0.075 0.0523 -0.0652</pose>
       <inertial>
         <mass>0.004</mass>
@@ -130,15 +130,15 @@
 
     </link>
 
-    <joint name='left_wheel_joint' type='revolute'>
+    <joint name='wheel_left_joint' type='revolute'>
       <parent>fuselage</parent>
-      <child>left_wheel</child>
+      <child>wheel_left</child>
       <axis>
         <xyz>0 1 0</xyz>
       </axis>
     </joint>
 
-    <link name='right_wheel'>
+    <link name='wheel_right'>
       <pose>-0.075 -0.0523 -0.0652</pose>
       <inertial>
         <mass>0.004</mass>
@@ -189,9 +189,9 @@
 
     </link>
 
-    <joint name='right_wheel_joint' type='revolute'>
+    <joint name='wheel_right_joint' type='revolute'>
       <parent>fuselage</parent>
-      <child>right_wheel</child>
+      <child>wheel_right</child>
       <axis>
         <xyz>0 1 0</xyz>
       </axis>
@@ -462,7 +462,7 @@
       <control_joint_rad_to_cl>-4.0</control_joint_rad_to_cl>
     </plugin>
 
-    <plugin name="left_wing" filename="libLiftDragPlugin.so">
+    <plugin name="wing_left" filename="libLiftDragPlugin.so">
       <a0>0.122</a0>
       <cla>4.24</cla>
       <cda>0.64</cda>
@@ -481,7 +481,7 @@
       <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
     </plugin>
 
-    <plugin name="right_wing" filename="libLiftDragPlugin.so">
+    <plugin name="wing_right" filename="libLiftDragPlugin.so">
       <a0>0.122</a0>
       <cla>4.24</cla>
       <cda>0.64</cda>

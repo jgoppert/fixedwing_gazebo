@@ -262,8 +262,8 @@ void MotorPlugin::OnUpdate()
   }
 
   // see http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
-  double i = clamp((V - omega/kV)/data->r0 + data->i0, 0.0, data->iMax);
-  double torque = data->motor_eff*(i - data->i0)/kV;
+  double i = clamp((V*data->motor_eff - omega/kV)/data->r0 + data->i0, 0.0, data->iMax);
+  double torque = (i - data->i0)/kV;
   
   if (data->verbose) {
     gzdbg << std::fixed << std::setprecision(3)
