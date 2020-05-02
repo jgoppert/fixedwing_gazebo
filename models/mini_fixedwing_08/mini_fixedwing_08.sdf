@@ -430,6 +430,8 @@
       <r0>0.2</r0>
       <battV>11.1</battV>
       <axis_num>0</axis_num>
+      <motor_eff>0.35</motor_eff>
+      <verbose>1</verbose>
     </plugin>
 
     <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
