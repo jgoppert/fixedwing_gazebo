@@ -85,51 +85,6 @@
 
     </link>
 
-    <!-- <link name='wing'>
-      <pose>0 0 0 0 0 0</pose>
-      <inertial>
-        <pose>0 0 0 0 0 0</pose>
-        <mass>1e-4</mass>
-        <inertia>
-          <ixx>3.805e-3</ixx>
-          <iyy>1e-6</iyy>
-          <izz>3.805e-3</izz>
-        </inertia>
-      </inertial>
-      <collision name='collision_wing'>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>model://mini_fixedwing_12/meshes/wing.stl</uri>
-          </mesh>
-        </geometry>
-      </collision>
-      <visual name='visual_wing'>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>model://mini_fixedwing_12/meshes/wing.stl</uri>
-          </mesh>
-        </geometry>
-      </visual>
-      <visual name='cp_leftwing'>
-        <pose>0.013 0.2 -0.022 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-      </visual>
-      <visual name='cp_rightwing'>
-        <pose>0.013 -0.2 -0.022 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-      </visual>
-    </link> -->
-    
     <link name='rudder'>
       <pose>-0.39 0 0.016 0 0 3.14</pose>
       <inertial>
@@ -336,8 +291,7 @@
       <pose>0.2175 0 -0.0111 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0.01</pose>
-        <!--<mass>0.0084</mass>-->
-        <mass>0.001</mass>
+        <mass>0.0084</mass>
         <inertia>
           <ixx>1e-6</ixx>
           <iyy>1e-6</iyy>
@@ -347,14 +301,6 @@
           <!--<izz>2.76e-4</izz>-->
         </inertia>
       </inertial>
-      <!--<collision name='collision_propeller'>-->
-        <!--<geometry>-->
-          <!--<mesh>-->
-            <!--<scale>1 1 1</scale>-->
-            <!--<uri>model://mini_fixedwing_12/meshes/prop.stl</uri>-->
-          <!--</mesh>-->
-        <!--</geometry>-->
-      <!--</collision>-->
       <visual name='visual_propeller'>
         <pose>0 0 0 0 1.57 0</pose>
         <material>
@@ -369,22 +315,6 @@
           </mesh>
         </geometry>
       </visual>
-      <!--<visual name='cp_top'>-->
-        <!--<pose>0 0 0.045 0 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<sphere>-->
-            <!--<radius>0.01</radius>-->
-          <!--</sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name='cp_bottom'>-->
-        <!--<pose>0 0 -.045 0 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<sphere>-->
-            <!--<radius>0.01</radius>-->
-          <!--</sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
     </link>
 
     <joint name='left_wheel_joint' type='revolute'>
@@ -489,14 +419,6 @@
       </axis>
     </joint>
 
-    <!-- <joint name='wing_joint' type='fixed'>
-      <parent>fuselage</parent>
-      <child>wing</child>
-      <sensor name='lift_sensor' type='force_torque'>
-        <update_rate>30</update_rate>
-      </sensor>
-    </joint> -->
-
     <plugin name='leftwing_aero' filename='libLiftDragPlugin.so'>
       <link_name>fuselage</link_name>
       <a0>0.14</a0>
@@ -575,82 +497,7 @@
       <control_joint_rad_to_cl>4.0</control_joint_rad_to_cl>
     </plugin>
 
-    <!--<plugin name="plane_demo_plugin" filename='libPlanePlugin.so'>-->
-      <!--<engine>-->
-        <!--<joint_name>propeller_joint</joint_name>-->
-        <!--<inc_key>101</inc_key>-->
-        <!--<dec_key>113</dec_key>-->
-        <!--<inc_val>0.1</inc_val>-->
-        <!--<min_val>0.0</min_val> -->
-        <!--<max_val>1.0</max_val> -->
-        <!--<prop_name>propeller</prop_name>-->
-        <!--<diameter>6</diameter>-->
-        <!--<ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>-->
-        <!--<cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>-->
-        <!--<kV>3750</kV>-->
-        <!--<iMax>30</iMax>-->
-        <!--<i0>0.5</i0>-->
-        <!--<r0>0.098</r0>-->
-        <!--<battV>11.1</battV>-->
-        <!--<axis_num>2</axis_num>-->
-      <!--</engine>-->
-
-      <!--<control name='elevator_control'>-->
-        <!--<joint_name>elevator_joint</joint_name>-->
-        <!--<inc_key>119</inc_key>-->
-        <!--<dec_key>115</dec_key>-->
-        <!--<inc_val>0.04</inc_val>-->
-        <!--<max_val>0.4</max_val>-->
-        <!--<min_val>-0.4</min_val>-->
-        <!--<p>10</p>-->
-        <!--<i>0</i>-->
-        <!--<d>0</d>-->
-        <!--<cmd_max>1</cmd_max>-->
-        <!--<cmd_min>-1</cmd_min>-->
-      <!--</control>-->
-
-      <!--<control name='rudder_control'>-->
-        <!--<joint_name>rudder_joint</joint_name>-->
-        <!--<inc_key>46</inc_key>-->
-        <!--<dec_key>44</dec_key>-->
-        <!--<inc_val>0.02</inc_val>-->
-        <!--<min_val>-0.2</min_val>-->
-        <!--<max_val>0.2</max_val>-->
-        <!--<p>10</p>-->
-        <!--<i>0</i>-->
-        <!--<d>0</d>-->
-        <!--<cmd_max>1</cmd_max>-->
-        <!--<cmd_min>-1</cmd_min>-->
-      <!--</control>-->
-
-      <!--<control name='l_aileron_control'>-->
-        <!--<joint_name>left_aileron_joint</joint_name>-->
-        <!--<inc_key>97</inc_key>-->
-        <!--<dec_key>100</dec_key>-->
-        <!--<inc_val>0.04</inc_val>-->
-        <!--<max_val>0.2</max_val>-->
-        <!--<min_val>-0.2</min_val>-->
-        <!--<p>10</p>-->
-        <!--<i>0</i>-->
-        <!--<d>0</d>-->
-        <!--<cmd_max>1</cmd_max>-->
-        <!--<cmd_min>-1</cmd_min>-->
-      <!--</control>-->
-
-      <!--<control name='r_aileron_control'>-->
-        <!--<joint_name>right_aileron_joint</joint_name>-->
-        <!--<inc_key>97</inc_key>-->
-        <!--<dec_key>100</dec_key>-->
-        <!--<inc_val>-0.04</inc_val>-->
-        <!--<max_val>0.2</max_val>-->
-        <!--<min_val>-0.2</min_val>-->
-        <!--<p>10</p>-->
-        <!--<i>0</i>-->
-        <!--<d>0</d>-->
-        <!--<cmd_max>1</cmd_max>-->
-        <!--<cmd_min>-1</cmd_min>-->
-      <!--</control>-->
-    <!--</plugin>-->
+    <!--Start PX4 autopilot-->
 
     <link name='imu_link'>
       <pose>0.04 0 0 0 0 0</pose>
@@ -663,6 +510,7 @@
         </inertia>
       </inertial>
     </link>
+
     <joint name='imu_joint' type='revolute'>
       <child>imu_link</child>
       <parent>fuselage</parent>
