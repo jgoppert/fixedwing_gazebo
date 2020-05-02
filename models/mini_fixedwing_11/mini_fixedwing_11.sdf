@@ -34,7 +34,7 @@
           </contact>
         </surface>
       </collision>
-      <visual name='visual-body'>
+      <visual name='visual-fuselage'>
         <pose>-2 -2 -2 0 0 0</pose>
         <geometry>
           <mesh>

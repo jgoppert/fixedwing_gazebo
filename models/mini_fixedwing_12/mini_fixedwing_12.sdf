@@ -2,7 +2,7 @@
 <sdf version="1.6">
   <model name="mini_fixedwing_12">
     <pose>0 0 0.2 0 0 0</pose>
-    <link name="body">
+    <link name="fuselage">
       <pose>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0.04 5e-4 -0.01 0 0 0</pose>
@@ -13,7 +13,7 @@
           <izz>8.86e-3</izz>
         </inertia>
       </inertial>
-      <collision name="collision_body">
+      <collision name="collision_fuselage">
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -35,7 +35,7 @@
           </contact>
         </surface>
       </collision>
-      <visual name="visual_body">
+      <visual name="visual_fuselage">
         <cast_shadows>1</cast_shadows>
         <material>
           <ambient>0.678 0.529 0.384 1</ambient>
@@ -46,7 +46,6 @@
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://mini_fixedwing_12/meshes/fuselage.stl</uri>
-            <!-- <uri>model://mini_fixedwing_12/meshes/aircraft_body.stl</uri> -->
           </mesh>
         </geometry>
       </visual>
@@ -389,7 +388,7 @@
     </link>
 
     <joint name='left_wheel_joint' type='revolute'>
-      <parent>body</parent>
+      <parent>fuselage</parent>
       <child>left_wheel</child>
       <axis>
         <xyz>0 1 0</xyz>
@@ -400,7 +399,7 @@
     </joint>
 
     <joint name='right_wheel_joint' type='revolute'>
-      <parent>body</parent>
+      <parent>fuselage</parent>
       <child>right_wheel</child>
       <axis>
         <xyz>0 1  0</xyz>
@@ -411,7 +410,7 @@
     </joint>
 
     <joint name='elevator_joint' type='revolute'>
-      <parent>body</parent>
+      <parent>fuselage</parent>
       <child>elevator</child>
       <axis>
         <xyz>0 1 0</xyz>
@@ -427,7 +426,7 @@
     </joint>
 
     <joint name='rudder_joint' type='revolute'>
-      <parent>body</parent>
+      <parent>fuselage</parent>
       <child>rudder</child>
       <axis>
         <xyz>0 0 1</xyz>
@@ -443,7 +442,7 @@
     </joint>
 
     <joint name='left_aileron_joint' type='revolute'>
-      <parent>body</parent>
+      <parent>fuselage</parent>
       <child>aileron_left</child>
       <axis>
         <xyz>1 0 0</xyz>
@@ -463,7 +462,7 @@
     </joint>
 
     <joint name='right_aileron_joint' type='revolute'>
-      <parent>body</parent>
+      <parent>fuselage</parent>
       <child>aileron_right</child>
       <axis>
         <xyz>1 0 0</xyz>
@@ -483,15 +482,15 @@
     </joint>
 
     <joint name='propeller_joint' type='revolute'>
-      <parent>body</parent>
+      <parent>fuselage</parent>
       <child>propeller</child>
       <axis>
         <xyz>1 0 0</xyz>
       </axis>
     </joint>
 
-    <!-- <joint name='wing_body_joint' type='fixed'>
-      <parent>body</parent>
+    <!-- <joint name='wing_joint' type='fixed'>
+      <parent>fuselage</parent>
       <child>wing</child>
       <sensor name='lift_sensor' type='force_torque'>
         <update_rate>30</update_rate>
@@ -499,7 +498,7 @@
     </joint> -->
 
     <plugin name='leftwing_aero' filename='libLiftDragPlugin.so'>
-      <link_name>body</link_name>
+      <link_name>fuselage</link_name>
       <a0>0.14</a0>
       <cla>7.75</cla>
       <cda>0.49</cda>
@@ -518,7 +517,7 @@
     </plugin>
 
     <plugin name='rightwing_aero' filename='libLiftDragPlugin.so'>
-      <link_name>body</link_name>
+      <link_name>fuselage</link_name>
       <a0>0.14</a0>
       <cla>7.75</cla>
       <cda>0.49</cda>
@@ -537,7 +536,7 @@
     </plugin>
 
     <plugin name='vtail' filename='libLiftDragPlugin.so'>
-      <link_name>body</link_name>
+      <link_name>fuselage</link_name>
       <a0>0</a0>
       <cla>5.73</cla>
       <cda>0.458</cda>
@@ -556,7 +555,7 @@
     </plugin>
 
     <plugin name='htail' filename='libLiftDragPlugin.so'>
-      <link_name>body</link_name>
+      <link_name>fuselage</link_name>
       <!--modified to balance pitch moment-->
       <a0>0.14</a0>
       <!--<a0>0</a0>-->
@@ -666,7 +665,7 @@
     </link>
     <joint name='imu_joint' type='revolute'>
       <child>imu_link</child>
-      <parent>body</parent>
+      <parent>fuselage</parent>
       <axis>
         <xyz>1 0 0</xyz>
         <limit>

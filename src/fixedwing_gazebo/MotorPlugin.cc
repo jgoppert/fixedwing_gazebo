@@ -103,6 +103,9 @@ class gazebo::MotorPluginPrivate
 
   /// \brief last update time
   public: common::Time last_time;
+
+  /// \brief verbose output
+  public: bool verbose{false};
 };
 
 /////////////////////////////////////////////////
@@ -143,6 +146,9 @@ void MotorPlugin::Load(physics::ModelPtr _model,
   data->axis_num = _sdf->Get<int>("axis_num");
   data->diameter = _sdf->Get<double>("diameter");
   std::string gztopic = _sdf->Get<std::string>("gztopic");
+  if (_sdf->HasElement("verbose")) {
+    data->verbose = _sdf->Get<bool>("verbose");
+  }
 
   std::string ct = _sdf->Get<std::string>("ct");
   {
@@ -255,22 +261,20 @@ void MotorPlugin::OnUpdate()
   double i = clamp((V - omega/kV)/data->r0 + data->i0, 0.0, data->iMax);
   double torque = motor_eff*(i - data->i0)/kV;
   
-  gzdbg << std::fixed << std::setprecision(3)
-   << "J:" <<  std::setw(5) << J
-   << " eta:" << std::setw(5) << eta
-   << " CP:" << std::setw(5) << CP
-   << " CT:" << std::setw(5) << CT
-   << " Thrust:" << std::setw(5) << thrust
-   << " Q Mtr:" << std::setw(5) << torque
-   << " Q Aero:" << std::setw(5) << aero_torque
-   << " Volts:" << std::setw(5) << V
-   //<< " KV:" << kV
-   //<< " n:" << n
-   //<< " omega:" << std::setw(5) << omega
-   //<< " EMF:" << std::setw(5) << omega/kV
-   << " Amps:" << std::setw(5) << i
-   << " RPM:" << std::setw(5) << std::setprecision(0) << n*60
-   << std::endl;
+  if (data->verbose) {
+    gzdbg << std::fixed << std::setprecision(3)
+     << "J:" <<  std::setw(5) << J
+     << " eta:" << std::setw(5) << eta
+     << " CP:" << std::setw(5) << CP
+     << " CT:" << std::setw(5) << CT
+     << " Thrust:" << std::setw(5) << thrust
+     << " Q Mtr:" << std::setw(5) << torque
+     << " Q Aero:" << std::setw(5) << aero_torque
+     << " Volts:" << std::setw(5) << V
+     << " Amps:" << std::setw(5) << i
+     << " RPM:" << std::setw(5) << std::setprecision(0) << n*60
+     << std::endl;
+  }
   GZ_ASSERT(isfinite(thrust), "non finite force");
   GZ_ASSERT(isfinite(torque), "non finite torque");
   GZ_ASSERT(isfinite(aero_torque), "non finite aero torque");
