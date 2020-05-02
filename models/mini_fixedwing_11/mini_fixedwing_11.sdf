@@ -47,34 +47,34 @@
           <specular>0.678 0.529 0.384 1</specular>
         </material>
       </visual>
-      <visual name="cp_vtail">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.95 0 0.079</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
-      <visual name="cp_htail">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.98 0 0.04</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
-      <visual name="cp_left_wing">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.43 0.25 0.02</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
-      <visual name="cp_right_wing">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.43 -0.25 0.02</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
+      <!--<visual name="cp_vtail">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.95 0 0.079</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name="cp_htail">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.98 0 0.04</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name="cp_left_wing">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.43 0.25 0.02</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name="cp_right_wing">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.43 -0.25 0.02</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
     </link>
 
     <link name='rudder'>
