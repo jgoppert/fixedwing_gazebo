@@ -83,6 +83,9 @@ class gazebo::MotorPluginPrivate
   /// \brief motor resistance
   public: double r0;
 
+  /// \brief motor efficiency
+  public: double motor_eff;
+
   /// \brief motor angular vel [rad/sec]
   public: double omega{0};
 
@@ -141,6 +144,7 @@ void MotorPlugin::Load(physics::ModelPtr _model,
   data->kV = _sdf->Get<double>("kV");
   data->i0 = _sdf->Get<double>("i0");
   data->r0 = _sdf->Get<double>("r0");
+  data->motor_eff = _sdf->Get<double>("motor_eff");
   data->battV = _sdf->Get<double>("battV");
   data->iMax = _sdf->Get<double>("iMax");
   data->axis_num = _sdf->Get<int>("axis_num");
@@ -148,6 +152,7 @@ void MotorPlugin::Load(physics::ModelPtr _model,
   std::string gztopic = _sdf->Get<std::string>("gztopic");
   if (_sdf->HasElement("verbose")) {
     data->verbose = _sdf->Get<bool>("verbose");
+    gzdbg << "verbose:"  << data->verbose << std::endl;
   }
 
   std::string ct = _sdf->Get<std::string>("ct");
@@ -241,7 +246,6 @@ void MotorPlugin::OnUpdate()
   double eta = 0;
   const double in2m = 0.0254;
   double V = clamp(data->throttle, 0.0, 1.0) * data->battV;
-  double motor_eff = 0.7;  // TODO add motor efficiency curve for motor
 
   if (n > 0.1) {
     // see https://m-selig.ae.illinois.edu/props/propDB.html
@@ -259,7 +263,7 @@ void MotorPlugin::OnUpdate()
 
   // see http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
   double i = clamp((V - omega/kV)/data->r0 + data->i0, 0.0, data->iMax);
-  double torque = motor_eff*(i - data->i0)/kV;
+  double torque = data->motor_eff*(i - data->i0)/kV;
   
   if (data->verbose) {
     gzdbg << std::fixed << std::setprecision(3)
