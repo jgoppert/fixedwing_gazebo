@@ -471,7 +471,9 @@
 
     <plugin name='htail' filename='libLiftDragPlugin.so'>
       <link_name>fuselage</link_name>
-      <a0>0</a0>
+      <!--modified to balance pitch moment-->
+      <a0>0.13</a0>
+      <!--<a0>0</a0>-->
       <cla>5.73</cla>
       <cda>0.458</cda>
       <cma>-1.8</cma>
