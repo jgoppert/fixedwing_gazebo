@@ -7,7 +7,7 @@ vscale = [0.0254, 0.0254, 0.0254];
 vtrans = [0, 0, 0];
 
 parts = ["fuselage", "aileron_left", "aileron_right",
-    "elevator", "wheel_left", "wheel_right", "propeller"];
+    "elevator", "wheel_left", "wheel_right", "propeller", "rudder"];
     
 for (p = ["fuselage"]) {
     if (p == part || part == "all") {
