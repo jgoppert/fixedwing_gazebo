@@ -6,6 +6,9 @@ orig_dir = "stl_orig/";
 vscale = [0.001, 0.001, 0.001];
 vtrans = [-2000, -2000, -2000];
 
+parts = ["fuselage", "aileron_left", "aileron_right",
+    "elevator", "wheel_left", "wheel_right", "propeller", "rudder"];
+
 for (p = ["fuselage"]) {
     if (p == part || part == "all") {
         color(brown)
@@ -28,5 +31,12 @@ for (p = ["propeller"]) {
         scale(vscale)
         translate([20, -6, -57])
         import(str(orig_dir, p, ".stl"));
+    }
+}
+
+// current exported files
+if (part == "export") {
+    for (p = parts) {
+        import(str("stl/", p, ".stl"));
     }
 }
