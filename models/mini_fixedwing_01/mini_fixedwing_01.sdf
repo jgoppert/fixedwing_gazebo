@@ -13,11 +13,9 @@
         </inertia>
       </inertial>
       <collision name='collision'>
-        <pose>-0.60 -0.39 -0.067 0 0 0</pose>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_01/stl/fuselage.stl</uri>
+            <uri>model://mini_fixedwing_01/meshes/stl/fuselage.stl</uri>
           </mesh>
         </geometry>
         <surface>
@@ -36,11 +34,9 @@
         </surface>
       </collision>
       <visual name='visual'>
-        <pose>-0.60 -0.39 -0.067 0 0 0</pose>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_01/stl/fuselage.stl</uri>
+            <uri>model://mini_fixedwing_01/meshes/stl/fuselage.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -90,12 +86,11 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>-0.03 -0.053 -0.03 0 0 0</pose>
+        <pose>0.075 -0.0523 0.0652</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_01/stl/wheel_left.stl</uri>
+            <uri>model://mini_fixedwing_01/meshes/stl/wheel_left.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -149,12 +144,11 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>-0.03 -0.053 -0.03 0 0 0</pose>
+        <pose>0.075 0.0523 0.0652</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_01/stl/wheel_left.stl</uri>
+            <uri>model://mini_fixedwing_01/meshes/stl/wheel_right.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -209,12 +203,11 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>-0.04 -.004 0 0 0 0</pose>
+        <pose>0.60 0 0 0 0 0</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_01/stl/rudder.stl</uri>
+            <uri>model://mini_fixedwing_01/meshes/stl/rudder.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -257,12 +250,11 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>-0.04 -0.12 0 0 0 0</pose>
+        <pose>0.60 0 0 0 0 0</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_01/stl/elevator.stl</uri>
+            <uri>model://mini_fixedwing_01/meshes/stl/elevator.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -293,7 +285,7 @@
       </physics>
     </joint>
 
-    <link name='left_aileron'>
+    <link name='aileron_left'>
       <pose>-0.232 0.29 0.055</pose>
       <inertial>
         <pose>-0.02 0 0 0 0 0</pose>
@@ -305,12 +297,11 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>-0.04 -0.29 -0.053 0 0 0</pose>
+        <pose>0.232 -0.29 -0.055</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_01/stl/aileron_left.stl</uri>
+            <uri>model://mini_fixedwing_01/meshes/stl/aileron_left.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -321,9 +312,9 @@
       </visual>
     </link>
 
-    <joint name='left_aileron_joint' type='revolute'>
+    <joint name='aileron_left_joint' type='revolute'>
       <parent>fuselage</parent>
-      <child>left_aileron</child>
+      <child>aileron_left</child>
       <axis>
         <xyz>0 1 0</xyz>
         <dynamics>
@@ -341,7 +332,7 @@
       </physics>
     </joint>
 
-    <link name='right_aileron'>
+    <link name='aileron_right'>
       <pose>-0.232 -0.29 0.055</pose>
       <inertial>
         <pose>-0.02 0 0 0 0 0</pose>
@@ -353,12 +344,11 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>-0.04 -0.1 -0.053 0 0 0</pose>
+        <pose>0.232 0.29 -0.055</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_01/stl/aileron_right.stl</uri>
+            <uri>model://mini_fixedwing_01/meshes/stl/aileron_right.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -369,9 +359,9 @@
       </visual>
     </link>
 
-    <joint name='right_aileron_joint' type='revolute'>
+    <joint name='aileron_right_joint' type='revolute'>
       <parent>fuselage</parent>
-      <child>right_aileron</child>
+      <child>aileron_right</child>
       <axis>
         <xyz>0 1 0</xyz>
         <dynamics>
@@ -400,12 +390,10 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>-0.025 -0.075 0.007 -0.785 0 0</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
-            <scale>0.001 0.001 0.001</scale>
-            <uri>model://mini_fixedwing_01/stl/propeller.stl</uri>
+            <uri>model://mini_fixedwing_01/meshes/stl/propeller.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -477,7 +465,7 @@
       <forward>1 0 0</forward>
       <upward>0 -0.087 0.996</upward>
       <link_name>fuselage</link_name>
-      <control_joint_name>left_aileron_joint</control_joint_name>
+      <control_joint_name>aileron_left_joint</control_joint_name>
       <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
     </plugin>
 
@@ -496,7 +484,7 @@
       <forward>1 0 0</forward>
       <upward>0 0.087 0.996</upward>
       <link_name>fuselage</link_name>
-      <control_joint_name>right_aileron_joint</control_joint_name>
+      <control_joint_name>aileron_right_joint</control_joint_name>
       <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
     </plugin>
 
@@ -633,14 +621,14 @@
           <gztopic>/throttle1</gztopic>
           <joint_name>propeller_joint</joint_name>
         </channel>
-        <channel name="left_aileron">
+        <channel name="aileron_left">
           <input_index>5</input_index>
           <input_offset>0</input_offset>
           <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
-          <joint_name>left_aileron_joint</joint_name>
+          <joint_name>aileron_left_joint</joint_name>
           <joint_control_pid>
             <p>10</p>
             <i>0</i>
@@ -651,14 +639,14 @@
             <cmdMin>-0.28</cmdMin>
           </joint_control_pid>
         </channel>
-        <channel name="right_aileron">
+        <channel name="aileron_right">
           <input_index>6</input_index>
           <input_offset>0</input_offset>
           <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
-          <joint_name>right_aileron_joint</joint_name>
+          <joint_name>aileron_right_joint</joint_name>
           <joint_control_pid>
             <p>10</p>
             <i>0</i>
