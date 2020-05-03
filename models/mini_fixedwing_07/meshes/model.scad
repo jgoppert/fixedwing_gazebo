@@ -7,6 +7,9 @@ vscale = [0.001, 0.001, 0.001];
 vrot = [0, 0, 3.6];
 vtrans = [0, 0, 0];
 
+parts = ["fuselage", "aileron_left", "aileron_right",
+    "elevator", "wheel_left", "wheel_right", "propeller", "rudder"];
+ 
 for (p = ["fuselage"]) {
     if (p == part || part == "all") {
         color(brown)
@@ -28,5 +31,12 @@ for (p = ["propeller", "wheel_left", "wheel_right"]) {
         color(grey)
         rotate(vrot) scale(vscale)
         import(str(orig_dir, p, ".stl"));
+    }
+}
+
+// current exported files
+if (part == "export") {
+    for (p = parts) {
+        import(str("stl/", p, ".stl"));
     }
 }
