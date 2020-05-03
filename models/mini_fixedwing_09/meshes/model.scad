@@ -7,6 +7,9 @@ vscale = [0.001, 0.001, 0.001];
 vrot = [0, 0, 0];
 vtrans = [0, 0, 0];
 
+parts = ["fuselage", "aileron_left", "aileron_right",
+    "elevator", "propeller"];
+
 for (p = ["fuselage"]) {
     if (part == p || part == "all") {
         color(brown)
@@ -21,6 +24,16 @@ for (p = ["propeller"]) {
         color(grey)
         scale(vscale)
         translate([0, -11.2, -89])
+        import(str(orig_dir, p, ".stl"));
+    }
+}
+
+for (p = ["elevator"]) {
+    if (p == part || part == "all") {
+        color(white)
+        rotate(vrot)
+        translate([-1.044, -0.2, -0.0228])
+        scale(vscale)
         import(str(orig_dir, p, ".stl"));
     }
 }
@@ -42,5 +55,12 @@ for (p = ["aileron_right"]) {
         scale(vscale)
         translate([-600, -450, -32])
         import(str(orig_dir, p, ".stl"));
+    }
+}
+
+// current exported files
+if (part == "export") {
+    for (p = parts) {
+        import(str("stl/", p, ".stl"));
     }
 }

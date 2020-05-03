@@ -5,6 +5,9 @@ grey = [0.5, 0.5, 0.5, 0.5];  // grey color for tires/motor
 orig_dir = "stl_orig/";
 vscale = [0.001, 0.001, 0.001];
 
+parts = ["fuselage", "aileron_left", "aileron_right",
+    "elevator", "wheel_left", "wheel_right", "propeller", "rudder"];
+
 for (p = ["fuselage"]) {
     if (p == part || part == "all") {
         color(brown)
@@ -13,7 +16,7 @@ for (p = ["fuselage"]) {
     }
 }
 
-for (p = ["left_aileron"]) {
+for (p = ["aileron_left"]) {
     if (p == part || part == "all") {
         color(white)
         translate([-0.216, 0.190, -0.025])
@@ -23,7 +26,7 @@ for (p = ["left_aileron"]) {
     }
 }
 
-for (p = ["right_aileron"]) {
+for (p = ["aileron_right"]) {
     if (p == part || part == "all") {
         color(white)
         translate([-0.216, -0.190, -0.025])
@@ -43,15 +46,6 @@ for (p = ["elevator"]) {
 }
 
 for (p = ["rudder"]) {
-    if (p == part || part == "all") {
-        color(white)
-        translate([-0.478, -0.0025, -0.002782])
-        scale(vscale)
-        import(str(orig_dir, p, ".stl"));
-    }
-}
-
-for (p = ["propeller"]) {
     if (p == part || part == "all") {
         color(white)
         translate([-0.478, -0.0025, -0.002782])
@@ -84,5 +78,12 @@ for (p = ["propeller"]) {
         translate([0.0067, 0, -0.01997])
         scale(vscale)
         import(str(orig_dir, p, ".stl"));
+    }
+}
+
+// current exported files
+if (part == "export") {
+    for (p = parts) {
+        import(str("stl/", p, ".stl"));
     }
 }
