@@ -180,9 +180,8 @@
     </link>
 
     <link name='wheel_left'>
-      <pose>0.1833 0.0605 -0.1030 0 0 0</pose>
       <inertial>
-        <pose>0 0 0 0 0 0</pose>
+        <pose>0.1833 0.0605 -0.1030 0 0 0</pose>
         <mass>0.0025</mass>
         <inertia>
           <ixx>1.4e-5</ixx>
@@ -191,7 +190,7 @@
         </inertia>
       </inertial>
       <collision name='collision_wheel_left'>
-        <pose>0 0 0 1.57 0 0</pose>
+        <pose>0.1833 0.0605 -0.1030 1.57 0 0</pose>
         <geometry>
           <cylinder> 
             <radius>0.025</radius>
@@ -214,7 +213,6 @@
         </surface>
       </collision>
       <visual name='visual_wheel_left'>
-        <pose>-0.1833 -0.0605 0.1030 0 0 0</pose>
         <material>
           <script>
             <name>Gazebo/DarkGrey</name>
@@ -229,9 +227,8 @@
     </link>
 
     <link name='wheel_right'>
-      <pose>0.1833 -0.0605 -0.1030 0 0 0</pose>
       <inertial>
-        <pose>0 0 0 0 0 0</pose>
+        <pose>0.1833 -0.0605 -0.1030 0 0 0</pose>
         <mass>0.0025</mass>
         <inertia>
           <ixx>1.4e-5</ixx>
@@ -240,7 +237,7 @@
         </inertia>
       </inertial>
       <collision name='collision_wheel_right'>
-        <pose>0 0 0 1.57 0 0</pose>
+        <pose>0.1833 -0.0605 -0.1030 1.57 0 0</pose>
         <geometry>
           <cylinder> 
             <radius>0.025</radius>
@@ -263,7 +260,6 @@
         </surface>
       </collision>
       <visual name='visual_wheel_right'>
-        <pose>-0.1833 0.0605 0.1030 0 0 0</pose>
         <material>
           <script>
             <name>Gazebo/DarkGrey</name>
@@ -278,9 +274,8 @@
     </link>
 
     <link name='propeller'>
-      <pose>0.2175 0 -0.0111 0 0 0</pose>
       <inertial>
-        <pose>0 0 0 0 0 0.01</pose>
+        <pose>0.2175 0 -0.0111 0 0 0</pose>
         <mass>0.0084</mass>
         <inertia>
           <ixx>1e-6</ixx>
@@ -292,7 +287,6 @@
         </inertia>
       </inertial>
       <visual name='visual_propeller'>
-        <pose>-0.2175 0 0.0111 0 0 0</pose>
         <material>
           <script>
             <name>Gazebo/DarkGrey</name>
@@ -307,6 +301,7 @@
     </link>
 
     <joint name='wheel_left_joint' type='revolute'>
+      <pose>0.1833 0.0605 -0.1030 0 0 0</pose>
       <parent>fuselage</parent>
       <child>wheel_left</child>
       <axis>
@@ -318,10 +313,11 @@
     </joint>
 
     <joint name='wheel_right_joint' type='revolute'>
+      <pose>0.1833 -0.0605 -0.1030 0 0 0</pose>
       <parent>fuselage</parent>
       <child>wheel_right</child>
       <axis>
-        <xyz>0 1  0</xyz>
+        <xyz>0 1 0</xyz>
         <dynamics>
           <damping>1e-3</damping>
         </dynamics>
@@ -405,6 +401,7 @@
     </joint>
 
     <joint name='propeller_joint' type='revolute'>
+      <pose>0.2175 0 -0.0111 0 0 0</pose>
       <parent>fuselage</parent>
       <child>propeller</child>
       <axis>
