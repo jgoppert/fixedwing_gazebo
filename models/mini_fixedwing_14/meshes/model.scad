@@ -7,7 +7,8 @@ vscale = [0.01, 0.01, 0.01];
 vrot = [0, 0, 0];
 vtrans = [-0.695, 0, 0.016];
 
-// TODO: missing elevator
+parts = ["fuselage", "aileron_left", "aileron_right",
+    "elevator", "wheel_left", "wheel_right", "propeller", "rudder"];
 
 for (p = ["fuselage"]) {
     if (p == part || part == "all") {
@@ -39,5 +40,20 @@ for (p = ["propeller"]) {
         translate([-0.696, 0, 0.016])
         scale([0.0255, 0.0254, 0.0254])
         import(str(orig_dir, p, ".stl"));
+    }
+}
+
+for (p = ["elevator"]) {
+    if (p == part || part == "all") {
+        color(white)
+        translate([-0.721, 0, 0.019])
+        cube([0.05, 0.292, 0.005], center=true);
+    }
+}
+
+// current exported files
+if (part == "export") {
+    for (p = parts) {
+        import(str("stl/", p, ".stl"));
     }
 }
