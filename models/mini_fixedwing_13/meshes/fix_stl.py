@@ -20,7 +20,7 @@ for part in ['fuselage']:
     subdivide(
         file_in=out_dir/(part + '.stl'), 
         file_out=out_dir/(part + '.stl'),
-        n=2)
+        n=1)
     decimate(
         file_in=out_dir/(part + '.stl'), 
         file_out=out_dir/(part + '.stl'),
@@ -49,10 +49,6 @@ for part in ['aileron_left', 'aileron_right', 'elevator', 'rudder']:
 
 
 for part in ['propeller']:
-    subdivide(
-        file_in=out_dir/(part + '.stl'), 
-        file_out=out_dir/(part + '.stl'),
-        n=2)
     decimate(
         file_in=out_dir/(part + '.stl'), 
         file_out=out_dir/(part + '.stl'),

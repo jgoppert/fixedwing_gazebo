@@ -76,8 +76,8 @@
     </link>
 
     <link name='wheel_left'>
-      <pose>-0.112 0.087 -0.074</pose>
       <inertial>
+        <pose>-0.112 0.087 -0.074</pose>
         <mass>0.001</mass>
         <inertia>
           <ixx>2.27e-5</ixx>
@@ -86,7 +86,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.112 -0.087 0.074</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -100,7 +99,7 @@
         </material>
       </visual>
       <collision name='collision'>
-        <pose>0 0 0 1.57 0 0</pose>
+        <pose>-0.112 0.087 -0.074 1.57 0 0</pose>
         <geometry>
           <cylinder> 
             <radius>0.025</radius>
@@ -126,6 +125,7 @@
     </link>
 
     <joint name='wheel_left_joint' type='revolute'>
+      <pose>-0.112 0.087 -0.074 0 0 0</pose>
       <parent>fuselage</parent>
       <child>wheel_left</child>
       <axis>
@@ -134,8 +134,8 @@
     </joint>
 
     <link name='wheel_right'>
-      <pose>-0.112 -0.087 -0.074</pose>
       <inertial>
+        <pose>-0.112 -0.087 -0.074</pose>
         <mass>0.001</mass>
         <inertia>
           <ixx>2.27e-5</ixx>
@@ -144,7 +144,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.112 0.087 0.074</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -158,7 +157,7 @@
         </material>
       </visual>
       <collision name='collision'>
-        <pose>0 0 0 1.57 0 0</pose>
+        <pose>-0.112 -0.087 -0.074 1.57 0 0</pose>
         <geometry>
           <cylinder> 
             <radius>0.025</radius>
@@ -184,6 +183,7 @@
     </link>
 
     <joint name='wheel_right_joint' type='revolute'>
+      <pose>-0.112 -0.087 -0.074 0 0 0</pose>
       <parent>fuselage</parent>
       <child>wheel_right</child>
       <axis>
@@ -192,10 +192,9 @@
     </joint>
 
     <link name='rudder'>
-      <pose>-0.606 0 0.058</pose>
       <inertial>
+        <pose>-0.606 0 0.058</pose>
         <mass>0.005</mass>
-        <pose>-0.033 0 0</pose>
         <inertia>
           <ixx>2e-6</ixx>
           <iyy>3.82e-5</iyy>
@@ -203,7 +202,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.606 0 -0.058</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -219,6 +217,7 @@
     </link>
 
     <joint name='rudder_joint' type='revolute'>
+      <pose>-0.606 0 0.058</pose>
       <parent>fuselage</parent>
       <child>rudder</child>
       <axis>
@@ -239,10 +238,9 @@
     </joint>
 
     <link name='elevator'>
-      <pose>-0.606 0 -0.024</pose>
       <inertial>
+        <pose>-0.606 0 -0.024</pose>
         <mass>0.0027</mass>
-        <pose>-0.034 0 0</pose>
         <inertia>
           <ixx>1.33e-5</ixx>
           <iyy>1.03e-3</iyy>
@@ -250,7 +248,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.606 0 0.024</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -266,6 +263,7 @@
     </link>
 
     <joint name='elevator_joint' type='revolute'>
+      <pose>-0.606 0 -0.024</pose>
       <parent>fuselage</parent>
       <child>elevator</child>
       <axis>
@@ -286,10 +284,9 @@
     </joint>
 
     <link name='aileron_left'>
-      <pose>-0.266 0.239 -0.019</pose>
       <inertial>
+        <pose>-0.266 0.239 -0.019</pose>
         <mass>0.008</mass>
-        <pose>-0.038 0 0</pose>
         <inertia>
           <ixx>3.9e-6</ixx>
           <iyy>3.6e-6</iyy>
@@ -297,7 +294,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.266 -0.239 0.019</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -313,6 +309,7 @@
     </link>
 
     <joint name='aileron_left_joint' type='revolute'>
+      <pose>0.266 -0.239 0.019</pose>
       <parent>fuselage</parent>
       <child>aileron_left</child>
       <axis>
@@ -333,10 +330,9 @@
     </joint>
 
     <link name='aileron_right'>
-      <pose>-0.266 -0.239 -0.019</pose>
       <inertial>
+        <pose>-0.266 -0.239 -0.019</pose>
         <mass>0.008</mass>
-        <pose>-0.038 0 0</pose>
         <inertia>
           <ixx>3.9e-6</ixx>
           <iyy>3.6e-6</iyy>
@@ -344,7 +340,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.266 0.239 0.019</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -360,6 +355,7 @@
     </link>
 
     <joint name='aileron_right_joint' type='revolute'>
+      <pose>-0.266 -0.239 -0.019</pose>
       <parent>fuselage</parent>
       <child>aileron_right</child>
       <axis>
