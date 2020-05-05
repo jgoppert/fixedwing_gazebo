@@ -428,6 +428,7 @@
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin.so">
+      <!--Increasing a0 to help balance pitching moment-->
       <a0>-0.1</a0>
       <cla>6.51</cla>
       <cda>0.85</cda>
