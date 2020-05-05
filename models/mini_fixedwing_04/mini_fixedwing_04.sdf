@@ -4,12 +4,12 @@
     <pose>0 0 0.15 0 0 0</pose>
     <link name='fuselage'>
       <inertial>
-        <pose>-0.17 0 0 0 0 0</pose>
+        <pose>-3.05e-2 0 0.01578</pose>
         <mass>0.228</mass>
         <inertia>
-          <ixx>2.54e-3</ixx>
-          <iyy>1.08e-2</iyy>
-          <izz>1.29e-2</izz>
+          <ixx>1e-3</ixx>
+          <iyy>3e-3</iyy>
+          <izz>5e-3</izz>
         </inertia>
       </inertial>
       <collision name='collision'>
@@ -45,40 +45,39 @@
           <specular>0.678 0.529 0.384 1</specular>
         </material>
       </visual>
-      <!--<visual name="cp_vtail">-->
-        <!--<cast_shadows>0</cast_shadows>-->
-        <!--<pose>-0.6 0 0.0748</pose>-->
-        <!--<geometry>-->
-          <!--<sphere><radius>0.01</radius></sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name="cp_htail">-->
-        <!--<cast_shadows>0</cast_shadows>-->
-        <!--<pose>-0.6 0 0.012</pose>-->
-        <!--<geometry>-->
-          <!--<sphere><radius>0.01</radius></sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name="cp_wing_left">-->
-        <!--<cast_shadows>0</cast_shadows>-->
-        <!--<pose>-0.153 0.193 0.064</pose>-->
-        <!--<geometry>-->
-          <!--<sphere><radius>0.01</radius></sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name="cp_wing_right">-->
-        <!--<cast_shadows>0</cast_shadows>-->
-        <!--<pose>-0.153 -0.193 0.064</pose>-->
-        <!--<geometry>-->
-          <!--<sphere><radius>0.01</radius></sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
+      <visual name="cp_vtail_left">
+        <cast_shadows>0</cast_shadows>
+        <pose>-0.028 -0.15 0.05</pose>
+        <geometry>
+          <sphere><radius>0.01</radius></sphere>
+        </geometry>
+      </visual>
+      <visual name="cp_vtail_right">
+        <cast_shadows>0</cast_shadows>
+        <pose>-0.028 0.15 0.05</pose>
+        <geometry>
+          <sphere><radius>0.01</radius></sphere>
+        </geometry>
+      </visual>
+      <visual name="cp_wing_left">
+        <cast_shadows>0</cast_shadows>
+        <pose>-0.05 0.175 0.027</pose>
+        <geometry>
+          <sphere><radius>0.01</radius></sphere>
+        </geometry>
+      </visual>
+      <visual name="cp_wing_right">
+        <cast_shadows>0</cast_shadows>
+        <pose>-0.05 -0.175 0.027</pose>
+        <geometry>
+          <sphere><radius>0.01</radius></sphere>
+        </geometry>
+      </visual>
     </link>
 
     <link name='aileron_left'>
-      <pose>-0.25 0.1 0 0 0 0</pose>
       <inertial>
-        <pose>-0.02 0 0 0 0 0</pose>
+        <pose>-0.148 0.17 0.01 0 0 0.785</pose>
         <mass>0.0027</mass>
         <inertia>
           <ixx>1.33e-5</ixx>
@@ -87,7 +86,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>-0.25 -0.1 0 0 0 0</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -103,6 +101,7 @@
     </link>
 
     <joint name='aileron_left_joint' type='revolute'>
+      <pose>-0.125 0.17 0.007 0 0 0.785</pose>
       <parent>fuselage</parent>
       <child>aileron_left</child>
       <axis>
@@ -123,9 +122,8 @@
     </joint>
 
     <link name='aileron_right'>
-      <pose>-0.25 -0.1 0 0 0 0</pose>
       <inertial>
-        <pose>-0.02 0 0 0 0 0</pose>
+        <pose>-0.148 -0.17 0.01 0 0 -0.785.</pose>
         <mass>0.0027</mass>
         <inertia>
           <ixx>1.33e-5</ixx>
@@ -134,7 +132,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>-0.25 0.1 0 0 0 0</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -150,10 +147,9 @@
     </link>
 
     <joint name='aileron_right_joint' type='revolute'>
+      <pose>-0.125 -0.17 0.007 0 0 -0.785</pose>
       <parent>fuselage</parent>
       <child>aileron_right</child>
-
-
       <axis>
         <xyz>0 1 0</xyz>
         <dynamics>
@@ -172,8 +168,8 @@
     </joint>
 
     <link name='propeller_left'>
-      <pose>-0.06 0.13 0 0 0 0</pose>
       <inertial>
+        <pose>0.177 0.13 0.03 0 0 0</pose>
         <mass>0.001</mass>
         <inertia>
           <ixx>1e-6</ixx>
@@ -182,7 +178,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.06 -0.13 0 0 0 0</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -198,6 +193,7 @@
     </link>
 
     <joint name='propeller_left_joint' type='revolute'>
+      <pose>0.177 0.13 0.03 0 0 0</pose>
       <parent>fuselage</parent>
       <child>propeller_left</child>
       <axis>
@@ -206,8 +202,8 @@
     </joint>
 
     <link name='propeller_right'>
-      <pose>-0.06 -0.13 0 0 0 0</pose>
       <inertial>
+        <pose>0.177 -0.13 0.03 0 0 0</pose>
         <mass>0.001</mass>
         <inertia>
           <ixx>1e-6</ixx>
@@ -216,7 +212,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.06 0.13 0 0 0 0</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -232,6 +227,7 @@
     </link>
 
     <joint name='propeller_right_joint' type='revolute'>
+      <pose>0.177 -0.13 0.03 0 0 0</pose>
       <parent>fuselage</parent>
       <child>propeller_right</child>
       <axis>
@@ -316,7 +312,7 @@
     <!--Start PX4 autopilot-->
 
     <link name='imu_link'>
-      <pose>-0.17 0 0 0 0 0</pose>
+      <pose>-3.05e-2 0 0.01578</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>
@@ -440,8 +436,8 @@
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position_gztopic</joint_control_type>
-          <gztopic>/throttle_left</gztopic>
-          <joint_name>propeller_left_joint</joint_name>
+          <gztopic>/throttle_right</gztopic>
+          <joint_name>propeller_right_joint</joint_name>
         </channel>
         <channel name="right_prop">
           <input_index>4</input_index>
@@ -450,7 +446,7 @@
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position_gztopic</joint_control_type>
-          <gztopic>/throttle_right</gztopic>
+          <gztopic>/throttle_left</gztopic>
           <joint_name>propeller_right_joint</joint_name>
         </channel>
         <channel name="aileron_left">
