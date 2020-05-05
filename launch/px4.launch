@@ -11,6 +11,7 @@
     <arg name="Y" default="0"/>
     <!-- vehicle model and world -->
     <arg name="vehicle" default="miniscout"/>
+    <arg name="script" default="plane_twin"/>
     <arg name="world" default="$(find fixedwing_gazebo)/worlds/hangar4.world"/>
     <arg name="sdf" default="$(find fixedwing_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
 
@@ -31,7 +32,7 @@
     <arg     if="$(arg interactive)" name="px4_command_arg1" value=""/>
     <node name="sitl" pkg="px4" type="px4" output="screen" launch-prefix="xterm -e"
         args="$(find px4)/ROMFS/px4fmu_common -s etc/init.d-posix/rcS $(arg px4_command_arg1)" required="true">
-      <env name="PX4_SIM_MODEL" value="plane" />
+      <env name="PX4_SIM_MODEL" value="$(arg script)" />
       <env name="PX4_ESTIMATOR" value="ekf2" />
     </node>
 
