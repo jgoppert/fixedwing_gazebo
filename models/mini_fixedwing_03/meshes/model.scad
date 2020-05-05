@@ -80,15 +80,15 @@ module joint() {
 }
 
 if (part == "cp" || part == "all" && markers) {
-    translate([-0.2, 0.2, 0]) cp(); // wing left
-    translate([-0.2, -0.2, 0]) cp(); // wing right
+    translate([-0.2, 0.19, 0.01]) cp(); // wing left
+    translate([-0.2, -0.19, 0.01]) cp(); // wing right
     translate([-0.4, 0, 0.024]) cp();  // htail
     translate([-0.4, -0.122, 0.024]) cp(); // vtail right
     translate([-0.4, 0.122, 0.024]) cp(); // vtail left
 }
 
 if (part == "cm" || part == "all" && markers) {
-    translate([-0.165, 0, 0]) scale([3, 3, 3]) cm(); // main
+    translate([-0.183, 0, 0]) scale([3, 3, 3]) cm(); // main
     translate([-0.276, 0.2265, -0.012]) cm(); // aileron left
     translate([-0.276, -0.2265, -0.012]) cm(); // aileron right
     translate([-0.44, 0, 0.023]) cm();  // elevator
