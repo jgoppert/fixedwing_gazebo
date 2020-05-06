@@ -296,7 +296,7 @@
       <link_name>fuselage</link_name>
       <control_joint_name>elevon_left_joint</control_joint_name>
       <!--<control_joint_rad_to_cl>-0.0956</control_joint_rad_to_cl>-->
-      <control_joint_rad_to_cl>-4</control_joint_rad_to_cl>
+      <control_joint_rad_to_cl>-1</control_joint_rad_to_cl>
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin.so">
@@ -318,7 +318,7 @@
       <link_name>fuselage</link_name>
       <control_joint_name>elevon_right_joint</control_joint_name>
       <!--<control_joint_rad_to_cl>-0.0956</control_joint_rad_to_cl>-->
-      <control_joint_rad_to_cl>-4</control_joint_rad_to_cl>
+      <control_joint_rad_to_cl>-1</control_joint_rad_to_cl>
     </plugin>
 
     <!--Start PX4 autopilot-->
