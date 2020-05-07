@@ -15,8 +15,8 @@
 
       <camera name="user_camera">
         <track_visual>
-          <inherit_yaw>false</inherit_yaw>
-          <static>false</static>
+          <inherit_yaw>true</inherit_yaw>
+          <static>true</static>
           <xyz>-6 0 1</xyz>
           <name>plane</name>
           <min_dist>0.1</min_dist>

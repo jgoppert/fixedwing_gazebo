@@ -171,6 +171,12 @@ target_link_libraries(MotorPlugin
   ${GAZEBO_LIBRARIES}
 )
 
+add_library(LiftDragPlugin2
+  src/fixedwing_gazebo/LiftDragPlugin2.cc
+)
+target_link_libraries(LiftDragPlugin2
+  ${GAZEBO_LIBRARIES}
+)
 
 #############
 ## Install ##

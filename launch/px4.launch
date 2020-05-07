@@ -11,7 +11,7 @@
     <arg name="Y" default="0"/>
     <!-- vehicle model and world -->
     <arg name="vehicle" default="miniscout"/>
-    <arg name="script" default="plane_twin"/>
+    <arg name="script" default="plane"/>
     <arg name="world" default="$(find fixedwing_gazebo)/worlds/hangar4.world"/>
     <arg name="sdf" default="$(find fixedwing_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
 

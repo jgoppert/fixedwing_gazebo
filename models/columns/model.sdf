@@ -2,66 +2,238 @@
 <sdf version="1.5">
   <model name="columns">
     <static>true</static>
-	<include>
-		<name>column1</name>
-		<pose>-25 -5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
-	<include>
-		<name>column2</name>
-		<pose>-25 5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
-	<include>
-		<name>column3</name>
-		<pose>-15 -5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
-	<include>
-		<name>column4</name>
-		<pose>-15 5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
-	<include>
-		<name>column5</name>
-		<pose>-5 -5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
-	<include>
-		<name>column6</name>
-		<pose>-5 5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
-	<include>
-		<name>column7</name>
-		<pose>5 -5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
-	<include>
-		<name>column8</name>
-		<pose>5 5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
-	<include>
-		<name>column9</name>
-		<pose>15 5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
-	<include>
-		<name>column10</name>
-		<pose>15 -5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
-	<include>
-		<name>column11</name>
-		<pose>25 5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
-	<include>
-		<name>column12</name>
-		<pose>25 -5 0 0 0 0</pose>
-		<uri>model://column</uri>
-	</include>
+
+    <link name="start_1">
+      <visual name="visual">
+        <cast_shadows>0</cast_shadows>
+        <pose>20 0 10 0 0 0</pose>
+        <geometry>
+          <sphere><radius>3.0</radius></sphere>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Black</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <include>
+      <name>column1</name>
+      <pose>20 0 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column2</name>
+      <pose>20 5 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column3</name>
+      <pose>20 10 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column4</name>
+      <pose>20 15 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column5</name>
+      <pose>20 20 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+
+    <link name="start_2">
+      <visual name="visual">
+        <cast_shadows>0</cast_shadows>
+        <pose>40 0 10 0 0 0</pose>
+        <geometry>
+          <sphere><radius>3.0</radius></sphere>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <include>
+      <name>column6</name>
+      <pose>40 0 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column7</name>
+      <pose>40 10 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column8</name>
+      <pose>40 20 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column9</name>
+      <pose>40 30 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column10</name>
+      <pose>40 40 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+
+    <link name="start_3">
+      <visual name="visual">
+        <cast_shadows>0</cast_shadows>
+        <pose>60 0 10 0 0 0</pose>
+        <geometry>
+          <sphere><radius>3.0</radius></sphere>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Green</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <include>
+      <name>column11</name>
+      <pose>60 0 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column12</name>
+      <pose>60 15 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column13</name>
+      <pose>60 30 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column14</name>
+      <pose>60 45 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column15</name>
+      <pose>60 60 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+
+    <link name="start_4">
+      <visual name="visual">
+        <cast_shadows>0</cast_shadows>
+        <pose>80 0 10 0 0 0</pose>
+        <geometry>
+          <sphere><radius>3.0</radius></sphere>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Orange</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <include>
+      <name>column16</name>
+      <pose>80 0 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column17</name>
+      <pose>80 20 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column18</name>
+      <pose>80 40 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column19</name>
+      <pose>80 60 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column20</name>
+      <pose>80 80 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+
+    <link name="start_5">
+      <visual name="visual">
+        <cast_shadows>0</cast_shadows>
+        <pose>120 0 10 0 0 0</pose>
+        <geometry>
+          <sphere><radius>3.0</radius></sphere>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Yellow</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <include>
+      <name>column21</name>
+      <pose>120 0 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column22</name>
+      <pose>120 40 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column23</name>
+      <pose>120 80 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column24</name>
+      <pose>120 120 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column25</name>
+      <pose>120 160 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+
+    <link name="start_6">
+      <visual name="visual">
+        <cast_shadows>0</cast_shadows>
+        <pose>200 0 10 0 0 0</pose>
+        <geometry>
+          <sphere><radius>3.0</radius></sphere>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <include>
+      <name>column26</name>
+      <pose>200 0 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column27</name>
+      <pose>200 80 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
+    <include>
+      <name>column28</name>
+      <pose>200 160 0 0 0 0</pose>
+      <uri>model://column</uri>
+    </include>
   </model>
 </sdf>
 
+<!-- vim: set et fenc=utf-8 ft=xml ff=unix sts=0 sw=2 ts=2 : -->
