@@ -45,34 +45,34 @@
           <specular>0.678 0.529 0.384 1</specular>
         </material>
       </visual>
-      <visual name="cp_vtail">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.6 0 0.058</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
-      <visual name="cp_htail">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.6 0 0.058</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
-      <visual name="cp_wing_left">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.17 0.24 -0.02</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
-      <visual name="cp_wing_right">
-        <cast_shadows>0</cast_shadows>
-        <pose>-0.17 -0.24 -0.02</pose>
-        <geometry>
-          <sphere><radius>0.01</radius></sphere>
-        </geometry>
-      </visual>
+      <!--<visual name="cp_vtail">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.6 0 0.058</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name="cp_htail">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.6 0 0.058</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name="cp_wing_left">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.17 0.24 -0.02</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
+      <!--<visual name="cp_wing_right">-->
+        <!--<cast_shadows>0</cast_shadows>-->
+        <!--<pose>-0.17 -0.24 -0.02</pose>-->
+        <!--<geometry>-->
+          <!--<sphere><radius>0.01</radius></sphere>-->
+        <!--</geometry>-->
+      <!--</visual>-->
     </link>
 
     <link name='wheel_left'>
@@ -80,9 +80,9 @@
       <inertial>
         <mass>0.001</mass>
         <inertia>
-          <ixx>2.27e-5</ixx>
-          <iyy>1.16e-5</iyy>
-          <izz>1.16e-5</izz>
+          <ixx>1e-5</ixx>
+          <iyy>1e-5</iyy>
+          <izz>1e-5</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -104,7 +104,7 @@
         <geometry>
           <cylinder> 
             <radius>0.025</radius>
-            <length>0.00635</length>
+            <length>0.01</length>
           </cylinder>
         </geometry>
         <surface>
@@ -130,7 +130,15 @@
       <child>wheel_left</child>
       <axis>
         <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+        </dynamics>
       </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
     </joint>
 
     <link name='wheel_right'>
@@ -138,9 +146,9 @@
       <inertial>
         <mass>0.001</mass>
         <inertia>
-          <ixx>2.27e-5</ixx>
-          <iyy>1.16e-5</iyy>
-          <izz>1.16e-5</izz>
+          <ixx>1e-5</ixx>
+          <iyy>1e-5</iyy>
+          <izz>1e-5</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -162,7 +170,7 @@
         <geometry>
           <cylinder> 
             <radius>0.025</radius>
-            <length>0.00635</length>
+            <length>0.01</length>
           </cylinder>
         </geometry>
         <surface>
@@ -188,18 +196,26 @@
       <child>wheel_right</child>
       <axis>
         <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+        </dynamics>
       </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
     </joint>
 
     <link name='rudder'>
       <pose>-0.606 0 0.058</pose>
       <inertial>
-        <mass>0.005</mass>
-        <pose>-0.033 0 0</pose>
+        <mass>0.002</mass>
+        <pose>-0.033 0 0.009</pose>
         <inertia>
-          <ixx>2e-6</ixx>
-          <iyy>3.82e-5</iyy>
-          <izz>4.02e-5</izz>
+          <ixx>1e-5</ixx>
+          <iyy>1e-5-</iyy>
+          <izz>1e-5</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -227,8 +243,8 @@
           <damping>0.1</damping>
         </dynamics>
         <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
         </limit>
       </axis>
       <physics>
@@ -241,12 +257,12 @@
     <link name='elevator'>
       <pose>-0.606 0 -0.024</pose>
       <inertial>
-        <mass>0.0027</mass>
+        <mass>0.005</mass>
         <pose>-0.034 0 0</pose>
         <inertia>
-          <ixx>1.33e-5</ixx>
-          <iyy>1.03e-3</iyy>
-          <izz>1.05e-3</izz>
+          <ixx>1e-5</ixx>
+          <iyy>1e-5-</iyy>
+          <izz>1e-5</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -274,8 +290,8 @@
           <damping>0.1</damping>
         </dynamics>
         <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
         </limit>
       </axis>
       <physics>
@@ -286,18 +302,17 @@
     </joint>
 
     <link name='aileron_left'>
-      <pose>-0.266 0.239 -0.019</pose>
       <inertial>
         <mass>0.008</mass>
         <pose>-0.038 0 0</pose>
         <inertia>
+          <pose>-0.266 0.239 -0.019 0.035 0.035 0</pose>
           <ixx>3.9e-6</ixx>
           <iyy>3.6e-6</iyy>
           <izz>1.07e-4</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.266 -0.239 0.019</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -313,6 +328,7 @@
     </link>
 
     <joint name='aileron_left_joint' type='revolute'>
+      <pose>-0.266 0.239 -0.019 0.035 0.035 0</pose>
       <parent>fuselage</parent>
       <child>aileron_left</child>
       <axis>
@@ -321,8 +337,8 @@
           <damping>0.1</damping>
         </dynamics>
         <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
         </limit>
       </axis>
       <physics>
@@ -333,18 +349,16 @@
     </joint>
 
     <link name='aileron_right'>
-      <pose>-0.266 -0.239 -0.019</pose>
       <inertial>
+        <pose>-0.266 -0.239 -0.019 -0.035 0.035 0</pose>
         <mass>0.008</mass>
-        <pose>-0.038 0 0</pose>
         <inertia>
           <ixx>3.9e-6</ixx>
-          <iyy>3.6e-6</iyy>
+          <iyy>1.0e-4</iyy>
           <izz>1.07e-4</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.266 0.239 0.019</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -360,6 +374,7 @@
     </link>
 
     <joint name='aileron_right_joint' type='revolute'>
+      <pose>-0.266 -0.239 -0.019 -0.035 0.035 0</pose>
       <parent>fuselage</parent>
       <child>aileron_right</child>
       <axis>
@@ -368,8 +383,8 @@
           <damping>0.1</damping>
         </dynamics>
         <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
         </limit>
       </axis>
       <physics>
@@ -404,6 +419,7 @@
     </link>
 
     <joint name='propeller_joint' type='revolute'>
+      <pose>0 0 0 0 0 0</pose>
       <parent>fuselage</parent>
       <child>propeller</child>
       <axis>
@@ -411,14 +427,15 @@
       </axis>
     </joint>
 
-    <plugin name="vtail" filename="libLiftDragPlugin.so">
-      <a0>0.03</a0>
-      <cla>3.942</cla>
-      <cda>0.745</cda>
-      <cma>-0.378</cma>
+    <plugin name="vtail" filename="libLiftDragPlugin2.so">
+      <cL_a0>-0.03</cL_a0>
+      <cLa>3.942</cLa>
+      <cm_a0>-0.03</cm_a0>
+      <cma>-0.377</cma>
+      <cD0>0.03</cD0>
+      <kcDcL>0.1</kcDcL>
       <alpha_stall>0.139</alpha_stall>
-      <cla_stall>-1.83</cla_stall>
-      <cda_stall>-0.871</cda_stall>
+      <cLa_stall>-1.83</cLa_stall>
       <cma_stall>-0.3552</cma_stall>
       <cp>-0.6 0 0.058</cp>
       <area>0.01</area>
@@ -427,64 +444,71 @@
       <upward>0 1 0</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>rudder_joint</control_joint_name>
-      <control_joint_rad_to_cl>4.0</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>4.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
-    <plugin name="htail" filename="libLiftDragPlugin.so">
-      <a0>0.03</a0>
-      <cla>3.942</cla>
-      <cda>0.745</cda>
-      <cma>-0.378</cma>
+    <plugin name="htail" filename="libLiftDragPlugin2.so">
+      <cL_a0>-0.03</cL_a0>
+      <cLa>3.942</cLa>
+      <cm_a0>-0.03</cm_a0>
+      <cma>-0.377</cma>
+      <cD0>0.03</cD0>
+      <kcDcL>0.1</kcDcL>
       <alpha_stall>0.139</alpha_stall>
-      <cla_stall>-1.83</cla_stall>
-      <cda_stall>-0.871</cda_stall>
+      <cLa_stall>-1.83</cLa_stall>
       <cma_stall>-0.3552</cma_stall>
-      <cp>-0.6 0 0.058</cp>
+      <cp>-0.6 0 -0.024</cp>
       <area>0.0152</area>
       <air_density>1.2041</air_density>
       <forward>1 0 0</forward>
       <upward>0 0 1</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cl>-4.0</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>-4.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
-    <plugin name="wing_left" filename="libLiftDragPlugin.so">
-      <a0>0.03</a0>
-      <cla>3.942</cla>
-      <cda>0.745</cda>
-      <cma>-0.38</cma>
+    <plugin name="wing_left" filename="libLiftDragPlugin2.so">
+      <cL_a0>-0.03</cL_a0>
+      <cLa>3.942</cLa>
+      <cm_a0>-0.03</cm_a0>
+      <cma>-0.377</cma>
+      <cD0>0.03</cD0>
+      <kcDcL>0.1</kcDcL>
       <alpha_stall>0.14</alpha_stall>
-      <cla_stall>-1.83</cla_stall>
-      <cda_stall>-0.871</cda_stall>
+      <cLa_stall>-1.83</cLa_stall>
       <cma_stall>-0.3552</cma_stall>
-      <cp>-0.17 0.24 -0.02</cp>
+      <cp>-0.1705 0.239 -0.019</cp>
       <area>0.101</area>
       <air_density>1.2041</air_density>
       <forward>1 0 0</forward>
       <upward>0 -0.087 0.996</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_left_joint</control_joint_name>
-      <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
-    <plugin name="wing_right" filename="libLiftDragPlugin.so">
-      <a0>0.03</a0>
-      <cla>3.942</cla>
-      <cda>0.745</cda>
-      <cma>-0.38</cma>
+    <plugin name="wing_right" filename="libLiftDragPlugin2.so">
+      <cL_a0>-0.03</cL_a0>
+      <cLa>3.942</cLa>
+      <cm_a0>-0.03</cm_a0>
+      <cma>-0.377</cma>
+      <cD0>0.03</cD0>
+      <kcDcL>0.1</kcDcL>
       <alpha_stall>0.14</alpha_stall>
-      <cla_stall>-1.83</cla_stall>
-      <cda_stall>-0.871</cda_stall>
+      <cLa_stall>-1.83</cLa_stall>
       <cma_stall>-0.3552</cma_stall>
-      <cp>-0.17 -0.24 -0.02</cp>
+      <cp>-0.1705 -0.239 -0.019</cp>
       <area>0.101</area>
       <air_density>1.2041</air_density>
       <forward>1 0 0</forward>
       <upward>0 0.087 0.996</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_right_joint</control_joint_name>
-      <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
     <!--Start PX4 autopilot-->
@@ -559,16 +583,16 @@
       <joint_name>propeller_joint</joint_name>
       <prop_name>propeller</prop_name>
       <diameter>6</diameter>
-      <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
-      <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
+      <ct>0.1256 -0.0232 -0.2558 0.1455 -0.0429</ct>
+      <cp>0.0559 0.0222 -0.0362 -0.0892 -0.0014</cp>
       <kV>2280</kV>
-      <i0>0.5</i0>
+      <i0>0.4</i0>
       <iMax>30</iMax>
       <r0>0.2</r0>
       <battV>11.1</battV>
       <axis_num>0</axis_num>
-      <motor_eff>0.35</motor_eff>
-      <verbose>1</verbose>
+      <motor_eff>0.7</motor_eff>
+      <verbose>0</verbose>
     </plugin>
 
     <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
@@ -612,7 +636,7 @@
         </channel>
         <channel name="puller">
           <input_index>4</input_index>
-          <input_offset>0</input_offset>
+          <input_offset>0.3</input_offset>
           <input_scaling>1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
@@ -640,7 +664,7 @@
         </channel>
         <channel name="aileron_right">
           <input_index>6</input_index>
-          <input_offset>0</input_offset>
+          <input_offset>-0.02</input_offset>
           <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
