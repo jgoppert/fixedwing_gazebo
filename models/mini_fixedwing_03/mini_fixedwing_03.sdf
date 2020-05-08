@@ -488,7 +488,7 @@
       <cLa_stall>-3.85</cLa_stall>
       <cma_stall>0</cma_stall>
       <cp>-0.4 0.122 0.024</cp>
-      <area>0.03</area>
+      <area>0.017</area>
       <air_density>1.2041</air_density>
       <forward>1 0 0</forward>
       <upward>0 1 0</upward>
@@ -506,7 +506,7 @@
       <cLa_stall>-3.85</cLa_stall>
       <cma_stall>0</cma_stall>
       <cp>-0.4 -0.122 0.024</cp>
-      <area>0.03</area>
+      <area>0.017</area>
       <air_density>1.2041</air_density>
       <forward>1 0 0</forward>
       <upward>0 1 0</upward>
@@ -519,20 +519,20 @@
       <cm_a0>0</cm_a0>
       <cma>-1.8</cma>
       <cD0>0.03</cD0>
-      <kcDcL>0.1</kcDcL>
+      <kcDcL>0.017</kcDcL>
       <alpha_stall>0.34</alpha_stall>
       <cLa_stall>-3.85</cLa_stall>
       <cma_stall>0</cma_stall>
       <cp>-0.4 0 0.024</cp>
-      <area>0.017</area>
+      <area>0.03</area>
       <air_density>1.2041</air_density>
       <forward>1 0 0</forward>
       <upward>0 0 1</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cL>-4.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cD>0.0</control_joint_rad_to_cD>
+      <control_joint_rad_to_cL>8.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <verbose>0</verbose>
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
@@ -553,7 +553,6 @@
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_left_joint</control_joint_name>
       <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cD>0.0</control_joint_rad_to_cD>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
@@ -575,7 +574,6 @@
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_right_joint</control_joint_name>
       <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cD>0.0</control_joint_rad_to_cD>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 

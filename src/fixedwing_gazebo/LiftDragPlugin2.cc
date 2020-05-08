@@ -140,10 +140,6 @@ void LiftDragPlugin2::Load(physics::ModelPtr _model,
         "LiftDragPlugin2 must set control_joint_rad_to_cL");
     this->controlJointRadToCL = _sdf->Get<double>("control_joint_rad_to_cL");
 
-    GZ_ASSERT(_sdf->HasElement("control_joint_rad_to_cD"),
-        "LiftDragPlugin2 must set control_joint_rad_to_cD");
-    this->controlJointRadToCD = _sdf->Get<double>("control_joint_rad_to_cD");
-
     GZ_ASSERT(_sdf->HasElement("control_joint_rad_to_cm"),
         "LiftDragPlugin2 must set control_joint_rad_to_cm");
     this->controlJointRadToCm = _sdf->Get<double>("control_joint_rad_to_cm");
@@ -204,11 +200,18 @@ void LiftDragPlugin2::OnUpdate()
   ignition::math::Vector3d dragI = -velI.Normalize();
   ignition::math::Vector3d liftI = dragI.Cross(spanI).Normalize();
 
+  // get control surface deflection
+  double controlAngle = 0;
+  if (this->controlJoint)
+  {
+    controlAngle = this->controlJoint->Position(0);
+  }
+
   // compute coefficients
   double cL0 = -this->cL_alpha0*this->cLa;
   double cm0 = -this->cm_alpha0*this->cma;
-  double cL = cL0;
-  double cm = cm0;
+  double cL = cL0 + this->controlJointRadToCL*controlAngle;
+  double cm = cm0 + this->controlJointRadToCm*controlAngle;
   if (fabs(alpha) < this->alphaStall) {
     cL += this->cLa*alpha;
     cm += this->cma*alpha;
@@ -223,20 +226,6 @@ void LiftDragPlugin2::OnUpdate()
   // compute cd
   double delta_cL = cL - cL0;
   double cD = this->cD0 + this->kcDcL*delta_cL*delta_cL;
-
-  // modify cl per control joint value
-  if (this->controlJoint)
-  {
-    double controlAngle = this->controlJoint->Position(0);
-    cL += this->controlJointRadToCL * controlAngle;
-    cD += this->controlJointRadToCD * controlAngle;
-    cm += this->controlJointRadToCm * controlAngle;
-  }
-
-  // limit
-  //cL = clamp(cL, 0.0, 2.0);
-  //cD = clamp(cD, 0.0, 0.2);
-  //cm = clamp(cm, 0.0, 0.0);
 
   // forces and moments at cp
   ignition::math::Vector3d drag = cD * q * this->area * dragI;
@@ -260,6 +249,9 @@ void LiftDragPlugin2::OnUpdate()
     gzdbg << "lift dir (inertial): " << liftI << "\n";
     gzdbg << "drag dir (inertial): " << dragI << "\n";
     gzdbg << "Span direction (normal to LD plane): " << spanI << "\n";
+    gzdbg << "control: " << controlAngle << "\n";
+    gzdbg << "control->CL: " << this->controlJointRadToCL << "\n";
+    gzdbg << "control->Cm: " << this->controlJointRadToCm << "\n";
     gzdbg << "alpha: " << alpha << "\n";
     gzdbg << "beta: " << beta << "\n";
     gzdbg << "lift: " << lift << "\n";

@@ -442,7 +442,6 @@
       <link_name>fuselage</link_name>
       <control_joint_name>rudder_joint</control_joint_name>
       <control_joint_rad_to_cL>4.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cD>0.0</control_joint_rad_to_cD>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
@@ -464,7 +463,6 @@
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
       <control_joint_rad_to_cL>-4.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cD>0.0</control_joint_rad_to_cD>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
@@ -486,7 +484,6 @@
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_left_joint</control_joint_name>
       <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cD>0.0</control_joint_rad_to_cD>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
       <verbose>0</verbose>
     </plugin>
@@ -509,7 +506,6 @@
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_right_joint</control_joint_name>
       <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cD>0.0</control_joint_rad_to_cD>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
       <verbose>0</verbose>
     </plugin>

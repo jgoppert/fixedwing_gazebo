@@ -120,10 +120,6 @@ namespace gazebo
     /// value.
     protected: double controlJointRadToCL{0};
 
-    /// \brief how much to change CD per radian of control surface joint
-    /// value.
-    protected: double controlJointRadToCD{0};
-
     /// \brief how much to change Cm per radian of control surface joint
     /// value.
     protected: double controlJointRadToCm{0};
