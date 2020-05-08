@@ -67,10 +67,10 @@ void LiftDragPlugin2::Load(physics::ModelPtr _model,
   GZ_ASSERT(_sdf->HasElement("cm_a0"), "LiftDragPlugin2 must set cm_a0");
   this->cL_alpha0 = _sdf->Get<double>("cm_a0");
 
-  GZ_ASSERT(_sdf->HasElement("cLa"), "LiftDragPlugin2 must set cla");
+  GZ_ASSERT(_sdf->HasElement("cLa"), "LiftDragPlugin2 must set cLa");
   this->cLa = _sdf->Get<double>("cLa");
 
-  GZ_ASSERT(_sdf->HasElement("cD0"), "LiftDragPlugin2 must set cd0");
+  GZ_ASSERT(_sdf->HasElement("cD0"), "LiftDragPlugin2 must set cD0");
   this->cD0 = _sdf->Get<double>("cD0");
 
   GZ_ASSERT(_sdf->HasElement("cma"), "LiftDragPlugin2 must set cma");
@@ -79,10 +79,10 @@ void LiftDragPlugin2::Load(physics::ModelPtr _model,
   GZ_ASSERT(_sdf->HasElement("alpha_stall"), "LiftDragPlugin2 must set alpha_stall");
   this->alphaStall = _sdf->Get<double>("alpha_stall");
 
-  GZ_ASSERT(_sdf->HasElement("cLa_stall"), "LiftDragPlugin2 must set cla_stall");
+  GZ_ASSERT(_sdf->HasElement("cLa_stall"), "LiftDragPlugin2 must set cLa_stall");
   this->cLaStall = _sdf->Get<double>("cla_stall");
 
-  GZ_ASSERT(_sdf->HasElement("kcDcL"), "LiftDragPlugin2 must set kcdcl");
+  GZ_ASSERT(_sdf->HasElement("kcDcL"), "LiftDragPlugin2 must set kcDcL");
   this->kcDcL = _sdf->Get<double>("kcDcL");
 
   GZ_ASSERT(_sdf->HasElement("cma_stall"), "LiftDragPlugin2 must set cma_stall");
@@ -187,14 +187,14 @@ void LiftDragPlugin2::OnUpdate()
   }
 
   // spanI, along the span of the wing
-  ignition::math::Vector3d spanI = upwardI.Cross(forwardI).Normalize();
+  ignition::math::Vector3d spanI = forwardI.Cross(upwardI).Normalize();
 
   double v = vel.Length();
   double q = 0.5 * this->rho * v * v;
 
   // wing (body) frame velocities
   double U = velI.Dot(forwardI);
-  double V = -velI.Dot(spanI);
+  double V = velI.Dot(spanI);
   double W = -velI.Dot(upwardI);
 
   double alpha = atan(W/U);
@@ -202,22 +202,27 @@ void LiftDragPlugin2::OnUpdate()
 
   // get direction of lift
   ignition::math::Vector3d dragI = -velI.Normalize();
-  ignition::math::Vector3d liftI = -dragI.Cross(spanI).Normalize();
+  ignition::math::Vector3d liftI = dragI.Cross(spanI).Normalize();
 
-  // get direction of moment
-  ignition::math::Vector3d momentI = -spanI;
-
-  // compute cL at cp, check for stall, correct for side-slip
-  double cL0 = -this->cLa*this->cL_alpha0;
-  double cL = cL0 + this->cLa * (alpha - this->cL_alpha0);
+  // compute coefficients
+  double cL0 = -this->cL_alpha0*this->cLa;
+  double cm0 = -this->cm_alpha0*this->cma;
+  double cL = cL0;
+  double cm = cm0;
+  if (fabs(alpha) < this->alphaStall) {
+    cL += this->cLa*alpha;
+    cm += this->cma*alpha;
+  } else if (alpha < -this->alphaStall) {
+    cL += -this->cLa*this->alphaStall + this->cLaStall*(alpha - this->alphaStall);
+    cm += -this->cma*this->alphaStall + this->cmaStall*(alpha - this->alphaStall);
+  } else if (alpha > this->alphaStall) {
+    cL += this->cLa*this->alphaStall + this->cLaStall*(alpha - this->alphaStall);
+    cm += this->cma*this->alphaStall + this->cmaStall*(alpha - this->alphaStall);
+  }
 
   // compute cd
   double delta_cL = cL - cL0;
   double cD = this->cD0 + this->kcDcL*delta_cL*delta_cL;
-
-  // compute cm at cp, check for stall, correct for sweep
-  double cm0 = -this->cma*this->cm_alpha0;
-  double cm = cm0 + this->cma * (alpha - this->cm_alpha0);
 
   // modify cl per control joint value
   if (this->controlJoint)
@@ -236,7 +241,7 @@ void LiftDragPlugin2::OnUpdate()
   // forces and moments at cp
   ignition::math::Vector3d drag = cD * q * this->area * dragI;
   ignition::math::Vector3d lift = cL * q * this->area * liftI;
-  ignition::math::Vector3d moment = cm * q * this->area * momentI;
+  ignition::math::Vector3d moment = cm * q * this->area * spanI;
   ignition::math::Vector3d force = lift + drag;
   ignition::math::Vector3d torque = moment;
 

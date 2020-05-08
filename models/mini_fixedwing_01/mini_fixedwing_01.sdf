@@ -130,7 +130,15 @@
       <child>wheel_left</child>
       <axis>
         <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+        </dynamics>
       </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
     </joint>
 
     <link name='wheel_right'>
@@ -188,7 +196,15 @@
       <child>wheel_right</child>
       <axis>
         <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+        </dynamics>
       </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
     </joint>
 
     <link name='rudder'>
@@ -227,8 +243,8 @@
           <damping>0.1</damping>
         </dynamics>
         <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
         </limit>
       </axis>
       <physics>
@@ -274,8 +290,8 @@
           <damping>0.1</damping>
         </dynamics>
         <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
         </limit>
       </axis>
       <physics>
@@ -286,10 +302,9 @@
     </joint>
 
     <link name='aileron_left'>
-      <pose>-0.232 0.29 0.055</pose>
       <inertial>
-        <pose>-0.02 0 0 0 0 0</pose>
-        <mass>0.0027</mass>
+        <pose>-0.252 0.29 0.055</pose>
+        <mass>0.0021</mass>
         <inertia>
           <ixx>1.33e-5</ixx>
           <iyy>1.03e-3</iyy>
@@ -297,7 +312,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.232 -0.29 -0.055</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -313,6 +327,7 @@
     </link>
 
     <joint name='aileron_left_joint' type='revolute'>
+      <pose>-0.232 -0.19 0.055 0.087 0 0.013</pose>
       <parent>fuselage</parent>
       <child>aileron_left</child>
       <axis>
@@ -321,8 +336,8 @@
           <damping>0.1</damping>
         </dynamics>
         <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
         </limit>
       </axis>
       <physics>
@@ -333,10 +348,9 @@
     </joint>
 
     <link name='aileron_right'>
-      <pose>-0.232 -0.29 0.055</pose>
       <inertial>
-        <pose>-0.02 0 0 0 0 0</pose>
-        <mass>0.0027</mass>
+        <pose>-0.252 -0.29 0.055</pose>
+        <mass>0.0021</mass>
         <inertia>
           <ixx>1.33e-5</ixx>
           <iyy>1.03e-3</iyy>
@@ -344,7 +358,6 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose>0.232 0.29 -0.055</pose>
         <cast_shadows>0</cast_shadows>
         <geometry>
           <mesh>
@@ -360,6 +373,7 @@
     </link>
 
     <joint name='aileron_right_joint' type='revolute'>
+      <pose>-0.232 -0.19 0.055 -0.087 0 -0.013</pose>
       <parent>fuselage</parent>
       <child>aileron_right</child>
       <axis>
@@ -368,8 +382,8 @@
           <damping>0.1</damping>
         </dynamics>
         <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
         </limit>
       </axis>
       <physics>
@@ -380,13 +394,13 @@
     </joint>
 
     <link name='propeller'>
-      <pose>0.02 0 0 0 0 -0.08</pose>
+      <pose>0.026 0 0 0 0 -0.0873</pose>
       <inertial>
-        <mass>0.001</mass>
+        <mass>0.0008</mass>
         <inertia>
-          <ixx>1e-6</ixx>
-          <iyy>1e-6</iyy>
-          <izz>1e-6</izz>
+          <ixx>5.6e-7</ixx>
+          <iyy>8e-7</iyy>
+          <izz>9.2e-7</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -416,13 +430,12 @@
       <cL_a0>0</cL_a0>
       <cLa>2.76</cLa>
       <cm_a0>0</cm_a0>
-      <cma>0</cma>
-      <cD0>0.01</cD0>
+      <cma>-0.31</cma>
+      <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.175</alpha_stall>
       <cLa_stall>-3.85</cLa_stall>
-      <cDa_stall>-0.92</cDa_stall>
-      <cma_stall>0</cma_stall>
+      <cma_stall>0.237</cma_stall>
       <cp>-0.6 0 0.0747</cp>
       <area>0.01</area>
       <air_density>1.2041</air_density>
@@ -440,11 +453,10 @@
       <cLa>2.76</cLa>
       <cm_a0>0</cm_a0>
       <cma>0</cma>
-      <cD0>0.01</cD0>
+      <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.3</alpha_stall>
       <cLa_stall>-3.85</cLa_stall>
-      <cDa_stall>-0.92</cDa_stall>
       <cma_stall>0</cma_stall>
       <cp>-0.6 0 0.0123</cp>
       <area>0.02</area>
@@ -461,9 +473,9 @@
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
       <cL_a0>-0.122</cL_a0>
       <cLa>4.24</cLa>
-      <cm_a0>0</cm_a0>
+      <cm_a0>-0.122</cm_a0>
       <cma>-0.28</cma>
-      <cD0>0.01</cD0>
+      <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.23</alpha_stall>
       <cLa_stall>-3.85</cLa_stall>
@@ -485,9 +497,9 @@
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
       <cL_a0>-0.122</cL_a0>
       <cLa>4.24</cLa>
-      <cm_a0>0</cm_a0>
+      <cm_a0>-0.122</cm_a0>
       <cma>-0.28</cma>
-      <cD0>0.01</cD0>
+      <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.23</alpha_stall>
       <cLa_stall>-3.85</cLa_stall>
@@ -597,15 +609,15 @@
       <joint_name>propeller_joint</joint_name>
       <prop_name>propeller</prop_name>
       <diameter>6</diameter>
-      <ct>0.1025	-0.0258	0.2714	-0.6997	0.359</ct>
-      <cp>0.0537	0.0096	0.2053	-0.4276	0.1702</cp>
+      <ct>0.1025  -0.0258 0.2714  -0.6997 0.359</ct>
+      <cp>0.0537  0.0096  0.2053  -0.4276 0.1702</cp>
       <kV>1800</kV>
       <i0>0.5</i0>
       <iMax>30</iMax>
       <r0>0.2</r0>
       <battV>11.1</battV>
       <axis_num>0</axis_num>
-      <motor_eff>0.35</motor_eff>
+      <motor_eff>0.6</motor_eff>
       <verbose>0</verbose>
     </plugin>
 
@@ -633,7 +645,7 @@
         <channel name="rudder">
           <input_index>2</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_scaling>0.05</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
@@ -650,7 +662,7 @@
         </channel>
         <channel name="puller">
           <input_index>4</input_index>
-          <input_offset>0</input_offset>
+          <input_offset>-0.05</input_offset>
           <input_scaling>1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
@@ -696,7 +708,7 @@
         </channel>
         <channel name="elevator">
           <input_index>7</input_index>
-          <input_offset>0.5</input_offset>
+          <input_offset>0</input_offset>
           <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
