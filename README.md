@@ -9,7 +9,7 @@ Gazebo fixedwing models. Created as part of AAE 451, Spring 2020.
 mkdir -p ~/catkin/src
 cd ~/catkin/src
 git clone https://github.com/jgoppert/fixedwing_gazebo.git
-git clone --branch sitl_twin https://github.com/jgoppert/Firmware.git px4
+git clone --recursive --branch sitl_twin https://github.com/jgoppert/Firmware.git px4
 ln -s px4/Tools/sitl_gazebo mavlink_sitl_gazebo
 cd ~/catkin
 catkin init
