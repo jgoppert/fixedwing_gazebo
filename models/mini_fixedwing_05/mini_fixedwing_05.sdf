@@ -304,9 +304,8 @@
     <link name='aileron_left'>
       <inertial>
         <mass>0.008</mass>
-        <pose>-0.038 0 0</pose>
+        <pose>-0.304 0.239 -0.019 0.035 0 0</pose>
         <inertia>
-          <pose>-0.266 0.239 -0.019 0.035 0.035 0</pose>
           <ixx>3.9e-6</ixx>
           <iyy>3.6e-6</iyy>
           <izz>1.07e-4</izz>
@@ -350,7 +349,7 @@
 
     <link name='aileron_right'>
       <inertial>
-        <pose>-0.266 -0.239 -0.019 -0.035 0.035 0</pose>
+        <pose>-0.304 -0.239 -0.019 -0.035 0 0</pose>
         <mass>0.008</mass>
         <inertia>
           <ixx>3.9e-6</ixx>
@@ -374,7 +373,7 @@
     </link>
 
     <joint name='aileron_right_joint' type='revolute'>
-      <pose>-0.266 -0.239 -0.019 -0.035 0.035 0</pose>
+      <pose>-0.266 -0.239 -0.019 -0.035 0 0</pose>
       <parent>fuselage</parent>
       <child>aileron_right</child>
       <axis>
@@ -653,7 +652,7 @@
           <joint_control_type>position</joint_control_type>
           <joint_name>aileron_left_joint</joint_name>
           <joint_control_pid>
-            <p>10</p>
+            <p>5</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
@@ -664,14 +663,14 @@
         </channel>
         <channel name="aileron_right">
           <input_index>6</input_index>
-          <input_offset>-0.02</input_offset>
+          <input_offset>0</input_offset>
           <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
           <joint_name>aileron_right_joint</joint_name>
           <joint_control_pid>
-            <p>10</p>
+            <p>5</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
