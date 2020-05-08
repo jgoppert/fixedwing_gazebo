@@ -657,7 +657,7 @@
       <r0>0.128</r0>
       <battV>7.4</battV>
       <axis_num>0</axis_num>
-      <motor_eff>0.35</motor_eff>
+      <motor_eff>0.7</motor_eff>
       <verbose>0</verbose>
     </plugin>
 

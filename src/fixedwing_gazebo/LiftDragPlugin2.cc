@@ -198,7 +198,7 @@ void LiftDragPlugin2::OnUpdate()
 
   // get direction of lift
   ignition::math::Vector3d dragI = -velI.Normalize();
-  ignition::math::Vector3d liftI = dragI.Cross(spanI).Normalize();
+  ignition::math::Vector3d liftI = spanI.Cross(velI).Normalize();
 
   // get control surface deflection
   double controlAngle = 0;
@@ -230,9 +230,8 @@ void LiftDragPlugin2::OnUpdate()
   // forces and moments at cp
   ignition::math::Vector3d drag = cD * q * this->area * dragI;
   ignition::math::Vector3d lift = cL * q * this->area * liftI;
-  ignition::math::Vector3d moment = cm * q * this->area * spanI;
+  ignition::math::Vector3d torque = cm * q * this->area * spanI;
   ignition::math::Vector3d force = lift + drag;
-  ignition::math::Vector3d torque = moment;
 
   if (this->verbose)
   {
@@ -256,7 +255,6 @@ void LiftDragPlugin2::OnUpdate()
     gzdbg << "beta: " << beta << "\n";
     gzdbg << "lift: " << lift << "\n";
     gzdbg << "drag: " << drag << "\n";
-    gzdbg << "moment: " << moment << "\n";
     gzdbg << "q: " << q << "\n";
     gzdbg << "area: " << area << "\n";
     gzdbg << "cL: " << cL << "\n";
