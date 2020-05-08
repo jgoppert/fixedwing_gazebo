@@ -3,87 +3,7 @@
   <model name="columns">
     <static>true</static>
 
-    <link name="start_1">
-      <visual name="visual">
-        <cast_shadows>0</cast_shadows>
-        <pose>20 0 10 0 0 0</pose>
-        <geometry>
-          <sphere><radius>3.0</radius></sphere>
-        </geometry>
-        <material>
-          <script>
-            <name>Gazebo/Black</name>
-          </script>
-        </material>
-      </visual>
-    </link>
-    <include>
-      <name>column1</name>
-      <pose>20 0 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column2</name>
-      <pose>20 5 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column3</name>
-      <pose>20 10 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column4</name>
-      <pose>20 15 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column5</name>
-      <pose>20 20 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-
-    <link name="start_2">
-      <visual name="visual">
-        <cast_shadows>0</cast_shadows>
-        <pose>40 0 10 0 0 0</pose>
-        <geometry>
-          <sphere><radius>3.0</radius></sphere>
-        </geometry>
-        <material>
-          <script>
-            <name>Gazebo/Blue</name>
-          </script>
-        </material>
-      </visual>
-    </link>
-    <include>
-      <name>column6</name>
-      <pose>40 0 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column7</name>
-      <pose>40 10 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column8</name>
-      <pose>40 20 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column9</name>
-      <pose>40 30 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column10</name>
-      <pose>40 40 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-
-    <link name="start_3">
+    <link name="black">
       <visual name="visual">
         <cast_shadows>0</cast_shadows>
         <pose>60 0 10 0 0 0</pose>
@@ -92,7 +12,7 @@
         </geometry>
         <material>
           <script>
-            <name>Gazebo/Green</name>
+            <name>Gazebo/Black</name>
           </script>
         </material>
       </visual>
@@ -123,47 +43,7 @@
       <uri>model://column</uri>
     </include>
 
-    <link name="start_4">
-      <visual name="visual">
-        <cast_shadows>0</cast_shadows>
-        <pose>80 0 10 0 0 0</pose>
-        <geometry>
-          <sphere><radius>3.0</radius></sphere>
-        </geometry>
-        <material>
-          <script>
-            <name>Gazebo/Orange</name>
-          </script>
-        </material>
-      </visual>
-    </link>
-    <include>
-      <name>column16</name>
-      <pose>80 0 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column17</name>
-      <pose>80 20 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column18</name>
-      <pose>80 40 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column19</name>
-      <pose>80 60 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-    <include>
-      <name>column20</name>
-      <pose>80 80 0 0 0 0</pose>
-      <uri>model://column</uri>
-    </include>
-
-    <link name="start_5">
+    <link name="blue">
       <visual name="visual">
         <cast_shadows>0</cast_shadows>
         <pose>120 0 10 0 0 0</pose>
@@ -172,7 +52,7 @@
         </geometry>
         <material>
           <script>
-            <name>Gazebo/Yellow</name>
+            <name>Gazebo/Blue</name>
           </script>
         </material>
       </visual>
@@ -204,33 +84,33 @@
       <uri>model://column</uri>
     </include>
 
-    <link name="start_6">
+    <link name="green">
       <visual name="visual">
         <cast_shadows>0</cast_shadows>
-        <pose>200 0 10 0 0 0</pose>
+        <pose>240 0 10 0 0 0</pose>
         <geometry>
           <sphere><radius>3.0</radius></sphere>
         </geometry>
         <material>
           <script>
-            <name>Gazebo/White</name>
+            <name>Gazebo/Green</name>
           </script>
         </material>
       </visual>
     </link>
     <include>
       <name>column26</name>
-      <pose>200 0 0 0 0 0</pose>
+      <pose>240 0 0 0 0 0</pose>
       <uri>model://column</uri>
     </include>
     <include>
       <name>column27</name>
-      <pose>200 80 0 0 0 0</pose>
+      <pose>240 80 0 0 0 0</pose>
       <uri>model://column</uri>
     </include>
     <include>
       <name>column28</name>
-      <pose>200 160 0 0 0 0</pose>
+      <pose>240 160 0 0 0 0</pose>
       <uri>model://column</uri>
     </include>
   </model>

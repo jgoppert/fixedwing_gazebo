@@ -223,8 +223,6 @@ void LiftDragPlugin2::OnUpdate()
   if (this->controlJoint)
   {
     double controlAngle = this->controlJoint->Position(0);
-    gzdbg << "have control joint" << this->controlJointRadToCL << std::endl;
-    gzdbg << "controlAngle" << controlAngle << std::endl;
     cL += this->controlJointRadToCL * controlAngle;
     cD += this->controlJointRadToCD * controlAngle;
     cm += this->controlJointRadToCm * controlAngle;

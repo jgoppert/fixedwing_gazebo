@@ -479,7 +479,7 @@
       <control_joint_rad_to_cL>-1.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cD>0.0</control_joint_rad_to_cD>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
-      <verbose>1</verbose>
+      <verbose>0</verbose>
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
@@ -503,7 +503,7 @@
       <control_joint_rad_to_cL>-1.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cD>0.0</control_joint_rad_to_cD>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
-      <verbose>1</verbose>
+      <verbose>0</verbose>
     </plugin>
 
     <!--<plugin name="wing_right" filename="libLiftDragPlugin.so">-->
@@ -597,8 +597,8 @@
       <joint_name>propeller_joint</joint_name>
       <prop_name>propeller</prop_name>
       <diameter>6</diameter>
-      <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
-      <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
+      <ct>0.1025	-0.0258	0.2714	-0.6997	0.359</ct>
+      <cp>0.0537	0.0096	0.2053	-0.4276	0.1702</cp>
       <kV>1800</kV>
       <i0>0.5</i0>
       <iMax>30</iMax>
@@ -715,6 +715,29 @@
       </control_channels>
 
     </plugin>
+
+    <!--<include>-->
+      <!--<name>fpv_camera</name>-->
+      <!--<pose>0.1 0 0 0 0 0</pose>-->
+      <!--<uri>model://fpv_camera</uri>-->
+    <!--</include>-->
+
+    <!--<joint name='cam_joint' type='fixed'>-->
+      <!--<parent>fuselage</parent>-->
+      <!--<child>fpv_camera::link</child>-->
+    <!--</joint>-->
+
+    <!--<include>-->
+      <!--<name>track_camera</name>-->
+      <!--<pose>0.1 0 0 0 0 0</pose>-->
+      <!--<uri>model://track_camera</uri>-->
+    <!--</include>-->
+
+    <!--<joint name='cam2_joint' type='fixed'>-->
+      <!--<parent>fuselage</parent>-->
+      <!--<child>track_camera::link</child>-->
+    <!--</joint>-->
+
   </model>
 
 </sdf>

@@ -301,14 +301,15 @@
       </axis>
     </joint>
 
-    <plugin name="vtail" filename="libLiftDragPlugin.so">
-      <a0>0</a0>
-      <cla>3.974</cla>
-      <cda>0.5053</cda>
+    <plugin name="vtail" filename="libLiftDragPlugin2.so">
+      <cL_a0>-0.035</cL_a0>
+      <cLa>3.974</cLa>
+      <cm_a0>0</cm_a0>
       <cma>-0.1017</cma>
+      <cD0>0.03</cD0>
+      <kcDcL>0.1</kcDcL>
       <alpha_stall>0.1832</alpha_stall>
-      <cla_stall>-3.85</cla_stall>
-      <cda_stall>0.856</cda_stall>
+      <cLa_stall>-3.85</cLa_stall>
       <cma_stall>0</cma_stall>
       <cp>-0.95 0 0.079</cp>
       <area>0.01855</area>
@@ -317,17 +318,20 @@
       <upward>0 1 0</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>rudder_joint</control_joint_name>
-      <control_joint_rad_to_cl>4.0</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>4.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cD>0.0</control_joint_rad_to_cD>
+      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
-    <plugin name="htail" filename="libLiftDragPlugin.so">
-      <a0>-0.035</a0>
-      <cla>3.09</cla>
-      <cda>0.52</cda>
+    <plugin name="htail" filename="libLiftDragPlugin2.so">
+      <cL_a0>-0.035</cL_a0>
+      <cLa>3.09</cLa>
+      <cm_a0>0.2</cm_a0>
       <cma>-0.12</cma>
+      <cD0>0.03</cD0>
+      <kcDcL>0.1</kcDcL>
       <alpha_stall>0.12</alpha_stall>
-      <cla_stall>-3.03</cla_stall>
-      <cda_stall>0.89</cda_stall>
+      <cLa_stall>-3.03</cLa_stall>
       <cma_stall>0</cma_stall>
       <cp>-0.98 0 0.04</cp>
       <area>0.06</area>
@@ -336,17 +340,20 @@
       <upward>0 0 1</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cl>-4.0</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>-4.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cD>0</control_joint_rad_to_cD>
+      <control_joint_rad_to_cm>0</control_joint_rad_to_cm>
     </plugin>
 
-    <plugin name="wing_left" filename="libLiftDragPlugin.so">
-      <a0>0.07029</a0>
-      <cla>4.38</cla>
-      <cda>0.43</cda>
+    <plugin name="wing_left" filename="libLiftDragPlugin2.so">
+      <cL_a0>-0.07029</cL_a0>
+      <cLa>4.38</cLa>
+      <cm_a0>0</cm_a0>
       <cma>-1.11</cma>
+      <cD0>0.01</cD0>
+      <kcDcL>0.1</kcDcL>
       <alpha_stall>0.157</alpha_stall>
-      <cla_stall>-3.92</cla_stall>
-      <cda_stall>1.34</cda_stall>
+      <cLa_stall>-3.92</cLa_stall>
       <cma_stall>-0.428</cma_stall>
       <cp>-0.43 0.25 0.02</cp>
       <area>0.1595</area>
@@ -355,17 +362,21 @@
       <upward>0 -0.024 0.997</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_left_joint</control_joint_name>
-      <control_joint_rad_to_cl>-3.62</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>-3.62</control_joint_rad_to_cL>
+      <control_joint_rad_to_cD>0</control_joint_rad_to_cD>
+      <control_joint_rad_to_cm>0</control_joint_rad_to_cm>
+      <verbose>0</verbose>
     </plugin>
 
-    <plugin name="wing_right" filename="libLiftDragPlugin.so">
-      <a0>0.07029</a0>
-      <cla>4.38</cla>
-      <cda>0.43</cda>
+    <plugin name="wing_right" filename="libLiftDragPlugin2.so">
+      <cL_a0>-0.07029</cL_a0>
+      <cLa>4.38</cLa>
+      <cm_a0>0</cm_a0>
       <cma>-1.11</cma>
+      <cD0>0.01</cD0>
+      <kcDcL>0.1</kcDcL>
       <alpha_stall>0.157</alpha_stall>
-      <cla_stall>-3.92</cla_stall>
-      <cda_stall>1.34</cda_stall>
+      <cLa_stall>-3.92</cLa_stall>
       <cma_stall>-0.428</cma_stall>
       <cp>-0.43 -0.25 0.02</cp>
       <area>0.1595</area>
@@ -374,7 +385,10 @@
       <upward>0 0.024 0.997</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_right_joint</control_joint_name>
-      <control_joint_rad_to_cl>-3.62</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>-3.62</control_joint_rad_to_cL>
+      <control_joint_rad_to_cD>0</control_joint_rad_to_cD>
+      <control_joint_rad_to_cm>0</control_joint_rad_to_cm>
+      <verbose>0</verbose>
     </plugin>
 
     <!--Start PX4 autopilot-->
@@ -548,7 +562,7 @@
         </channel>
         <channel name="elevator">
           <input_index>7</input_index>
-          <input_offset>1.0</input_offset>
+          <input_offset>0</input_offset>
           <input_scaling>0.1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>

@@ -3,7 +3,16 @@
   <world name="default">
     <scene>
       <grid>false</grid>
+      <origin_visual>false</origin_visual>
+      <fog>
+        <type>linear</type>
+        <color>0.1 0.1 0.1 1</color>
+        <density>1</density>
+        <start>100</start>
+        <end>1000</end>
+      </fog>
       <sky>
+        <time>10</time>
         <clouds>
           <speed>10</speed>
         </clouds>
@@ -53,12 +62,50 @@
     </include>
 
     <include>
+      <name>start_1</name>
+      <pose>1 -1.2 0 0 0 0</pose>
+      <uri>model://construction_cone</uri>
+    </include>
+
+    <include>
+      <name>start_2</name>
+      <pose>1 1.2 0 0 0 0</pose>
+      <uri>model://construction_cone</uri>
+    </include>
+
+   <include>
+      <name>finish_1</name>
+      <pose>6 -2 0 0 0 0</pose>
+      <uri>model://construction_cone</uri>
+    </include>
+
+    <include>
+      <name>finish_2</name>
+      <pose>6 2 0 0 0 0</pose>
+      <uri>model://construction_cone</uri>
+    </include>
+
+   <include>
+      <name>finish_3</name>
+      <pose>12 -3 0 0 0 0</pose>
+      <uri>model://construction_cone</uri>
+    </include>
+
+    <include>
+      <name>finish_4</name>
+      <pose>12 3 0 0 0 0</pose>
+      <uri>model://construction_cone</uri>
+    </include>
+
+
+
+    <include>
       <uri>model://ground_asphalt</uri>
     </include>
 
     <include>
+      <pose>0 0 0 0 0 0</pose>
       <uri>model://columns</uri>
-      <pose>30 30 0 0 0 0</pose>
     </include>
 
   </world>
