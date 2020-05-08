@@ -1,5 +1,5 @@
 # Fixedwing Gazebo
-Gazebo models of student designed mini fixedwing aircraft inspired by [Flite Test Mighty Minis](https://www.flitetest.com/articles/ft-mighty-minis). Created as part of AAE 451 (Aicraft Design), Spring 2020.
+Gazebo models of student designed mini fixedwing aircraft inspired by [Flite Test Mighty Minis](https://www.flitetest.com/articles/ft-mighty-minis). Created as part of Purdue AAE 451 (Aicraft Design), Spring 2020.
 
 ![group_photo](data/group.png)
 
