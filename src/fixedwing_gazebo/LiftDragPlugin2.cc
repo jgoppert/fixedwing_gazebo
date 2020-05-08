@@ -189,15 +189,14 @@ void LiftDragPlugin2::OnUpdate()
   double q = 0.5 * this->rho * v * v;
 
   // wing (body) frame velocities
-  double U = velI.Dot(forwardI);
-  double V = velI.Dot(spanI);
-  double W = -velI.Dot(upwardI);
-
+  double U = vel.Dot(forwardI);
+  double V = vel.Dot(spanI);
+  double W = -vel.Dot(upwardI);
   double alpha = atan(W/U);
   double beta = asin(V/v);
 
   // get direction of lift
-  ignition::math::Vector3d dragI = -velI.Normalize();
+  ignition::math::Vector3d dragI = -velI;
   ignition::math::Vector3d liftI = spanI.Cross(velI).Normalize();
 
   // get control surface deflection
@@ -212,13 +211,16 @@ void LiftDragPlugin2::OnUpdate()
   double cm0 = -this->cm_alpha0*this->cma;
   double cL = cL0 + this->controlJointRadToCL*controlAngle;
   double cm = cm0 + this->controlJointRadToCm*controlAngle;
+  bool stall = false;
   if (fabs(alpha) < this->alphaStall) {
     cL += this->cLa*alpha;
     cm += this->cma*alpha;
   } else if (alpha < -this->alphaStall) {
+    stall = true;
     cL += -this->cLa*this->alphaStall + this->cLaStall*(alpha - this->alphaStall);
     cm += -this->cma*this->alphaStall + this->cmaStall*(alpha - this->alphaStall);
   } else if (alpha > this->alphaStall) {
+    stall = true;
     cL += this->cLa*this->alphaStall + this->cLaStall*(alpha - this->alphaStall);
     cm += this->cma*this->alphaStall + this->cmaStall*(alpha - this->alphaStall);
   }
@@ -251,6 +253,10 @@ void LiftDragPlugin2::OnUpdate()
     gzdbg << "control: " << controlAngle << "\n";
     gzdbg << "control->CL: " << this->controlJointRadToCL << "\n";
     gzdbg << "control->Cm: " << this->controlJointRadToCm << "\n";
+    gzdbg << "U: " << U << "\n";
+    gzdbg << "V: " << V << "\n";
+    gzdbg << "W: " << W << "\n";
+    gzdbg << "stall: " << stall << "\n";
     gzdbg << "alpha: " << alpha << "\n";
     gzdbg << "beta: " << beta << "\n";
     gzdbg << "lift: " << lift << "\n";
