@@ -6,6 +6,7 @@ orig_dir = "stl_orig/";
 vscale = [0.001, 0.001, 0.001];
 vrot = [0, 0, 0];
 vtrans = [0, 0, 0];
+markers = true;
 
 parts = ["fuselage",
     "elevator", "wheel_left", "wheel_right", "propeller", "rudder"];
@@ -51,6 +52,49 @@ for (p = ["wheel_right"]) {
         import(str(orig_dir, p, ".stl"));
     }
 }
+
+module cp() {
+    color([1, 0, 0, 0.1])
+    scale([0.01, 0.01, 0.03])
+    sphere([1, 1, 1]);
+}
+
+module cm() {
+    color([0, 1, 0, 0.5])
+    scale([0.01, 0.01, 0.01])
+    sphere([1, 1, 1]);
+}
+
+module joint() {
+    color([0, 0, 1, 0.5])
+    scale([0.02, 0.02, 0.02])
+    cube([1, 1, 1], center=true);
+}
+
+if (part == "cp" || part == "all" && markers) {
+    translate([-0.14, 0.2, 0.02]) cp(); // wing left
+    translate([-0.14, -0.2, 0.02]) cp(); // wing right
+    translate([-0.5, 0, 0]) cp();  // htail
+    translate([-0.49, 0, 0.05]) cp(); // vtail
+}
+
+if (part == "cm" || part == "all" && markers) {
+    translate([-0.131, 0, 0]) scale([6, 6, 6]) cm(); // main
+    translate([-0.295, 0.23, 0.012]) cm(); // aileron left
+    translate([-0.295, -0.23, 0.012]) cm(); // aileron right
+    translate([-0.565, 0, 0]) cm();  // elevator
+    translate([-0.535, 0, 0.07]) cm(); // rudder
+}
+
+if (part == "joint" || part == "all" && markers) {
+    translate([-0.114, 0.085, -0.081]) joint(); // wheel left
+    translate([-0.114, -0.085, -0.081]) joint(); // wheel right
+    translate([-0.27, 0.23, 0.015]) joint(); // aileron left
+    translate([-0.27, -0.23, 0.015]) joint(); // aileron right
+    translate([-0.547, 0, 0]) joint();  // elevator
+    translate([-0.515, 0, 0.07]) joint(); // rudder
+}
+
 
 // current exported files
 if (part == "export") {
