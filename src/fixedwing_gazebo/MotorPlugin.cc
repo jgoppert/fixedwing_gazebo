@@ -139,7 +139,7 @@ void MotorPlugin::Load(physics::ModelPtr _model,
 
   GZ_ASSERT(_sdf, "MotorPlugin _sdf pointer is NULL");
 
-  gzdbg << "using model: " << data->model->GetName() << "\n";
+  gzdbg << "Motor Plugin loading, model: " << data->model->GetName() << "\n";
 
   data->kV = _sdf->Get<double>("kV");
   data->i0 = _sdf->Get<double>("i0");
@@ -152,7 +152,6 @@ void MotorPlugin::Load(physics::ModelPtr _model,
   std::string gztopic = _sdf->Get<std::string>("gztopic");
   if (_sdf->HasElement("verbose")) {
     data->verbose = _sdf->Get<bool>("verbose");
-    gzdbg << "verbose:"  << data->verbose << std::endl;
   }
 
   std::string ct = _sdf->Get<std::string>("ct");
@@ -210,7 +209,7 @@ void MotorPlugin::Init()
   auto & data = this->dataPtr;
   data->updateConnection = event::Events::ConnectWorldUpdateBegin(
           std::bind(&MotorPlugin::OnUpdate, this));
-  gzdbg << "Init done.\n";
+  //gzdbg << "Init done.\n";
 }
 
 /////////////////////////////////////////////////

@@ -56,7 +56,7 @@ module joint() {
 if (part == "cp" || part == "all" && markers) {
     translate([-0.3, 0.2, 0.02]) cp(); // wing left
     translate([-0.3, -0.2, 0.02]) cp(); // wing right
-    translate([-0.83, 0, -0.05]) cp();  // htail
+    translate([-0.83, 0, -0.02]) cp();  // htail
     translate([-0.83, 0, 0.02]) cp(); // vtail
 }
 
@@ -73,7 +73,7 @@ if (part == "joint" || part == "all" && markers) {
     translate([-0.178, -0.049, -0.09]) joint(); // wheel right
     translate([-0.31, 0.25, 0.01]) joint(); // aileron left
     translate([-0.31, -0.25, 0.01]) joint(); // aileron right
-    translate([-0.85, 0, -0.04]) joint();  // elevator
+    translate([-0.85, 0, -0.02]) joint();  // elevator
     translate([-0.83, 0, 0.023]) joint(); // rudder
     translate([0.02, 0, 0]) joint(); // prop
 }

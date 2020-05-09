@@ -489,7 +489,7 @@
       <control_joint_name>aileron_left_joint</control_joint_name>
       <control_joint_rad_to_cL>-1.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
-      <verbose>1</verbose>
+      <verbose>0</verbose>
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
@@ -511,7 +511,7 @@
       <control_joint_name>aileron_right_joint</control_joint_name>
       <control_joint_rad_to_cL>-1.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
-      <verbose>1</verbose>
+      <verbose>0</verbose>
     </plugin>
 
     <!--Start PX4 autopilot-->
