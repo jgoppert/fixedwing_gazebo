@@ -96,8 +96,6 @@
       <uri>model://construction_cone</uri>
     </include>
 
-
-
     <include>
 			<name>ground_plane</name>
       <uri>model://ground_asphalt</uri>

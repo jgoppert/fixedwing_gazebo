@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <world name="default">
+    <scene>
+      <grid>false</grid>
+      <origin_visual>false</origin_visual>
+      <sky>
+        <time>10</time>
+        <clouds>
+          <speed>10</speed>
+        </clouds>
+      </sky>
+    </scene>
+    <gui>
+      <camera name="user_camera">
+        <pose>2.88 -7.96 4.92 0 0.486 1.55</pose>
+      </camera>
+    </gui>
+
+    <physics name='default_physics' default='0' type='ode'>
+      <gravity>0 0 -9.8066</gravity>
+      <ode>
+        <!--<solver>-->
+          <!--<type>quick</type>-->
+          <!--<iters>10</iters>-->
+          <!--<sor>1.3</sor>-->
+          <!--<use_dynamic_moi_rescaling>0</use_dynamic_moi_rescaling>-->
+        <!--</solver>-->
+        <!--<constraints>-->
+          <!--<cfm>0</cfm>-->
+          <!--<erp>0.2</erp>-->
+          <!--<contact_max_correcting_vel>100</contact_max_correcting_vel>-->
+          <!--<contact_surface_layer>0.001</contact_surface_layer>-->
+        <!--</constraints>-->
+      </ode>
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+      <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
+    </physics>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+			<name>ground_plane</name>
+      <uri>model://ground_asphalt</uri>
+    </include>
+
+    <include>
+      <pose>0 0 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_01</uri>
+    </include>
+
+    <include>
+      <pose>1 0 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_02</uri>
+    </include>
+
+    <include>
+      <pose>2 0 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_03</uri>
+    </include>
+
+    <include>
+      <pose>3 0 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_04</uri>
+    </include>
+
+    <include>
+      <pose>4 0 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_05</uri>
+    </include>
+
+    <include>
+      <pose>5 0 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_06</uri>
+    </include>
+
+    <include>
+      <pose>6 0 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_07</uri>
+    </include>
+
+    <include>
+      <pose>0 2 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_08</uri>
+    </include>
+
+    <include>
+      <pose>1.2 2 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_09</uri>
+    </include>
+
+    <include>
+      <pose>2 2 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_10</uri>
+    </include>
+
+    <include>
+      <pose>3.2 2 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_11</uri>
+    </include>
+
+    <include>
+      <pose>3.7 2 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_12</uri>
+    </include>
+
+    <include>
+      <pose>5 2 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_13</uri>
+    </include>
+
+    <include>
+      <pose>6 2 0.2 0 0 -0.7</pose>
+      <uri>model://mini_fixedwing_14</uri>
+    </include>
+
+    <include>
+      <name>cone1</name>
+      <pose>-1 -1 0 0 0 0</pose>
+      <uri>model://construction_cone</uri>
+    </include>
+
+    <include>
+      <name>cone2</name>
+      <pose>7 -1 0 0 0 0</pose>
+      <uri>model://construction_cone</uri>
+    </include>
+
+    <include>
+      <name>cone3</name>
+      <pose>-1 3 0 0 0 0</pose>
+      <uri>model://construction_cone</uri>
+    </include>
+
+    <include>
+      <name>cone4</name>
+      <pose>7 3 0 0 0 0</pose>
+      <uri>model://construction_cone</uri>
+    </include>
+
+  </world>
+</sdf>
+<!-- vim: set et fenc=utf-8 ff=unix sts=0 sw=2 ts=2 : -->
