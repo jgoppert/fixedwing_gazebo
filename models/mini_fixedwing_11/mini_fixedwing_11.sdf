@@ -79,7 +79,7 @@
 
     <link name='rudder'>
       <inertial>
-        <pose>-0.97 0 0.079</pose>
+        <pose>-0.98 0 0.079</pose>
         <mass>0.003</mass>
         <inertia>
           <ixx>3.88e-6</ixx>
@@ -126,7 +126,7 @@
 
     <link name='elevator'>
       <inertial>
-        <pose>-1.0 0 0.04</pose>
+        <pose>-0.995 0 0.04</pose>
         <mass>0.007</mass>
         <inertia>
           <ixx>7.37e-5</ixx>
@@ -311,7 +311,7 @@
       <alpha_stall>0.1832</alpha_stall>
       <cLa_stall>-3.85</cLa_stall>
       <cma_stall>0</cma_stall>
-      <cp>-0.95 0 0.079</cp>
+      <cp>-0.93 0 0.079</cp>
       <area>0.01855</area>
       <air_density>1.2041</air_density>
       <forward>1 0 0</forward>
@@ -332,7 +332,7 @@
       <alpha_stall>0.12</alpha_stall>
       <cLa_stall>-3.03</cLa_stall>
       <cma_stall>0</cma_stall>
-      <cp>-0.98 0 0.04</cp>
+      <cp>-0.915 0 0.04</cp>
       <area>0.06</area>
       <air_density>1.2041</air_density>
       <forward>1 0 0</forward>
@@ -346,7 +346,8 @@
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
       <cL_a0>-0.07029</cL_a0>
       <cLa>4.38</cLa>
-      <cm_a0>-0.17</cm_a0>
+      <!--TODO-->
+      <cm_a0>0</cm_a0>
       <cma>-1.11</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -368,7 +369,7 @@
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
       <cL_a0>-0.07029</cL_a0>
       <cLa>4.38</cLa>
-      <cm_a0>-0.17</cm_a0>
+      <cm_a0>0</cm_a0>
       <cma>-1.11</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -523,7 +524,7 @@
         <channel name="aileron_left">
           <input_index>5</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_scaling>0.2</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
@@ -541,7 +542,7 @@
         <channel name="aileron_right">
           <input_index>6</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_scaling>0.2</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>

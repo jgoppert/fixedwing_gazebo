@@ -56,7 +56,6 @@
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
     </physics>
 
-    <!-- A global light source -->
     <include>
       <uri>model://sun</uri>
     </include>
@@ -100,6 +99,7 @@
 
 
     <include>
+			<name>ground_plane</name>
       <uri>model://ground_asphalt</uri>
     </include>
 

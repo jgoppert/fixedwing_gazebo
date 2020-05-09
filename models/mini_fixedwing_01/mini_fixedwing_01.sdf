@@ -471,7 +471,7 @@
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
       <cL_a0>-0.122</cL_a0>
       <cLa>4.24</cLa>
-      <cm_a0>-0.122</cm_a0>
+      <cm_a0>0</cm_a0>
       <cma>-0.28</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -494,7 +494,7 @@
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
       <cL_a0>-0.122</cL_a0>
       <cLa>4.24</cLa>
-      <cm_a0>-0.122</cm_a0>
+      <cm_a0>0</cm_a0>
       <cma>-0.28</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>

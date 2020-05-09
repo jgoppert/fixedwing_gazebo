@@ -65,7 +65,7 @@ void LiftDragPlugin2::Load(physics::ModelPtr _model,
   this->cL_alpha0 = _sdf->Get<double>("cL_a0");
 
   GZ_ASSERT(_sdf->HasElement("cm_a0"), "LiftDragPlugin2 must set cm_a0");
-  this->cL_alpha0 = _sdf->Get<double>("cm_a0");
+  this->cm_alpha0 = _sdf->Get<double>("cm_a0");
 
   GZ_ASSERT(_sdf->HasElement("cLa"), "LiftDragPlugin2 must set cLa");
   this->cLa = _sdf->Get<double>("cLa");
@@ -230,10 +230,11 @@ void LiftDragPlugin2::OnUpdate()
   double cD = this->cD0 + this->kcDcL*delta_cL*delta_cL;
 
   // forces and moments at cp
-  ignition::math::Vector3d drag = cD * q * this->area * dragI;
-  ignition::math::Vector3d lift = cL * q * this->area * liftI;
-  ignition::math::Vector3d torque = cm * q * this->area * spanI;
-  ignition::math::Vector3d force = lift + drag;
+  double drag = cD * q * this->area;
+  double lift = cL * q * this->area;
+  double moment = cm * q * this->area;
+  ignition::math::Vector3d torque = moment * spanI;
+  ignition::math::Vector3d force = lift * liftI + drag * dragI;
 
   if (this->verbose)
   {
@@ -261,10 +262,13 @@ void LiftDragPlugin2::OnUpdate()
     gzdbg << "beta: " << beta << "\n";
     gzdbg << "lift: " << lift << "\n";
     gzdbg << "drag: " << drag << "\n";
+    gzdbg << "moment: " << moment << "\n";
     gzdbg << "q: " << q << "\n";
     gzdbg << "area: " << area << "\n";
+    gzdbg << "cL0: " << cL0 << "\n";
     gzdbg << "cL: " << cL << "\n";
     gzdbg << "cD: " << cD << "\n";
+    gzdbg << "cm0: " << cm0 << "\n";
     gzdbg << "cm: " << cm << "\n";
     gzdbg << "force: " << force << "\n";
     gzdbg << "torque: " << torque << "\n";
