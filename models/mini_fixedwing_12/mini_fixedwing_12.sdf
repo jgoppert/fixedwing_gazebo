@@ -486,7 +486,7 @@
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
-    <plugin name='htail' filename='libLiftDragPlugin.so'>
+    <plugin name='htail' filename='libLiftDragPlugin2.so'>
       <link_name>fuselage</link_name>
       <pose>-0.36 0 0.015 0 0 0</pose>
       <cL_a0>0</cL_a0>

@@ -389,7 +389,7 @@
       </axis>
     </joint>
 
-    <plugin name="left_wing" filename="libLiftDragPlugin.so">
+    <plugin name="left_wing" filename="libLiftDragPlugin2.so">
       <a0>0.05984281113</a0>
       <cla>4.752798721</cla>
       <cda>0.6417112299</cda>
@@ -406,7 +406,7 @@
       <link_name>fuselage</link_name>
     </plugin>
 
-    <plugin name="right_wing" filename="libLiftDragPlugin.so">
+    <plugin name="right_wing" filename="libLiftDragPlugin2.so">
       <a0>0.05984281113</a0>
       <cla>4.752798721</cla>
       <cda>0.6417112299</cda>
@@ -423,7 +423,7 @@
       <link_name>fuselage</link_name>
     </plugin>
 
-    <plugin name="htail" filename="libLiftDragPlugin.so">
+    <plugin name="htail" filename="libLiftDragPlugin2.so">
       <a0>-0.3</a0>
       <cla>4.75</cla>
       <cda>0.6417112299</cda>
@@ -442,7 +442,7 @@
       <control_joint_rad_to_cl>-4.0</control_joint_rad_to_cl>
     </plugin>
 
-    <plugin name="vtail" filename="libLiftDragPlugin.so">
+    <plugin name="vtail" filename="libLiftDragPlugin2.so">
       <a0>0</a0>
       <cla>4.75</cla>
       <cda>0.6417112299</cda>
