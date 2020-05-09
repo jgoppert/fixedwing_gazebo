@@ -4,7 +4,11 @@ white = [1, 1, 1, 0.5];  // white posterboard
 grey = [0.5, 0.5, 0.5, 0.5];  // grey color for tires/motor
 orig_dir = "stl_orig/";
 vscale = [0.001, 0.001, 0.001];
-vtrans = [-0.09, 0.3076, -0.61777];
+vtrans = [-0.097, 0.3076, -0.61777];
+markers = true;
+
+parts = ["fuselage", "aileron_left", "aileron_right",
+    "elevator", "rudder", "wheel_left", "wheel_right", "propeller"];
 
 for (p = ["fuselage"]) {
     if (p == part || part == "all") {
@@ -65,22 +69,71 @@ module wheel() {
 
 for (p = ["wheel_left"]) {
     if (p == part || part == "all") {
-        translate([0, 0.065, 0]) wheel();
+        translate([-0.01, 0.065, 0]) wheel();
     }
 }
 
 for (p = ["wheel_right"]) {
     if (p == part || part == "all") {
-        translate([0, -0.065, 0]) wheel();
+        translate([-0.01, -0.065, 0]) wheel();
     }
 }
 
 for (p = ["propeller"]) {
     if (p == part || part == "all") {
         color(grey)
-        translate([0, -0.2223, -0.0007])
+        translate([-0.01, -0.2223, -0.0007])
         translate(vtrans)
         scale(vscale)
         import(str(orig_dir, p, ".stl"));
+    }
+}
+
+module cp() {
+    color([1, 0, 0, 0.1])
+    scale([0.01, 0.01, 0.03])
+    sphere([1, 1, 1]);
+}
+
+module cm() {
+    color([0, 1, 0, 0.5])
+    scale([0.01, 0.01, 0.01])
+    sphere([1, 1, 1]);
+}
+
+module joint() {
+    color([0, 0, 1, 0.5])
+    scale([0.02, 0.02, 0.02])
+    cube([1, 1, 1], center=true);
+}
+
+if (part == "cp" || part == "all" && markers) {
+    translate([-0.2, 0.15, -0.02]) cp(); // wing left
+    translate([-0.2, -0.15, -0.02]) cp(); // wing right
+    translate([-0.68, 0, -0.0358]) cp();  // htail
+    translate([-0.64, 0, 0.05]) cp(); // vtail
+}
+
+if (part == "cm" || part == "all" && markers) {
+    translate([-0.1, 0, 0.0173]) scale([3, 3, 3]) cm(); // main
+    translate([-0.315, 0.22, -0.02]) cm(); // aileron left
+    translate([-0.315, -0.22, -0.02]) cm(); // aileron right
+    translate([-0.725, 0, -0.035]) cm();  // elevator
+    translate([-0.69, 0, 0.0467]) cm(); // rudder
+}
+
+if (part == "joint" || part == "all" && markers) {
+    translate([-0.1319, 0.064, -0.0974]) joint(); // wheel left
+    translate([-0.1319, -0.064, -0.0974]) joint(); // wheel right
+    translate([-0.29, 0.22, -0.02]) joint(); // aileron left
+    translate([-0.29, -0.22, -0.02]) joint(); // aileron right
+    translate([-0.705, 0, -0.035]) joint();  // elevator
+    translate([-0.67, 0, 0.0467]) joint(); // rudder
+}
+
+// current exported files
+if (part == "export") {
+    for (p = parts) {
+        import(str("stl/", p, ".stl"));
     }
 }
