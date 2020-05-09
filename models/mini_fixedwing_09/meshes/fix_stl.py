@@ -26,7 +26,7 @@ for part in ['fuselage']:
         file_out=out_dir/(part + '.stl'),
         ratio=0.1)
 
-for part in ['aileron_left', 'aileron_right', 'elevator', 'rudder']:
+for part in ['aileron_left', 'aileron_right', 'elevator']:
     subdivide(
         file_in=out_dir/(part + '.stl'), 
         file_out=out_dir/(part + '.stl'),

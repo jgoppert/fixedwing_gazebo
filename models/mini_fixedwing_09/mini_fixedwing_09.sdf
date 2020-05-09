@@ -190,53 +190,6 @@
       <!--</axis>-->
     <!--</joint>-->
 
-    <link name='rudder'>
-      <pose>-0.606 0 0.058</pose>
-      <inertial>
-        <mass>0.005</mass>
-        <pose>-0.033 0 0</pose>
-        <inertia>
-          <ixx>2e-6</ixx>
-          <iyy>3.82e-5</iyy>
-          <izz>4.02e-5</izz>
-        </inertia>
-      </inertial>
-      <visual name='visual'>
-        <pose>0.606 0 -0.058</pose>
-        <cast_shadows>0</cast_shadows>
-        <geometry>
-          <mesh>
-            <uri>model://mini_fixedwing_09/meshes/stl/rudder.stl</uri>
-          </mesh>
-        </geometry>
-        <material>
-          <script>
-            <name>Gazebo/White</name>
-          </script>
-        </material>
-      </visual>
-    </link>
-
-    <joint name='rudder_joint' type='revolute'>
-      <parent>fuselage</parent>
-      <child>rudder</child>
-      <axis>
-        <xyz>0 0 1</xyz>
-        <dynamics>
-          <damping>0.1</damping>
-        </dynamics>
-        <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
-        </limit>
-      </axis>
-      <physics>
-        <ode>
-          <implicit_spring_damper>1</implicit_spring_damper>
-        </ode>
-      </physics>
-    </joint>
-
     <link name='elevator'>
       <pose>-0.606 0 -0.024</pose>
       <inertial>
@@ -425,8 +378,6 @@
       <forward>1 0 0</forward>
       <upward>0 1 0</upward>
       <link_name>fuselage</link_name>
-      <control_joint_name>rudder_joint</control_joint_name>
-      <control_joint_rad_to_cl>4.0</control_joint_rad_to_cl>
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin.so">
@@ -591,24 +542,6 @@
       <use_tcp>true</use_tcp>
       <motorSpeedCommandPubTopic>/gazebo/command/motor_speed</motorSpeedCommandPubTopic>
       <control_channels>
-        <channel name="rudder">
-          <input_index>2</input_index>
-          <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
-          <zero_position_disarmed>0</zero_position_disarmed>
-          <zero_position_armed>0</zero_position_armed>
-          <joint_control_type>position</joint_control_type>
-          <joint_name>rudder_joint</joint_name>
-          <joint_control_pid>
-            <p>10</p>
-            <i>0</i>
-            <d>0</d>
-            <iMax>0</iMax>
-            <iMin>0</iMin>
-            <cmdMax>0.28</cmdMax>
-            <cmdMin>-0.28</cmdMin>
-          </joint_control_pid>
-        </channel>
         <channel name="puller">
           <input_index>4</input_index>
           <input_offset>0</input_offset>

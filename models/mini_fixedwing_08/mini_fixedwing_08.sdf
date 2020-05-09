@@ -285,100 +285,6 @@
       </physics>
     </joint>
 
-    <link name='aileron_left'>
-      <pose>-0.266 0.239 -0.019</pose>
-      <inertial>
-        <mass>0.008</mass>
-        <pose>-0.038 0 0</pose>
-        <inertia>
-          <ixx>3.9e-6</ixx>
-          <iyy>3.6e-6</iyy>
-          <izz>1.07e-4</izz>
-        </inertia>
-      </inertial>
-      <visual name='visual'>
-        <pose>0.266 -0.239 0.019</pose>
-        <cast_shadows>0</cast_shadows>
-        <geometry>
-          <mesh>
-            <uri>model://mini_fixedwing_08/meshes/stl/aileron_left.stl</uri>
-          </mesh>
-        </geometry>
-        <material>
-          <script>
-            <name>Gazebo/White</name>
-          </script>
-        </material>
-      </visual>
-    </link>
-
-    <joint name='aileron_left_joint' type='revolute'>
-      <parent>fuselage</parent>
-      <child>aileron_left</child>
-      <axis>
-        <xyz>0 1 0</xyz>
-        <dynamics>
-          <damping>0.1</damping>
-        </dynamics>
-        <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
-        </limit>
-      </axis>
-      <physics>
-        <ode>
-          <implicit_spring_damper>1</implicit_spring_damper>
-        </ode>
-      </physics>
-    </joint>
-
-    <link name='aileron_right'>
-      <pose>-0.266 -0.239 -0.019</pose>
-      <inertial>
-        <mass>0.008</mass>
-        <pose>-0.038 0 0</pose>
-        <inertia>
-          <ixx>3.9e-6</ixx>
-          <iyy>3.6e-6</iyy>
-          <izz>1.07e-4</izz>
-        </inertia>
-      </inertial>
-      <visual name='visual'>
-        <pose>0.266 0.239 0.019</pose>
-        <cast_shadows>0</cast_shadows>
-        <geometry>
-          <mesh>
-            <uri>model://mini_fixedwing_08/meshes/stl/aileron_right.stl</uri>
-          </mesh>
-        </geometry>
-        <material>
-          <script>
-            <name>Gazebo/White</name>
-          </script>
-        </material>
-      </visual>
-    </link>
-
-    <joint name='aileron_right_joint' type='revolute'>
-      <parent>fuselage</parent>
-      <child>aileron_right</child>
-      <axis>
-        <xyz>0 1 0</xyz>
-        <dynamics>
-          <damping>0.1</damping>
-        </dynamics>
-        <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
-        </limit>
-      </axis>
-      <physics>
-        <ode>
-          <implicit_spring_damper>1</implicit_spring_damper>
-        </ode>
-      </physics>
-    </joint>
-
     <link name='propeller'>
       <inertial>
         <mass>0.001</mass>
@@ -464,8 +370,6 @@
       <forward>1 0 0</forward>
       <upward>0 -0.087 0.996</upward>
       <link_name>fuselage</link_name>
-      <control_joint_name>aileron_left_joint</control_joint_name>
-      <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin.so">
@@ -483,8 +387,6 @@
       <forward>1 0 0</forward>
       <upward>0 0.087 0.996</upward>
       <link_name>fuselage</link_name>
-      <control_joint_name>aileron_right_joint</control_joint_name>
-      <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
     </plugin>
 
     <!--Start PX4 autopilot-->
@@ -593,7 +495,7 @@
       <motorSpeedCommandPubTopic>/gazebo/command/motor_speed</motorSpeedCommandPubTopic>
       <control_channels>
         <channel name="rudder">
-          <input_index>2</input_index>
+          <input_index>5</input_index>
           <input_offset>0</input_offset>
           <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
@@ -619,42 +521,6 @@
           <joint_control_type>position_gztopic</joint_control_type>
           <gztopic>/throttle1</gztopic>
           <joint_name>propeller_joint</joint_name>
-        </channel>
-        <channel name="aileron_left">
-          <input_index>5</input_index>
-          <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
-          <zero_position_disarmed>0</zero_position_disarmed>
-          <zero_position_armed>0</zero_position_armed>
-          <joint_control_type>position</joint_control_type>
-          <joint_name>aileron_left_joint</joint_name>
-          <joint_control_pid>
-            <p>10</p>
-            <i>0</i>
-            <d>0</d>
-            <iMax>0</iMax>
-            <iMin>0</iMin>
-            <cmdMax>0.28</cmdMax>
-            <cmdMin>-0.28</cmdMin>
-          </joint_control_pid>
-        </channel>
-        <channel name="aileron_right">
-          <input_index>6</input_index>
-          <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
-          <zero_position_disarmed>0</zero_position_disarmed>
-          <zero_position_armed>0</zero_position_armed>
-          <joint_control_type>position</joint_control_type>
-          <joint_name>aileron_right_joint</joint_name>
-          <joint_control_pid>
-            <p>10</p>
-            <i>0</i>
-            <d>0</d>
-            <iMax>0</iMax>
-            <iMin>0</iMin>
-            <cmdMax>0.28</cmdMax>
-            <cmdMin>-0.28</cmdMin>
-          </joint_control_pid>
         </channel>
         <channel name="elevator">
           <input_index>7</input_index>
