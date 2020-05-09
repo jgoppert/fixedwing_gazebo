@@ -46,7 +46,7 @@
         </material>
       </visual>
       <!--<visual name='cp_vtail'>-->
-        <!--<pose>-0.39 0 0.08 1.57 0 0</pose>-->
+        <!--<pose>-0.39 0 0.08 -1.57 0 0</pose>-->
         <!--<geometry>-->
           <!--<mesh>-->
             <!--<scale>0.1 0.1 0.1</scale>-->
@@ -429,7 +429,7 @@
     </joint>
 
     <plugin name="vtail" filename="libLiftDragPlugin2.so">
-      <pose>-0.39 0 0.08 1.57 0 0</pose>
+      <pose>-0.39 0 0.08 -1.57 0 0</pose>
       <cL_a0>0</cL_a0>
       <cLa>6.28</cLa>
       <cm_a0>0</cm_a0>
