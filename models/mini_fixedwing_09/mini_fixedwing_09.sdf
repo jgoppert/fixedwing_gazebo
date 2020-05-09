@@ -83,8 +83,8 @@
           <damping>0.1</damping>
         </dynamics>
         <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
         </limit>
       </axis>
       <physics>
@@ -130,8 +130,8 @@
           <damping>0.1</damping>
         </dynamics>
         <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
         </limit>
       </axis>
       <physics>
@@ -177,8 +177,8 @@
           <damping>0.1</damping>
         </dynamics>
         <limit>
-          <lower>-0.28</lower>
-          <upper>0.28</upper>
+          <lower>-0.5</lower>
+          <upper>0.5</upper>
         </limit>
       </axis>
       <physics>
