@@ -78,7 +78,7 @@
             <!--<uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>-->
         <!--</geometry>-->
       <!--</visual>-->
-    <!--</link>-->
+    </link>
 
     <link name='wheel_left'>
       <pose>-0.075 0.0523 -0.0652</pose>

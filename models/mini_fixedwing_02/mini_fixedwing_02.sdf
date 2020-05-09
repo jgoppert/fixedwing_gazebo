@@ -77,7 +77,7 @@
             <!--<uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>-->
         <!--</geometry>-->
       <!--</visual>-->
-    <!--</link>-->
+    </link>
 
     <link name='wheel_left'>
       <inertial>
