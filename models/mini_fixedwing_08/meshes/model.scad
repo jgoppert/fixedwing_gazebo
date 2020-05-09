@@ -19,15 +19,7 @@ for (p = ["fuselage"]) {
     }
 }
 
-for (p = ["elevator", "aileron_left", "aileron_right"]) {
-    if (p == part || part == "all") {
-        color(white)
-        rotate(vrot) scale(vscale) translate(vtrans)
-        import(str(orig_dir, p, ".stl"));
-    }
-}
-
-for (p = ["rudder"]) {
+for (p = ["rudder", "elevator"]) {
     if (p == part || part == "all") {
         color(white)
         rotate(vrot) scale(vscale) translate(vtrans)
@@ -80,8 +72,6 @@ if (part == "cp" || part == "all" && markers) {
 
 if (part == "cm" || part == "all" && markers) {
     translate([-0.131, 0, 0]) scale([6, 6, 6]) cm(); // main
-    translate([-0.295, 0.23, 0.012]) cm(); // aileron left
-    translate([-0.295, -0.23, 0.012]) cm(); // aileron right
     translate([-0.565, 0, 0]) cm();  // elevator
     translate([-0.535, 0, 0.07]) cm(); // rudder
 }
@@ -89,8 +79,6 @@ if (part == "cm" || part == "all" && markers) {
 if (part == "joint" || part == "all" && markers) {
     translate([-0.114, 0.085, -0.081]) joint(); // wheel left
     translate([-0.114, -0.085, -0.081]) joint(); // wheel right
-    translate([-0.27, 0.23, 0.015]) joint(); // aileron left
-    translate([-0.27, -0.23, 0.015]) joint(); // aileron right
     translate([-0.547, 0, 0]) joint();  // elevator
     translate([-0.515, 0, 0.07]) joint(); // rudder
 }
