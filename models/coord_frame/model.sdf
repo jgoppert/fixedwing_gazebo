@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="column">
+    <static>true</static>
+    <link name="link">
+      <pose>0 0 5 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+			<cylinder>
+				<radius>1</radius>
+				<length>10</length>
+			</cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+			<cylinder>
+				<radius>1</radius>
+				<length>10</length>
+			</cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://column/materials/scripts</uri>
+            <uri>model://column/materials/textures</uri>
+            <name>vrc/granite</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
+

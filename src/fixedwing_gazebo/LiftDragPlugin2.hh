@@ -82,14 +82,8 @@ namespace gazebo
     /// At 20 °C and 101.325 kPa, dry air has a density of 1.2041 kg/m3.
     protected: double rho{1.225};
 
-    /// \brief if the shape is aerodynamically radially symmetric about
-    /// the forward direction. Defaults to false for wing shapes.
-    /// If set to true, the upward direction is determined by the
-    /// angle of attack.
-    protected: bool radialSymmetry{false};
-
-    /// \brief effective planeform surface area
-    protected: double area{1.0};
+    /// \brief effective planform surface area
+    protected: double area{0};
 
     /// \brief zero lift angle of attack
     protected: double cL_alpha0{0};
@@ -97,17 +91,8 @@ namespace gazebo
     /// \brief zero moment angle of attack
     protected: double cm_alpha0{0};
 
-    /// \brief center of pressure in link local coordinates
-    protected: ignition::math::Vector3d cp{0, 0, 0};
-
-    /// \brief Normally, this is taken as a direction parallel to the chord
-    /// of the airfoil in zero angle of attack forward flight.
-    protected: ignition::math::Vector3d forward{1, 0, 0};
-
-    /// \brief A vector in the lift/drag plane, perpendicular to the forward
-    /// vector. Inflow velocity orthogonal to forward and upward vectors
-    /// is considered flow in the wing sweep direction.
-    protected: ignition::math::Vector3d upward{0, 0, 1};
+    /// \brief Pose of airfoil, x along chord line, z perp to chord line in upward direction for airfoil
+    public: ignition::math::Pose3d pose;
 
     /// \brief Pointer to link currently targeted by mud joint.
     protected: physics::LinkPtr link{};

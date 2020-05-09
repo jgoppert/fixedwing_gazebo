@@ -58,9 +58,6 @@ void LiftDragPlugin2::Load(physics::ModelPtr _model,
 
   GZ_ASSERT(_sdf, "LiftDragPlugin2 _sdf pointer is NULL");
 
-  if (_sdf->HasElement("radial_symmetry"))
-    this->radialSymmetry = _sdf->Get<bool>("radial_symmetry");
-
   GZ_ASSERT(_sdf->HasElement("cL_a0"), "LiftDragPlugin2 must set cL_a0");
   this->cL_alpha0 = _sdf->Get<double>("cL_a0");
 
@@ -88,18 +85,8 @@ void LiftDragPlugin2::Load(physics::ModelPtr _model,
   GZ_ASSERT(_sdf->HasElement("cma_stall"), "LiftDragPlugin2 must set cma_stall");
   this->cmaStall = _sdf->Get<double>("cma_stall");
 
-  GZ_ASSERT(_sdf->HasElement("cp"), "LiftDragPlugin2 must set cp");
-  this->cp = _sdf->Get<ignition::math::Vector3d>("cp");
-
-  // blade forward (-drag) direction in link frame
-  GZ_ASSERT(_sdf->HasElement("forward"), "LiftDragPlugin2 must set forward");
-  this->forward = _sdf->Get<ignition::math::Vector3d>("forward");
-  this->forward.Normalize();
-
-  // blade upward (+lift) direction in link frame
-  GZ_ASSERT(_sdf->HasElement("upward"), "LiftDragPlugin2 must set upward");
-  this->upward = _sdf->Get<ignition::math::Vector3d>("upward");
-  this->upward.Normalize();
+  GZ_ASSERT(_sdf->HasElement("pose"), "LiftDragPlugin2 must set pose");
+  this->pose = _sdf->Get<ignition::math::Pose3d>("pose");
 
   GZ_ASSERT(_sdf->HasElement("area"), "LiftDragPlugin2 must set area");
   this->area = _sdf->Get<double>("area");
@@ -153,51 +140,28 @@ void LiftDragPlugin2::Load(physics::ModelPtr _model,
 void LiftDragPlugin2::OnUpdate()
 {
   using ignition::math::clamp;
+  using ignition::math::Vector3d;
+  using ignition::math::Pose3d;
 
   GZ_ASSERT(this->link, "Link was NULL");
   // get linear velocity at cp in inertial frame
-  ignition::math::Vector3d vel = this->link->WorldLinearVel(this->cp);
-  ignition::math::Vector3d velI = vel;
+  Vector3d vel = this->link->WorldLinearVel(this->pose.Pos());
+  Vector3d velI = vel;
   velI.Normalize();
+
+  //Pose3d world_from_airfoil = this->pose + this->link->WorldPose();
+  Pose3d world_from_airfoil = this->pose*this->link->WorldPose();
+  Pose3d airfoil_from_world = world_from_airfoil.Inverse();
 
   if (vel.Length() <= 0.01)
     return;
 
-  // pose of body
-  ignition::math::Pose3d pose = this->link->WorldPose();
-
-  // rotate forward and upward vectors into inertial frame
-  ignition::math::Vector3d forwardI = pose.Rot().RotateVector(this->forward);
-
-  ignition::math::Vector3d upwardI;
-  if (this->radialSymmetry)
-  {
-    // use inflow velocity to determine upward direction
-    // which is the component of inflow perpendicular to forward direction.
-    ignition::math::Vector3d tmp = forwardI.Cross(velI);
-    upwardI = forwardI.Cross(tmp).Normalize();
-  }
-  else
-  {
-    upwardI = pose.Rot().RotateVector(this->upward);
-  }
-
-  // spanI, along the span of the wing
-  ignition::math::Vector3d spanI = forwardI.Cross(upwardI).Normalize();
-
   double v = vel.Length();
   double q = 0.5 * this->rho * v * v;
-
-  // wing (body) frame velocities
-  double U = vel.Dot(forwardI);
-  double V = vel.Dot(spanI);
-  double W = -vel.Dot(upwardI);
-  double alpha = atan(W/U);
-  double beta = asin(V/v);
-
-  // get direction of lift
-  ignition::math::Vector3d dragI = -velI;
-  ignition::math::Vector3d liftI = spanI.Cross(velI).Normalize();
+  // velocity in airfoil frame
+  Vector3d velA = airfoil_from_world.Rot().RotateVector(vel);
+  double alpha = atan(-velA.Z()/velA.X());
+  double beta = asin(velA.Y()/v);
 
   // get control surface deflection
   double controlAngle = 0;
@@ -230,11 +194,15 @@ void LiftDragPlugin2::OnUpdate()
   double cD = this->cD0 + this->kcDcL*delta_cL*delta_cL;
 
   // forces and moments at cp
+  Vector3d spanI = world_from_airfoil.Rot().RotateVector(Vector3d(0, 1, 0));
+  Vector3d liftI = velI.Cross(spanI).Normalize();
+  Vector3d momentI = velI.Cross(liftI).Normalize();
   double drag = cD * q * this->area;
   double lift = cL * q * this->area;
   double moment = cm * q * this->area;
-  ignition::math::Vector3d torque = moment * spanI;
-  ignition::math::Vector3d force = lift * liftI + drag * dragI;
+
+  Vector3d force = -drag * velI  + lift * liftI;
+  Vector3d torque = moment * momentI;
 
   if (this->verbose)
   {
@@ -246,41 +214,28 @@ void LiftDragPlugin2::OnUpdate()
           << "] dynamic pressure: [" << q << "]\n";
     gzdbg << "spd: [" << vel.Length()
           << "] vel: [" << vel << "]\n";
-    gzdbg << "forward (inertial): " << forwardI << "\n";
-    gzdbg << "upward (inertial): " << upwardI << "\n";
-    gzdbg << "lift dir (inertial): " << liftI << "\n";
-    gzdbg << "drag dir (inertial): " << dragI << "\n";
-    gzdbg << "Span direction (normal to LD plane): " << spanI << "\n";
+    gzdbg << "forwardI: " << world_from_airfoil.Rot().RotateVector(Vector3d(1, 0, 0)) << "\n";
+    gzdbg << "spanI: " << world_from_airfoil.Rot().RotateVector(Vector3d(0, 1, 0)) << "\n";
+    gzdbg << "upwardI: " << world_from_airfoil.Rot().RotateVector(Vector3d(0, 0, 1)) << "\n";
     gzdbg << "control: " << controlAngle << "\n";
     gzdbg << "control->CL: " << this->controlJointRadToCL << "\n";
     gzdbg << "control->Cm: " << this->controlJointRadToCm << "\n";
-    gzdbg << "U: " << U << "\n";
-    gzdbg << "V: " << V << "\n";
-    gzdbg << "W: " << W << "\n";
-    gzdbg << "stall: " << stall << "\n";
-    gzdbg << "alpha: " << alpha << "\n";
-    gzdbg << "beta: " << beta << "\n";
-    gzdbg << "lift: " << lift << "\n";
-    gzdbg << "drag: " << drag << "\n";
+    gzdbg << "velocity in airfoil frame (U, -V, -W): " << velA << "\n";
+    gzdbg << "stall: " << stall << ", alpha: " << alpha << ", beta: " << beta << "\n";
+    gzdbg << "lift: " << lift << ", drag: " << drag << "\n";
     gzdbg << "moment: " << moment << "\n";
-    gzdbg << "q: " << q << "\n";
-    gzdbg << "area: " << area << "\n";
-    gzdbg << "cL0: " << cL0 << "\n";
-    gzdbg << "cL: " << cL << "\n";
-    gzdbg << "cD: " << cD << "\n";
-    gzdbg << "cm0: " << cm0 << "\n";
-    gzdbg << "cm: " << cm << "\n";
-    gzdbg << "force: " << force << "\n";
-    gzdbg << "torque: " << torque << "\n";
+    gzdbg << "q: " << q << ", area: " << area << "\n";
+    gzdbg << "cL0: " << cL0 << ", cL: " << cL << ", cD: " << cD << "\n";
+    gzdbg << "cm0: " << cm0 << ", cm: " << cm << "\n";
   }
 
   // Correct for nan or inf
+  this->pose.Correct();
   force.Correct();
-  this->cp.Correct();
   torque.Correct();
 
   //gapply forces at cg (with torques for position shift)
-  this->link->AddForceAtRelativePosition(force, this->cp);
+  this->link->AddForceAtRelativePosition(force, this->pose.Pos());
   this->link->AddTorque(torque);
 }
 
