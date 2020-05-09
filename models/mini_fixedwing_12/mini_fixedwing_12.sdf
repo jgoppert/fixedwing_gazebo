@@ -47,38 +47,39 @@
         </geometry>
       </visual>
 
-      <visual name='cp_htail'>
-        <pose>-0.365 0 0.015 0 0 0</pose>
+      <visual name='cp_vtail'>
+        <pose>-0.365 0 0.05 -1.57 0 0</pose>
         <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
         </geometry>
       </visual>
-      <visual name='cp_vtail'>
-        <pose>-0.375 0 0.05 0 0 0</pose>
+      <visual name='cp_htail'>
+        <pose>-0.36 0 0.015 3.14 0.1 0</pose>
         <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
         </geometry>
       </visual>
       <visual name='cp_wing_left'>
-        <pose>0.013 0.2 -0.022 0 0 0</pose>
+        <pose>0.013 0.23 -0.022 0.26 0 0</pose>
         <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
         </geometry>
       </visual>
       <visual name='cp_wing_right'>
-        <pose>0.013 -0.2 -0.022 0 0 0</pose>
+        <pose>0.013 -0.23 -0.022 -0.26 0 0</pose>
         <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
         </geometry>
       </visual>
+
 
     </link>
 
@@ -428,7 +429,7 @@
 
     <plugin name='wing_left' filename='libLiftDragPlugin2.so'>
       <link_name>fuselage</link_name>
-      <pose>0.013 0.2 -0.022 0.26 0 0</pose>
+      <pose>0.013 0.23 -0.022 0.26 0 0</pose>
       <cL_a0>-0.14</cL_a0>
       <cLa>7.75</cLa>
       <!--TODO cm_a0, cD, kcDcL-->
@@ -449,7 +450,7 @@
 
     <plugin name='wing_right' filename='libLiftDragPlugin2.so'>
       <link_name>fuselage</link_name>
-      <pose>0.013 -0.2 -0.022 -0.26 0 0</pose>
+      <pose>0.013 -0.23 -0.022 -0.26 0 0</pose>
       <cL_a0>-0.14</cL_a0>
       <cLa>7.75</cLa>
       <!--TODO cm_a0, cD, kcDcL-->
@@ -469,7 +470,7 @@
 
     <plugin name='vtail' filename='libLiftDragPlugin2.so'>
       <link_name>fuselage</link_name>
-      <pose>-0.365 0 0.05 1.57 0 0</pose>
+      <pose>-0.365 0 0.05 -1.57 0 0</pose>
       <cL_a0>0</cL_a0>
       <cLa>5.73</cLa>
       <cm_a0>0</cm_a0>
@@ -488,7 +489,7 @@
 
     <plugin name='htail' filename='libLiftDragPlugin2.so'>
       <link_name>fuselage</link_name>
-      <pose>-0.36 0 0.015 0 0 0</pose>
+      <pose>-0.36 0 0.015 3.14 0.1 0</pose>
       <cL_a0>0</cL_a0>
       <cLa>5.73</cLa>
       <cm_a0>0</cm_a0>
@@ -496,12 +497,12 @@
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.174</alpha_stall>
-      <cla_stall>-2.65</cla_stall>
+      <cLa_stall>-2.65</cLa_stall>
       <cma_stall>0</cma_stall>
       <area>0.01</area>
       <air_density>1.225</air_density>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cl>-3.87</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>-3.87</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
