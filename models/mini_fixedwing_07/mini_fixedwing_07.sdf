@@ -48,34 +48,7 @@
           <specular>0.678 0.529 0.384 1</specular>
         </material>
       </visual>
-      <!--<visual name="cp_vtail">-->
-        <!--<cast_shadows>0</cast_shadows>-->
-        <!--<pose>-0.6 0 0.058</pose>-->
-        <!--<geometry>-->
-          <!--<sphere><radius>0.01</radius></sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name="cp_htail">-->
-        <!--<cast_shadows>0</cast_shadows>-->
-        <!--<pose>-0.6 0 0.058</pose>-->
-        <!--<geometry>-->
-          <!--<sphere><radius>0.01</radius></sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name="cp_wing_left">-->
-        <!--<cast_shadows>0</cast_shadows>-->
-        <!--<pose>-0.17 0.24 -0.02</pose>-->
-        <!--<geometry>-->
-          <!--<sphere><radius>0.01</radius></sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name="cp_wing_right">-->
-        <!--<cast_shadows>0</cast_shadows>-->
-        <!--<pose>-0.17 -0.24 -0.02</pose>-->
-        <!--<geometry>-->
-          <!--<sphere><radius>0.01</radius></sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
+
     </link>
 
     <link name='wheel_left'>

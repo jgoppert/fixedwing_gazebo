@@ -45,47 +45,47 @@
           <specular>0.678 0.529 0.384 1</specular>
         </material>
       </visual>
-      <!--<visual name='cp_vtail_left'>-->
-        <!--<pose>-0.4 0.122 0.024 -1.57 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<mesh>-->
-            <!--<scale>0.1 0.1 0.1</scale>-->
-            <!--<uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name='cp_vtail_right'>-->
-        <!--<pose>-0.4 -0.122 0.024 1.57 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<mesh>-->
-            <!--<scale>0.1 0.1 0.1</scale>-->
-            <!--<uri>model://mini_fixedwing_11/meshes/axes.dae</uri>-->
-          <!--</mesh>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name='cp_htail'>-->
-        <!--<pose>-0.4 0 0.024 0 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<mesh>-->
-            <!--<scale>0.1 0.1 0.1</scale>-->
-            <!--<uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name='cp_wing_left'>-->
-        <!--<pose>-0.11 0.191 0.01 0 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<mesh>-->
-            <!--<scale>0.1 0.1 0.1</scale>-->
-            <!--<uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name='cp_wing_right'>-->
-        <!--<pose>-0.11 -0.191 0.01 0 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<mesh>-->
-            <!--<scale>0.1 0.1 0.1</scale>-->
-            <!--<uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>-->
-        <!--</geometry>-->
-      <!--</visual>-->
+      <visual name='cp_vtail_left'>
+        <pose>-0.4 0.122 0.024 -1.57 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_vtail_right'>
+        <pose>-0.38 -0.122 0.024 1.57 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_htail'>
+        <pose>-0.38 0 0.024 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_wing_left'>
+        <pose>-0.17 0.19 0.01 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_wing_right'>
+        <pose>-0.17 -0.19 0.01 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
     </link>
 
     <link name='wheel_left'>
@@ -536,7 +536,7 @@
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
-      <pose>-0.11 0.191 0.01 0 0 0</pose>
+      <pose>-0.17 0.19 0.01 0 0 0</pose>
       <cL_a0>-0.06</cL_a0>
       <cLa>4.75</cLa>
       <cm_a0>0</cm_a0>
@@ -555,7 +555,7 @@
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
-      <pose>-0.11 -0.191 0.01 0 0 0</pose>
+      <pose>-0.17 -0.19 0.01 0 0 0</pose>
       <cL_a0>-0.06</cL_a0>
       <cLa>4.75</cLa>
       <cm_a0>0</cm_a0>

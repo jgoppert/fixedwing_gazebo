@@ -46,38 +46,38 @@
         </material>
       </visual>
 
-      <!--<visual name='cp_vtail'>-->
-        <!--<pose>-0.6 0 0.0747 -1.57 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<mesh>-->
-            <!--<scale>0.1 0.1 0.1</scale>-->
-            <!--<uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name='cp_htail'>-->
-        <!--<pose>-0.6 0 0.0123 0 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<mesh>-->
-            <!--<scale>0.1 0.1 0.1</scale>-->
-            <!--<uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name='cp_wing_left'>-->
-        <!--<pose>-0.153 0.193 0.064 0.087 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<mesh>-->
-            <!--<scale>0.1 0.1 0.1</scale>-->
-            <!--<uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name='cp_wing_right'>-->
-        <!--<pose>-0.153 -0.193 0.064 -0.087 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<mesh>-->
-            <!--<scale>0.1 0.1 0.1</scale>-->
-            <!--<uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>-->
-        <!--</geometry>-->
-      <!--</visual>-->
+      <visual name='cp_vtail'>
+        <pose>-0.6 0 0.0747 -1.57 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_htail'>
+        <pose>-0.6 0 0.0123 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_wing_left'>
+        <pose>-0.153 0.193 0.064 0.087 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_wing_right'>
+        <pose>-0.153 -0.193 0.064 -0.087 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
     </link>
 
     <link name='wheel_left'>

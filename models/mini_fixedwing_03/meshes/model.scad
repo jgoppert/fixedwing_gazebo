@@ -80,11 +80,11 @@ module joint() {
 }
 
 if (part == "cp" || part == "all" && markers) {
-    translate([-0.2, 0.19, 0.01]) cp(); // wing left
-    translate([-0.2, -0.19, 0.01]) cp(); // wing right
-    translate([-0.4, 0, 0.024]) cp();  // htail
-    translate([-0.4, -0.122, 0.024]) cp(); // vtail right
-    translate([-0.4, 0.122, 0.024]) cp(); // vtail left
+    translate([-0.17, 0.19, 0.01]) cp(); // wing left
+    translate([-0.17, -0.19, 0.01]) cp(); // wing right
+    translate([-0.38, 0, 0.024]) cp();  // htail
+    translate([-0.38, -0.122, 0.024]) cp(); // vtail right
+    translate([-0.38, 0.122, 0.024]) cp(); // vtail left
 }
 
 if (part == "cm" || part == "all" && markers) {

@@ -47,38 +47,38 @@
         </geometry>
       </visual>
 
-      <!--<visual name='cp_htail'>-->
-        <!--<pose>-0.365 0 0.015 0 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<sphere>-->
-            <!--<radius>0.01</radius>-->
-          <!--</sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name='cp_vtail'>-->
-        <!--<pose>-0.375 0 0.05 0 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<sphere>-->
-            <!--<radius>0.01</radius>-->
-          <!--</sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name='cp_wing_left'>-->
-        <!--<pose>0.013 0.2 -0.022 0 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<sphere>-->
-            <!--<radius>0.01</radius>-->
-          <!--</sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
-      <!--<visual name='cp_wing_right'>-->
-        <!--<pose>0.013 -0.2 -0.022 0 0 0</pose>-->
-        <!--<geometry>-->
-          <!--<sphere>-->
-            <!--<radius>0.01</radius>-->
-          <!--</sphere>-->
-        <!--</geometry>-->
-      <!--</visual>-->
+      <visual name='cp_htail'>
+        <pose>-0.365 0 0.015 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+      <visual name='cp_vtail'>
+        <pose>-0.375 0 0.05 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+      <visual name='cp_wing_left'>
+        <pose>0.013 0.2 -0.022 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+      <visual name='cp_wing_right'>
+        <pose>0.013 -0.2 -0.022 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
 
     </link>
 
