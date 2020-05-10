@@ -64,7 +64,7 @@
         </geometry>
       </visual>
       <visual name='cp_wing_left'>
-        <pose>-0.43 0.25 0.02 -0.024 0.087 0</pose>
+        <pose>-0.43 0.25 0.02 -0.024 -0.052 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -72,7 +72,7 @@
         </geometry>
       </visual>
       <visual name='cp_wing_right'>
-        <pose>-0.43 -0.25 0.02 0.024 0 0</pose>
+        <pose>-0.43 -0.25 0.02 0.024 -0.052 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -346,7 +346,7 @@
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
-      <pose>-0.43 0.25 0.02 -0.024 0.087 0</pose>
+      <pose>-0.43 0.25 0.02 -0.024 -0.052 0</pose>
       <cL_a0>-0.07029</cL_a0>
       <cLa>4.38</cLa>
       <cm_a0>0</cm_a0>
@@ -366,7 +366,7 @@
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
-      <pose>-0.43 -0.25 0.02 0.024 0.087 0</pose>
+      <pose>-0.43 -0.25 0.02 0.024 -0.052 0</pose>
       <cL_a0>-0.07029</cL_a0>
       <cLa>4.38</cLa>
       <cm_a0>0</cm_a0>

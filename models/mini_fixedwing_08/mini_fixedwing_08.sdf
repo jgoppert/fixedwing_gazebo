@@ -4,7 +4,7 @@
     <pose>0 0 0.15 0 0 0</pose>
     <link name='fuselage'>
       <inertial>
-        <pose>-0.144 0 -0.02 0 0 0</pose>
+        <pose>-0.131 0 0 0 0 0</pose>
         <mass>0.227</mass>
         <inertia>
           <ixx>6e-3</ixx>
@@ -358,8 +358,8 @@
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
-      <pose>-0.5 0 0 0 0 0</pose>
-      <cL_a0>0.0175</cL_a0>
+      <pose>-0.5 0 0 0 0.0175 0</pose>
+      <cL_a0>0</cL_a0>
       <cLa>3.33</cLa>
       <cm_a0>0</cm_a0>
       <cma>-4.3344</cma>
@@ -413,7 +413,7 @@
     <!--Start PX4 autopilot-->
 
     <link name='imu_link'>
-      <pose>-0.144 0 -0.02 0 0 0</pose>
+      <pose>-0.131 0 0 0 0 0</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>

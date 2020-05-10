@@ -4,7 +4,7 @@
     <pose>0 0 0.15 0 0 0</pose>
     <link name='fuselage'>
       <inertial>
-        <pose>-0.156 0 0.008 0 0 0</pose>
+        <pose>-0.144 0 -0.02 0 0 0</pose>
         <mass>0.194</mass>
         <inertia>
           <ixx>3e-3</ixx>
@@ -517,7 +517,7 @@
     <!--Start PX4 autopilot-->
 
     <link name='imu_link'>
-      <pose>-0.156 0 0.008</pose>
+      <pose>-0.144 0 -0.02 0 0 0</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>
