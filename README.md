@@ -47,4 +47,8 @@ For the twin engine (mini_fixedwing_04), we will need to tell it to use the twin
 roslaunch fixedwing_gazebo px4.launch vehicle:=mini_fixedwing_04 script:=plane_twin
 ```
 
+### Analyzing Flight Logs
+
+There are flight logs in the data directory for each vehicle. You can download the .ulg files to your computer, then upload them to: https://review.px4.io/
+
 <!--  vim: set et fenc=utf-8 ff=unix sts=0 sw=2 ts=2 :  -->
