@@ -108,7 +108,7 @@ if (part == "cp" || part == "all" && markers) {
 }
 
 if (part == "cm" || part == "all" && markers) {
-    translate([-0.144, 0, -0.02]) scale([3, 3, 3]) cm(); // main
+    translate([-0.144, 0, -0.02]) scale([6, 6, 6]) cm(); // main
     translate([-0.24, 0.189, -0.03]) cm(); // aileron left
     translate([-0.24, -0.189, -0.03]) cm(); // aileron right
     translate([-0.5, 0, -0.005]) cm();  // elevator

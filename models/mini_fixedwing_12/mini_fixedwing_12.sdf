@@ -109,7 +109,7 @@
 
     <link name='elevator'>
       <inertial>
-        <pose>-0.015 0 0 0 0 0</pose>
+        <pose>-0.405 0 0.005 0 0 0</pose>
         <mass>0.002</mass>
         <inertia>
           <ixx>9.41e-4</ixx>
