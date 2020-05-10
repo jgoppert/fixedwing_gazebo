@@ -378,7 +378,6 @@
       <cma_stall>-0.428</cma_stall>
       <area>0.1595</area>
       <air_density>1.2041</air_density>
-      <upward>0 0.024 0.997</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_right_joint</control_joint_name>
       <control_joint_rad_to_cL>-3.62</control_joint_rad_to_cL>

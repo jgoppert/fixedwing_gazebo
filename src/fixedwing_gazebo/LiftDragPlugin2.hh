@@ -85,11 +85,11 @@ namespace gazebo
     /// \brief effective planform surface area
     protected: double area{0};
 
-    /// \brief zero lift angle of attack
-    protected: double cL_alpha0{0};
+    /// \brief lift coefficient at zero angle of attack
+    protected: double cL0{0};
 
-    /// \brief zero moment angle of attack
-    protected: double cm_alpha0{0};
+    /// \brief moment coefficient at zero angle of attack
+    protected: double cm0{0};
 
     /// \brief Pose of airfoil, x along chord line, z perp to chord line in upward direction for airfoil
     public: ignition::math::Pose3d pose;

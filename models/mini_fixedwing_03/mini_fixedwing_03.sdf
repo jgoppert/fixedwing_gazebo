@@ -485,10 +485,10 @@
 
     <plugin name="vtail_left" filename="libLiftDragPlugin2.so">
       <pose>-0.4 0.122 0.024 -1.57 0 0</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>4.75</cLa>
-      <cm_a0>0</cm_a0>
-      <cma>-1.8</cma>
+      <cm0>0</cm0>
+      <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.34</alpha_stall>
@@ -501,10 +501,10 @@
 
     <plugin name="vtail_right" filename="libLiftDragPlugin2.so">
       <pose>-0.4 -0.122 0.024 1.57 0 0</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>4.75</cLa>
-      <cm_a0>0</cm_a0>
-      <cma>-1.8</cma>
+      <cm0>0</cm0>
+      <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.34</alpha_stall>
@@ -517,10 +517,10 @@
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
       <pose>-0.4 0 0.024 0 0 0</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>4.75</cLa>
-      <cm_a0>0</cm_a0>
-      <cma>-1.8</cma>
+      <cm0>0</cm0>
+      <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.017</kcDcL>
       <alpha_stall>0.34</alpha_stall>
@@ -530,17 +530,17 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cL>8.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cL>-4.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
       <verbose>0</verbose>
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
       <pose>-0.17 0.19 0.01 0 0 0</pose>
-      <cL_a0>-0.06</cL_a0>
+      <cL0>0.285</cL0>
       <cLa>4.75</cLa>
-      <cm_a0>0</cm_a0>
-      <cma>-1.8</cma>
+      <cm0>0</cm0>
+      <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.34</alpha_stall>
@@ -556,10 +556,10 @@
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
       <pose>-0.17 -0.19 0.01 0 0 0</pose>
-      <cL_a0>-0.06</cL_a0>
+      <cL0>0.285</cL0>
       <cLa>4.75</cLa>
-      <cm_a0>0</cm_a0>
-      <cma>-1.8</cma>
+      <cm0>0</cm0>
+      <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.34</alpha_stall>
@@ -698,7 +698,7 @@
         </channel>
         <channel name="puller">
           <input_index>4</input_index>
-          <input_offset>0</input_offset>
+          <input_offset>0.1</input_offset>
           <input_scaling>1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>

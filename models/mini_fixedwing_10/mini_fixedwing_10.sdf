@@ -433,11 +433,9 @@
 
     <plugin name="vtail" filename="libLiftDragPlugin2.so">
       <pose>-0.44 0 0.04 -1.57 0 0</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>5.61</cLa>
-      <cm_a0>0</cm_a0>
-      <!--Causing a gain reversal at low speeds.-->
-      <!--<cma>-9.78</cma>-->
+      <cm0>0</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -455,11 +453,9 @@
     <plugin name="htail" filename="libLiftDragPlugin2.so">
       <!--Adding incidence angle to balance pitching moment-->
       <pose>-0.44 0 -0.005 0 0.1 0</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>5.61</cLa>
-      <cm_a0>0</cm_a0>
-      <!--Causing a gain reversal at low speeds.-->
-      <!--<cma>-9.78</cma>-->
+      <cm0>0</cm0>
       <cma>0</cma>
       <cD0>0.34</cD0>
       <kcDcL>0.1</kcDcL>
@@ -476,9 +472,9 @@
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
       <pose>-0.15 0.25 -0.02 0.087 0 0</pose>
-      <cL_a0>-0.048</cL_a0>
+      <cL0>0.25</cL0>
       <cLa>5.289</cLa>
-      <cm_a0>0</cm_a0>
+      <cm0>0</cm0>
       <cma>-0.286</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -496,9 +492,9 @@
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
       <pose>-0.15 -0.25 -0.02 -0.087 0 0</pose>
-      <cL_a0>-0.048</cL_a0>
+      <cL0>0.25</cL0>
       <cLa>5.289</cLa>
-      <cm_a0>0</cm_a0>
+      <cm0>0</cm0>
       <cma>-0.286</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>

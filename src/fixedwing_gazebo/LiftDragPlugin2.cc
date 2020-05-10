@@ -58,11 +58,11 @@ void LiftDragPlugin2::Load(physics::ModelPtr _model,
 
   GZ_ASSERT(_sdf, "LiftDragPlugin2 _sdf pointer is NULL");
 
-  GZ_ASSERT(_sdf->HasElement("cL_a0"), "LiftDragPlugin2 must set cL_a0");
-  this->cL_alpha0 = _sdf->Get<double>("cL_a0");
+  GZ_ASSERT(_sdf->HasElement("cL0"), "LiftDragPlugin2 must set cL0");
+  this->cL0 = _sdf->Get<double>("cL0");
 
-  GZ_ASSERT(_sdf->HasElement("cm_a0"), "LiftDragPlugin2 must set cm_a0");
-  this->cm_alpha0 = _sdf->Get<double>("cm_a0");
+  GZ_ASSERT(_sdf->HasElement("cm0"), "LiftDragPlugin2 must set cm0");
+  this->cm0 = _sdf->Get<double>("cm0");
 
   GZ_ASSERT(_sdf->HasElement("cLa"), "LiftDragPlugin2 must set cLa");
   this->cLa = _sdf->Get<double>("cLa");
@@ -172,10 +172,8 @@ void LiftDragPlugin2::OnUpdate()
   }
 
   // compute coefficients
-  double cL0 = -this->cL_alpha0*this->cLa;
-  double cm0 = -this->cm_alpha0*this->cma;
-  double cL = cL0 + this->controlJointRadToCL*controlAngle;
-  double cm = cm0 + this->controlJointRadToCm*controlAngle;
+  double cL = this->cL0 + this->controlJointRadToCL*controlAngle;
+  double cm = this->cm0 + this->controlJointRadToCm*controlAngle;
   bool stall = false;
   if (fabs(alpha) < this->alphaStall) {
     cL += this->cLa*alpha;

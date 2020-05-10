@@ -4,7 +4,7 @@
     <pose>0 0 0.12 0 0 0</pose>
     <link name='fuselage'>
       <inertial>
-        <pose>-0.1 0 0.0173</pose>
+        <pose>-0.12 0 0.0173</pose>
         <mass>0.211</mass>
         <inertia>
           <ixx>2.02e-3</ixx>
@@ -54,7 +54,7 @@
         </geometry>
       </visual>
       <visual name='cp_htail'>
-        <pose>-0.41 0 0.03 0 0 0</pose>
+        <pose>-0.41 0 0.03 3.14 0 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -430,10 +430,10 @@
 
     <plugin name="vtail" filename="libLiftDragPlugin2.so">
       <pose>-0.39 0 0.08 -1.57 0 0</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>6.28</cLa>
-      <cm_a0>0</cm_a0>
-      <cma>-0.315</cma>
+      <cm0>0</cm0>
+      <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.175</alpha_stall>
@@ -448,11 +448,11 @@
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
-      <pose>-0.41 0 0.03 0 0 0</pose>
-      <cL_a0>0</cL_a0>
+      <pose>-0.41 0 0.03 3.14 0 0</pose>
+      <cL0>0.5</cL0>
       <cLa>6.51</cLa>
-      <cm_a0>0</cm_a0>
-      <cma>-0.381</cma>
+      <cm0>0</cm0>
+      <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.198</alpha_stall>
@@ -460,20 +460,18 @@
       <cma_stall>0</cma_stall>
       <area>0.0217</area>
       <air_density>1.2041</air_density>
-      <forward>1 0 0</forward>
-      <upward>0 0 1</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cL>-4.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cL>4.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
       <pose>-0.12 0.178 0.03 0 0 0</pose>
-      <cL_a0>-0.1</cL_a0>
+      <cL0>0.63</cL0>
       <cLa>6.322</cLa>
-      <cm_a0>0</cm_a0>
-      <cma>-0.381</cma>
+      <cm0>0</cm0>
+      <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.275</alpha_stall>
@@ -490,10 +488,10 @@
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
       <pose>-0.12 -0.178 0.03 0 0 0</pose>
-      <cL_a0>-0.1</cL_a0>
+      <cL0>0.63</cL0>
       <cLa>6.322</cLa>
-      <cm_a0>0</cm_a0>
-      <cma>-0.381</cma>
+      <cm0>0</cm0>
+      <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
       <alpha_stall>0.275</alpha_stall>
@@ -511,7 +509,7 @@
     <!--Start PX4 autopilot-->
 
     <link name='imu_link'>
-      <pose>-0.1 0 0.0173</pose>
+      <pose>-0.12 0 0.0173</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>

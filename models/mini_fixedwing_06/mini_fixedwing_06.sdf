@@ -431,9 +431,9 @@
 
     <plugin name="vtail" filename="libLiftDragPlugin2.so">
       <pose>-0.83 0 0.02 -1.57 0 0</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>4.75</cLa>
-      <cm_a0>0</cm_a0>
+      <cm0>0</cm0>
       <cma>-1.8</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -450,9 +450,9 @@
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
       <pose>-0.83 0 -0.02 3.14 0.05 0</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>4.75</cLa>
-      <cm_a0>0</cm_a0>
+      <cm0>0</cm0>
       <cma>-1.8</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -469,9 +469,9 @@
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
       <pose>-0.3 0.2 0.02 0 0 0</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>4.72</cLa>
-      <cm_a0>0</cm_a0>
+      <cm0>0</cm0>
       <cma>-0.573</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -488,9 +488,9 @@
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
       <pose>-0.3 -0.2 0.02 0 0 0</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>4.72</cLa>
-      <cm_a0>0</cm_a0>
+      <cm0>0</cm0>
       <cma>-0.573</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -630,7 +630,7 @@
         </channel>
         <channel name="puller">
           <input_index>4</input_index>
-          <input_offset>0</input_offset>
+          <input_offset>0.1</input_offset>
           <input_scaling>1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
