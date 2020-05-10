@@ -44,7 +44,7 @@ roslaunch fixedwing_gazebo px4.launch vehicle:=mini_fixedwing_01
 For the twin engine (mini_fixedwing_04), we will need to tell it to use the twin engine startup script.
 
 ```bash
-roslaunch fixedwing_gazebo px4.launch vehicle:=mini_fixedwing_01 script:=plane_twin
+roslaunch fixedwing_gazebo px4.launch vehicle:=mini_fixedwing_04 script:=plane_twin
 ```
 
 <!--  vim: set et fenc=utf-8 ff=unix sts=0 sw=2 ts=2 :  -->
