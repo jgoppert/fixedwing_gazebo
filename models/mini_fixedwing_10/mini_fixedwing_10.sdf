@@ -55,7 +55,7 @@
         </geometry>
       </visual>
       <visual name='cp_htail'>
-        <pose>-0.44 0 -0.005 0 0.1 0</pose>
+        <pose>-0.44 0 -0.005 3.14 -0.1 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -452,7 +452,7 @@
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
       <!--Adding incidence angle to balance pitching moment-->
-      <pose>-0.44 0 -0.005 0 0.1 0</pose>
+      <pose>-0.44 0 -0.005 3.14 -0.1 0</pose>
       <cL0>0</cL0>
       <cLa>5.61</cLa>
       <cm0>0</cm0>

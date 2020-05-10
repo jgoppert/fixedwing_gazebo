@@ -46,7 +46,7 @@
         </material>
       </visual>
       <visual name='cp_vtail'>
-        <pose>-0.6 0 0.058 0 -1.57 0</pose>
+        <pose>-0.6 0 0.058 -1.57 0 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
