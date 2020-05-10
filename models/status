@@ -2,16 +2,17 @@
 01: x      x
 02: x      x
 03: x      x
-04: x      x
+04: x      o
 05: x      x
 06: x      x
 07: x      x
 08: x      x      
 09: x      x 
 10: x      x
-11: x      x 
+11: x      o 
 12: x      x      
 13: x      x
-14: x
+14: x      x
 
 x: done
+o: flight issue

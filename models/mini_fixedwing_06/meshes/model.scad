@@ -64,8 +64,8 @@ if (part == "cm" || part == "all" && markers) {
     translate([-0.302, 0, -0.01]) scale([6, 6, 6]) cm(); // main
     translate([-0.36, 0.25, 0.01]) rotate([0, 4, 0]) cm(); // aileron left
     translate([-0.36, -0.25, 0.01]) rotate([0, 4, 0]) cm(); // aileron right
-    translate([-0.84, 0, -0.02]) cm();  // elevator
-    translate([-0.83, 0, 0.023]) cm(); // rudder
+    translate([-0.865, 0, -0.02]) cm();  // elevator
+    translate([-0.85, 0, 0.023]) cm(); // rudder
 }
 
 if (part == "joint" || part == "all" && markers) {

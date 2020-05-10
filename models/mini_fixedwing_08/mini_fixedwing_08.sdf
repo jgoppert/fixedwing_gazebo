@@ -352,7 +352,8 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>rudder_joint</control_joint_name>
-      <control_joint_rad_to_cL>4.0</control_joint_rad_to_cL>
+      <!--Need a bigger rudder likely, increasing this to 16 from 4-->
+      <control_joint_rad_to_cL>16.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 

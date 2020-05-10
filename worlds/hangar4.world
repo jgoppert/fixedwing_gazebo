@@ -4,13 +4,13 @@
     <scene>
       <grid>true</grid>
       <origin_visual>true</origin_visual>
-      <fog>
-        <type>linear</type>
-        <color>0.1 0.1 0.1 1</color>
-        <density>1</density>
-        <start>100</start>
-        <end>1000</end>
-      </fog>
+			<fog>
+				<type>linear</type>
+				<color>0.1 0.1 0.1 1</color>
+				<density>1</density>
+				<start>100</start>
+				<end>1000</end>
+			</fog>
       <sky>
         <time>10</time>
         <clouds>

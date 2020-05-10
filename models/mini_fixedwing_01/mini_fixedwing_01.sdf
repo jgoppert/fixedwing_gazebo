@@ -700,28 +700,6 @@
 
     </plugin>
 
-    <!--<include>-->
-      <!--<name>fpv_camera</name>-->
-      <!--<pose>0.1 0 0 0 0 0</pose>-->
-      <!--<uri>model://fpv_camera</uri>-->
-    <!--</include>-->
-
-    <!--<joint name='cam_joint' type='fixed'>-->
-      <!--<parent>fuselage</parent>-->
-      <!--<child>fpv_camera::link</child>-->
-    <!--</joint>-->
-
-    <!--<include>-->
-      <!--<name>track_camera</name>-->
-      <!--<pose>0.1 0 0 0 0 0</pose>-->
-      <!--<uri>model://track_camera</uri>-->
-    <!--</include>-->
-
-    <!--<joint name='cam2_joint' type='fixed'>-->
-      <!--<parent>fuselage</parent>-->
-      <!--<child>track_camera::link</child>-->
-    <!--</joint>-->
-
   </model>
 
 </sdf>

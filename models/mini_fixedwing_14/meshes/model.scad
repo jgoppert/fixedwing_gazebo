@@ -79,8 +79,8 @@ if (part == "cp" || part == "all" && markers) {
 
 if (part == "cm" || part == "all" && markers) {
     translate([-0.13, 0, -0.014]) scale([6, 6, 6]) cm(); // main
-    translate([-0.165, 0.23, 0.03]) cm(); // aileron left
-    translate([-0.165, -0.23, 0.03]) cm(); // aileron right
+    translate([-0.22, 0.17, 0.03]) cm(); // aileron left
+    translate([-0.22, -0.17, 0.03]) cm(); // aileron right
     translate([-0.72, 0, 0.02]) cm();  // elevator
     translate([-0.72, 0, 0.07]) cm(); // rudder
 }
