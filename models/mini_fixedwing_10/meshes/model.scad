@@ -118,10 +118,11 @@ if (part == "cm" || part == "all" && markers) {
 if (part == "joint" || part == "all" && markers) {
     translate([-0.105, 0.035, -0.09]) joint(); // wheel left
     translate([-0.105, -0.035, -0.09]) joint(); // wheel right
-    translate([-0.216, 0.189, -0.025]) joint(); // aileron left
-    translate([-0.216, -0.189, -0.025]) joint(); // aileron right
+    translate([-0.216, 0.189, -0.025]) rotate([5, 0, 0]) joint(); // aileron left
+    translate([-0.216, -0.189, -0.025]) rotate([-5, 0, 0]) joint(); // aileron right
     translate([-0.48, 0, -0.005]) joint();  // elevator
     translate([-0.48, 0, 0.05]) joint(); // rudder
+    translate([0, 0, -0.02]) joint(); // propeller
 }
 
 // current exported files
