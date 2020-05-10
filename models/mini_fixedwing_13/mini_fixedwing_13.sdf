@@ -4,12 +4,12 @@
     <pose>0 0 0.15 0 0 0</pose>
     <link name='fuselage'>
       <inertial>
-        <pose>-0.156 0 0.008 0 0 0</pose>
-        <mass>0.194</mass>
+        <pose>-0.184 0 -0.0 0 0 0</pose>
+        <mass>0.234</mass>
         <inertia>
-          <ixx>3e-3</ixx>
-          <iyy>2e-3</iyy>
-          <izz>5e-3</izz>
+          <ixx>1.87e-3</ixx>
+          <iyy>1.3e-2</iyy>
+          <izz>1.47e-2</izz>
         </inertia>
       </inertial>
       <collision name='collision'>
@@ -47,7 +47,7 @@
       </visual>
 
       <visual name='cp_vtail'>
-        <pose>-0.6 0 0.0747 -1.57 0 0</pose>
+        <pose>-0.64 0 0.05 -1.57 0 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -55,7 +55,7 @@
         </geometry>
       </visual>
       <visual name='cp_htail'>
-        <pose>-0.6 0 0.0123 0 0 0</pose>
+        <pose>-0.68 0 -0.0358 0 0 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -63,7 +63,7 @@
         </geometry>
       </visual>
       <visual name='cp_wing_left'>
-        <pose>-0.153 0.193 0.064 0.087 0 0</pose>
+        <pose>-0.2 0.15 -0.02 0.052 0 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -71,7 +71,7 @@
         </geometry>
       </visual>
       <visual name='cp_wing_right'>
-        <pose>-0.153 -0.193 0.064 -0.087 0 0</pose>
+        <pose>-0.2 -0.15 -0.02 -0.052 0 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -84,8 +84,8 @@
 
     <link name='wheel_left'>
       <inertial>
-        <pose>-0.112 0.087 -0.074</pose>
-        <mass>0.001</mass>
+        <pose>-0.1319 0.064 -0.0974</pose>
+        <mass>0.004</mass>
         <inertia>
           <ixx>2.27e-5</ixx>
           <iyy>1.16e-5</iyy>
@@ -106,7 +106,7 @@
         </material>
       </visual>
       <collision name='collision'>
-        <pose>-0.112 0.087 -0.074 1.57 0 0</pose>
+        <pose>-0.1319 0.064 -0.0974 1.57 0 0</pose>
         <geometry>
           <cylinder> 
             <radius>0.025</radius>
@@ -132,7 +132,7 @@
     </link>
 
     <joint name='wheel_left_joint' type='revolute'>
-      <pose>-0.112 0.087 -0.074 0 0 0</pose>
+      <pose>-0.1319 0.064 -0.0974</pose>
       <parent>fuselage</parent>
       <child>wheel_left</child>
       <axis>
@@ -150,8 +150,8 @@
 
     <link name='wheel_right'>
       <inertial>
-        <pose>-0.112 -0.087 -0.074</pose>
-        <mass>0.001</mass>
+        <pose>-0.1319 -0.064 -0.0974</pose>
+        <mass>0.004</mass>
         <inertia>
           <ixx>2.27e-5</ixx>
           <iyy>1.16e-5</iyy>
@@ -172,7 +172,7 @@
         </material>
       </visual>
       <collision name='collision'>
-        <pose>-0.112 -0.087 -0.074 1.57 0 0</pose>
+        <pose>-0.1319 -0.064 -0.0974 1.57 0 0</pose>
         <geometry>
           <cylinder> 
             <radius>0.025</radius>
@@ -198,7 +198,7 @@
     </link>
 
     <joint name='wheel_right_joint' type='revolute'>
-      <pose>-0.112 -0.087 -0.074 0 0 0</pose>
+      <pose>-0.1319 -0.064 -0.0974 0 0 0</pose>
       <parent>fuselage</parent>
       <child>wheel_right</child>
       <axis>
@@ -216,8 +216,8 @@
 
     <link name='rudder'>
       <inertial>
-        <pose>-0.606 0 0.058</pose>
-        <mass>0.005</mass>
+        <pose>-0.69 0 0.0467</pose>
+        <mass>0.00156</mass>
         <inertia>
           <ixx>2e-6</ixx>
           <iyy>3.82e-5</iyy>
@@ -240,7 +240,7 @@
     </link>
 
     <joint name='rudder_joint' type='revolute'>
-      <pose>-0.606 0 0.058</pose>
+      h<pose>-0.67 0 0.0467</pose>
       <parent>fuselage</parent>
       <child>rudder</child>
       <axis>
@@ -262,8 +262,8 @@
 
     <link name='elevator'>
       <inertial>
-        <pose>-0.606 0 -0.024</pose>
-        <mass>0.0027</mass>
+        <pose>-0.725 0 -0.035</pose>
+        <mass>0.004</mass>
         <inertia>
           <ixx>1.33e-5</ixx>
           <iyy>1.03e-3</iyy>
@@ -286,7 +286,7 @@
     </link>
 
     <joint name='elevator_joint' type='revolute'>
-      <pose>-0.606 0 -0.024</pose>
+      <pose>-0.705 0 -0.035</pose>
       <parent>fuselage</parent>
       <child>elevator</child>
       <axis>
@@ -308,8 +308,8 @@
 
     <link name='aileron_left'>
       <inertial>
-        <pose>-0.266 0.239 -0.019</pose>
-        <mass>0.008</mass>
+        <pose>-0.315 0.22 -0.02 0.052 0 0</pose>
+        <mass>0.005</mass>
         <inertia>
           <ixx>3.9e-6</ixx>
           <iyy>3.6e-6</iyy>
@@ -332,7 +332,7 @@
     </link>
 
     <joint name='aileron_left_joint' type='revolute'>
-      <pose>0.266 -0.239 0.019</pose>
+      <pose>-0.29 0.22 -0.02 0.052 0 0</pose>
       <parent>fuselage</parent>
       <child>aileron_left</child>
       <axis>
@@ -354,8 +354,8 @@
 
     <link name='aileron_right'>
       <inertial>
-        <pose>-0.266 -0.239 -0.019</pose>
-        <mass>0.008</mass>
+        <pose>-0.315 -0.22 -0.02 -0.052 0 0</pose>
+        <mass>0.005</mass>
         <inertia>
           <ixx>3.9e-6</ixx>
           <iyy>3.6e-6</iyy>
@@ -378,7 +378,7 @@
     </link>
 
     <joint name='aileron_right_joint' type='revolute'>
-      <pose>-0.266 -0.239 -0.019</pose>
+      <pose>-0.29 -0.22 -0.02 -0.052 0 0</pose>
       <parent>fuselage</parent>
       <child>aileron_right</child>
       <axis>
@@ -431,80 +431,81 @@
     </joint>
 
     <plugin name="vtail" filename="libLiftDragPlugin2.so">
-      <a0>0.03</a0>
-      <cla>3.942</cla>
-      <cda>0.745</cda>
-      <cma>-0.378</cma>
-      <alpha_stall>0.139</alpha_stall>
-      <cla_stall>-1.83</cla_stall>
-      <cda_stall>-0.871</cda_stall>
-      <cma_stall>-0.3552</cma_stall>
-      <cp>-0.6 0 0.058</cp>
-      <area>0.01</area>
+      <pose>-0.64 0 0.05 -1.57 0 0</pose>
+      <cL_a0>0</cL_a0>
+      <cLa>2.334</cLa>
+      <cm_a0>0</cm_a0>
+      <cma>-0.55</cma>
+      <cD0>0.03</cD0>
+      <kcDcL>0.1</kcDcL>
+      <alpha_stall>0.524</alpha_stall>
+      <cLa_stall>-0.716</cLa_stall>
+      <cma_stall>-0.8</cma_stall>
+      <area>0.0135</area>
       <air_density>1.2041</air_density>
-      <forward>1 0 0</forward>
-      <upward>0 1 0</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>rudder_joint</control_joint_name>
-      <control_joint_rad_to_cl>4.0</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>4.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
-      <a0>0.03</a0>
-      <cla>3.942</cla>
-      <cda>0.745</cda>
-      <cma>-0.378</cma>
-      <alpha_stall>0.139</alpha_stall>
-      <cla_stall>-1.83</cla_stall>
-      <cda_stall>-0.871</cda_stall>
-      <cma_stall>-0.3552</cma_stall>
-      <cp>-0.6 0 0.058</cp>
-      <area>0.0152</area>
+      <pose>-0.68 0 -0.0358 0 0 0</pose>
+      <cL_a0>-0.1</cL_a0>
+      <cLa>2.334</cLa>
+      <cm_a0>0</cm_a0>
+      <cma>-0.55</cma>
+      <cD0>0.03</cD0>
+      <kcDcL>0.1</kcDcL>
+      <alpha_stall>0.524</alpha_stall>
+      <cLa_stall>-0.716</cLa_stall>
+      <cma_stall>-0.8</cma_stall>
+      <area>0.034</area>
       <air_density>1.2041</air_density>
-      <forward>1 0 0</forward>
-      <upward>0 0 1</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cl>-4.0</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>-4.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
-      <pose>-0.153 0.193 0.064 0.087 0 0</pose>
-      <cL_a0>-0.122</cL_a0>
-      <cLa>4.24</cLa>
+      <pose>-0.2 0.15 -0.02 0.052 0 0</pose>
+      <cL_a0>-0.09</cL_a0>
+      <cLa>3.824</cLa>
       <cm_a0>0</cm_a0>
-      <cma>-0.28</cma>
+      <cma>-1.16</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
-      <alpha_stall>0.23</alpha_stall>
-      <cLa_stall>-3.85</cLa_stall>
+      <alpha_stall>0.18</alpha_stall>
+      <cLa_stall>-1.14</cLa_stall>
       <cma_stall>0</cma_stall>
-      <area>0.059</area>
+      <area>0.0733</area>
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_left_joint</control_joint_name>
-      <control_joint_rad_to_cL>-1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
       <verbose>0</verbose>
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
-      <a0>0.03</a0>
-      <cla>3.942</cla>
-      <cda>0.745</cda>
-      <cma>-0.38</cma>
-      <alpha_stall>0.14</alpha_stall>
-      <cla_stall>-1.83</cla_stall>
-      <cda_stall>-0.871</cda_stall>
-      <cma_stall>-0.3552</cma_stall>
-      <cp>-0.17 -0.24 -0.02</cp>
-      <area>0.101</area>
+      <pose>-0.2 -0.15 -0.02 -0.052 0 0</pose>
+      <cL_a0>-0.09</cL_a0>
+      <cLa>3.824</cLa>
+      <cm_a0>0</cm_a0>
+      <cma>-1.16</cma>
+      <cD0>0.03</cD0>
+      <kcDcL>0.1</kcDcL>
+      <alpha_stall>0.18</alpha_stall>
+      <cLa_stall>-1.14</cLa_stall>
+      <cma_stall>0</cma_stall>
+      <area>0.0733</area>
       <air_density>1.2041</air_density>
-      <forward>1 0 0</forward>
-      <upward>0 0.087 0.996</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_right_joint</control_joint_name>
-      <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <verbose>0</verbose>
     </plugin>
 
     <!--Start PX4 autopilot-->
@@ -632,7 +633,7 @@
         </channel>
         <channel name="puller">
           <input_index>4</input_index>
-          <input_offset>0</input_offset>
+          <input_offset>-0.15</input_offset>
           <input_scaling>1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
@@ -642,8 +643,8 @@
         </channel>
         <channel name="aileron_left">
           <input_index>5</input_index>
-          <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_offset>-0.01</input_offset>
+          <input_scaling>0.1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
@@ -660,8 +661,8 @@
         </channel>
         <channel name="aileron_right">
           <input_index>6</input_index>
-          <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_offset>0.01</input_offset>
+          <input_scaling>0.1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>

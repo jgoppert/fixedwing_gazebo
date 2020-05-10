@@ -115,7 +115,7 @@ if (part == "cp" || part == "all" && markers) {
 }
 
 if (part == "cm" || part == "all" && markers) {
-    translate([-0.1, 0, 0.0173]) scale([3, 3, 3]) cm(); // main
+    translate([-0.184, 0, -0.01]) scale([6, 6, 6]) cm(); // main
     translate([-0.315, 0.22, -0.02]) cm(); // aileron left
     translate([-0.315, -0.22, -0.02]) cm(); // aileron right
     translate([-0.725, 0, -0.035]) cm();  // elevator
@@ -125,8 +125,8 @@ if (part == "cm" || part == "all" && markers) {
 if (part == "joint" || part == "all" && markers) {
     translate([-0.1319, 0.064, -0.0974]) joint(); // wheel left
     translate([-0.1319, -0.064, -0.0974]) joint(); // wheel right
-    translate([-0.29, 0.22, -0.02]) joint(); // aileron left
-    translate([-0.29, -0.22, -0.02]) joint(); // aileron right
+    translate([-0.29, 0.22, -0.02]) rotate([3, 0, 0]) joint(); // aileron left
+    translate([-0.29, -0.22, -0.02]) rotate([-3, 0, 0]) joint(); // aileron right
     translate([-0.705, 0, -0.035]) joint();  // elevator
     translate([-0.67, 0, 0.0467]) joint(); // rudder
 }
