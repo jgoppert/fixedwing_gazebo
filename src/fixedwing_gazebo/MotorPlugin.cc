@@ -139,7 +139,7 @@ void MotorPlugin::Load(physics::ModelPtr _model,
 
   GZ_ASSERT(_sdf, "MotorPlugin _sdf pointer is NULL");
 
-  gzdbg << "Motor Plugin loading, model: " << data->model->GetName() << "\n";
+  //gzdbg << "Motor Plugin loading, model: " << data->model->GetName() << "\n";
 
   data->kV = _sdf->Get<double>("kV");
   data->i0 = _sdf->Get<double>("i0");
@@ -175,20 +175,20 @@ void MotorPlugin::Load(physics::ModelPtr _model,
     }
   }
 
-  gzdbg << "loading joint" << std::endl;
+  //gzdbg << "loading joint" << std::endl;
   std::string jointName = _sdf->Get<std::string>("joint_name");
   physics::JointPtr joint = data->model->GetJoint(jointName);
   data->joint = joint;
 
-  gzdbg << "loading prop" << std::endl;
+  //gzdbg << "loading prop" << std::endl;
   std::string propName = _sdf->Get<std::string>("prop_name");
   data->propeller = data->model->GetLink(propName);
 
-  gzdbg << "initializing transport" << std::endl;
+  //gzdbg << "initializing transport" << std::endl;
   data->gzNode = transport::NodePtr(new transport::Node());
   data->gzNode->Init();
 
-  gzdbg << "creating throttle sub" << std::endl;
+  //gzdbg << "creating throttle sub" << std::endl;
   data->throttleSub = data->gzNode->Subscribe<msgs::Any>(
     "~/" + data->model->GetName() +
     gztopic, &MotorPluginPrivate::OnThrottle,
@@ -200,7 +200,7 @@ void MotorPlugin::Load(physics::ModelPtr _model,
   data->last_time = data->world->GetSimTime();
   #endif
 
-  gzdbg << "Load done.\n";
+  //gzdbg << "Load done.\n";
 }
 
 /////////////////////////////////////////////////

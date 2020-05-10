@@ -2,14 +2,15 @@
 <sdf version='1.6'>
   <model name="mini_fixedwing_07">
     <pose>0 0 0.15 0 0 0</pose>
+
     <link name='fuselage'>
       <inertial>
         <pose>-0.395 0 0.00446</pose>
         <mass>0.270</mass>
         <inertia>
-          <ixx>1e-3</ixx>
-          <iyy>1e-3</iyy>
-          <izz>1e-3</izz>
+          <ixx>3e-3</ixx>
+          <iyy>1e-2</iyy>
+          <izz>1e-2</izz>
         </inertia>
       </inertial>
       <collision name='collision'>
@@ -55,7 +56,7 @@
         </geometry>
       </visual>
       <visual name='cp_htail'>
-        <pose>-0.68 0 0 3.14 0.1 0</pose>
+        <pose>-0.68 0 0 3.14 0 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -63,7 +64,7 @@
         </geometry>
       </visual>
       <visual name='cp_wing_left'>
-        <pose>-0.28 0.1905 0 0 0 0</pose>
+        <pose>-0.28 0.1905 0 0 -0.12 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -71,7 +72,7 @@
         </geometry>
       </visual>
       <visual name='cp_wing_right'>
-        <pose>-0.28 -0.1905 0 0 0 0</pose>
+        <pose>-0.28 -0.1905 0 0 -0.12 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -84,11 +85,11 @@
     <link name='wheel_left'>
       <pose>-0.21 0.06 -0.1</pose>
       <inertial>
-        <mass>0.001</mass>
+        <mass>0.004</mass>
         <inertia>
-          <ixx>2.27e-5</ixx>
-          <iyy>1.16e-5</iyy>
-          <izz>1.16e-5</izz>
+          <ixx>2.93e-5</ixx>
+          <iyy>4.22e-5</iyy>
+          <izz>3.48e-5</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -150,11 +151,11 @@
     <link name='wheel_right'>
       <pose>-0.21 -0.06 -0.1</pose>
       <inertial>
-        <mass>0.001</mass>
+        <mass>0.004</mass>
         <inertia>
-          <ixx>2.27e-5</ixx>
-          <iyy>1.16e-5</iyy>
-          <izz>1.16e-5</izz>
+          <ixx>2.93e-5</ixx>
+          <iyy>4.22e-5</iyy>
+          <izz>3.48e-5</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -218,9 +219,9 @@
         <mass>0.005</mass>
         <pose>-0.798 0 0.08</pose>
         <inertia>
-          <ixx>2e-6</ixx>
-          <iyy>3.82e-5</iyy>
-          <izz>4.02e-5</izz>
+          <ixx>1e-5</ixx>
+          <iyy>1e-5</iyy>
+          <izz>1e-5</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -264,9 +265,9 @@
         <mass>0.004</mass>
         <pose>-0.765 0 0</pose>
         <inertia>
-          <ixx>1.33e-5</ixx>
-          <iyy>1.03e-3</iyy>
-          <izz>1.05e-3</izz>
+          <ixx>1e-5</ixx>
+          <iyy>1e-3</iyy>
+          <izz>1e-3</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -310,9 +311,9 @@
         <mass>0.004</mass>
         <pose>-0.39 0.254 0</pose>
         <inertia>
-          <ixx>3.9e-6</ixx>
-          <iyy>3.6e-6</iyy>
-          <izz>1.07e-4</izz>
+          <ixx>1e-4</ixx>
+          <iyy>1e-3</iyy>
+          <izz>1e-3</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -354,11 +355,11 @@
     <link name='aileron_right'>
       <inertial>
         <mass>0.008</mass>
-        <pose>-0.39 0.254 0</pose>
+        <pose>-0.39 -0.254 0</pose>
         <inertia>
-          <ixx>3.9e-6</ixx>
-          <iyy>3.6e-6</iyy>
-          <izz>1.07e-4</izz>
+          <ixx>1e-5</ixx>
+          <iyy>1e-3</iyy>
+          <izz>1e-3</izz>
         </inertia>
       </inertial>
       <visual name='visual'>
@@ -449,7 +450,7 @@
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
-      <pose>-0.68 0 0 3.14 -0.1 0</pose>
+      <pose>-0.68 0 0 3.14 0 0</pose>
       <cL_a0>0</cL_a0>
       <cLa>5.0133</cLa>
       <cm_a0>0</cm_a0>
@@ -465,11 +466,12 @@
       <control_joint_name>elevator_joint</control_joint_name>
       <control_joint_rad_to_cL>4.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <verbose>0</verbose>
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
-      <pose>-0.28 0.1905 0 0 0 0</pose>
-      <cL_a0>0.0061</cL_a0>
+      <pose>-0.28 0.1905 0 0 -0.12 0</pose>
+      <cL_a0>-0.061</cL_a0>
       <cLa>5.6</cLa>
       <cm_a0>0</cm_a0>
       <cma>-1.8</cma>
@@ -484,11 +486,12 @@
       <control_joint_name>aileron_left_joint</control_joint_name>
       <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <verbose>0</verbose>
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
-      <pose>-0.28 -0.1905 0 0 0 0</pose>
-      <cL_a0>0.0061</cL_a0>
+      <pose>-0.28 -0.1905 0 0 -0.12 0</pose>
+      <cL_a0>-0.061</cL_a0>
       <cLa>5.6</cLa>
       <cm_a0>0</cm_a0>
       <cma>-1.8</cma>
@@ -503,6 +506,7 @@
       <control_joint_name>aileron_right_joint</control_joint_name>
       <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <verbose>0</verbose>
     </plugin>
 
     <!--Start PX4 autopilot-->
@@ -576,7 +580,7 @@
       <gztopic>/throttle1</gztopic>
       <joint_name>propeller_joint</joint_name>
       <prop_name>propeller</prop_name>
-      <diameter>6</diameter>
+      <diameter>8</diameter>
       <ct>0.10937 0.01037 -0.944 1.88 -1.465</ct>
       <cp>0.0405 0.075 -0.562 1.07 -0.763</cp>
       <kV>1480</kV>
@@ -613,13 +617,13 @@
         <channel name="rudder">
           <input_index>2</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_scaling>0.2</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
           <joint_name>rudder_joint</joint_name>
           <joint_control_pid>
-            <p>10</p>
+            <p>5</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
@@ -631,7 +635,7 @@
         <channel name="puller">
           <input_index>4</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>1</input_scaling>
+          <input_scaling>1.0</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position_gztopic</joint_control_type>
@@ -641,13 +645,13 @@
         <channel name="aileron_left">
           <input_index>5</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_scaling>0.2</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
           <joint_name>aileron_left_joint</joint_name>
           <joint_control_pid>
-            <p>10</p>
+            <p>5</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
@@ -659,13 +663,13 @@
         <channel name="aileron_right">
           <input_index>6</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_scaling>0.2</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
           <joint_name>aileron_right_joint</joint_name>
           <joint_control_pid>
-            <p>10</p>
+            <p>5</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>
@@ -677,13 +681,13 @@
         <channel name="elevator">
           <input_index>7</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_scaling>0.2</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
           <joint_name>elevator_joint</joint_name>
           <joint_control_pid>
-            <p>10</p>
+            <p>5</p>
             <i>0</i>
             <d>0</d>
             <iMax>0</iMax>

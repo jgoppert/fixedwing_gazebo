@@ -77,7 +77,7 @@ void LiftDragPlugin2::Load(physics::ModelPtr _model,
   this->alphaStall = _sdf->Get<double>("alpha_stall");
 
   GZ_ASSERT(_sdf->HasElement("cLa_stall"), "LiftDragPlugin2 must set cLa_stall");
-  this->cLaStall = _sdf->Get<double>("cla_stall");
+  this->cLaStall = _sdf->Get<double>("cLa_stall");
 
   GZ_ASSERT(_sdf->HasElement("kcDcL"), "LiftDragPlugin2 must set kcDcL");
   this->kcDcL = _sdf->Get<double>("kcDcL");
@@ -146,15 +146,16 @@ void LiftDragPlugin2::OnUpdate()
   GZ_ASSERT(this->link, "Link was NULL");
   // get linear velocity at cp in inertial frame
   Vector3d vel = this->link->WorldLinearVel(this->pose.Pos());
+
+  if (vel.Length() <= 0.01)
+    return;
+
   Vector3d velI = vel;
   velI.Normalize();
 
   //Pose3d world_from_airfoil = this->pose + this->link->WorldPose();
   Pose3d world_from_airfoil = this->pose*this->link->WorldPose();
   Pose3d airfoil_from_world = world_from_airfoil.Inverse();
-
-  if (vel.Length() <= 0.01)
-    return;
 
   double v = vel.Length();
   double q = 0.5 * this->rho * v * v;
@@ -181,13 +182,25 @@ void LiftDragPlugin2::OnUpdate()
     cm += this->cma*alpha;
   } else if (alpha < -this->alphaStall) {
     stall = true;
-    cL += -this->cLa*this->alphaStall + this->cLaStall*(alpha - this->alphaStall);
-    cm += -this->cma*this->alphaStall + this->cmaStall*(alpha - this->alphaStall);
-  } else if (alpha > this->alphaStall) {
+    cL += -this->cLa*this->alphaStall + this->cLaStall*(alpha + this->alphaStall);
+    cm += -this->cma*this->alphaStall + this->cmaStall*(alpha + this->alphaStall);
+    if (this->verbose) {
+      gzdbg << "\nnegative stall" << std::setprecision(3) << std::fixed
+         << "\tstart cL: " << this->cLa*this->alphaStall
+         << "\tdelta cL: " << this->cLaStall*(alpha + this->alphaStall) << "\n";
+    }
+  } else if (alpha >= this->alphaStall) {
     stall = true;
     cL += this->cLa*this->alphaStall + this->cLaStall*(alpha - this->alphaStall);
     cm += this->cma*this->alphaStall + this->cmaStall*(alpha - this->alphaStall);
+    if (this->verbose) {
+      gzdbg << "\npositive stall" << std::setprecision(3) << std::fixed
+         << "\tstart cL: " << this->cLa*this->alphaStall
+         << "\tdelta cL: " << this->cLaStall*(alpha - this->alphaStall) << "\n";
+    }
   }
+  cL = clamp(cL, -2.0, 2.0);
+  cm = clamp(cm, -1.0, 1.0);
 
   // compute cd
   double delta_cL = cL - cL0;
