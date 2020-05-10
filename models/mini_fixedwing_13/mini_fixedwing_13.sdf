@@ -46,6 +46,40 @@
         </material>
       </visual>
 
+      <visual name='cp_vtail'>
+        <pose>-0.6 0 0.0747 -1.57 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_htail'>
+        <pose>-0.6 0 0.0123 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_wing_left'>
+        <pose>-0.153 0.193 0.064 0.087 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
+      <visual name='cp_wing_right'>
+        <pose>-0.153 -0.193 0.064 -0.087 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.1 0.1 0.1</scale>
+            <uri>model://mini_fixedwing_11/meshes/axes.dae</uri> </mesh>
+        </geometry>
+      </visual>
+
+
     </link>
 
     <link name='wheel_left'>
@@ -435,22 +469,23 @@
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
-      <a0>0.03</a0>
-      <cla>3.942</cla>
-      <cda>0.745</cda>
-      <cma>-0.38</cma>
-      <alpha_stall>0.14</alpha_stall>
-      <cla_stall>-1.83</cla_stall>
-      <cda_stall>-0.871</cda_stall>
-      <cma_stall>-0.3552</cma_stall>
-      <cp>-0.17 0.24 -0.02</cp>
-      <area>0.101</area>
+      <pose>-0.153 0.193 0.064 0.087 0 0</pose>
+      <cL_a0>-0.122</cL_a0>
+      <cLa>4.24</cLa>
+      <cm_a0>0</cm_a0>
+      <cma>-0.28</cma>
+      <cD0>0.03</cD0>
+      <kcDcL>0.1</kcDcL>
+      <alpha_stall>0.23</alpha_stall>
+      <cLa_stall>-3.85</cLa_stall>
+      <cma_stall>0</cma_stall>
+      <area>0.059</area>
       <air_density>1.2041</air_density>
-      <forward>1 0 0</forward>
-      <upward>0 -0.087 0.996</upward>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_left_joint</control_joint_name>
-      <control_joint_rad_to_cl>-2.0</control_joint_rad_to_cl>
+      <control_joint_rad_to_cL>-1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <verbose>0</verbose>
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
