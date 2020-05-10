@@ -429,9 +429,9 @@
 
     <plugin name="vtail" filename="libLiftDragPlugin2.so">
       <pose>-0.67 0 0.06</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>5.73</cLa>
-      <cm_a0>0</cm_a0>
+      <cm0>0</cm0>
       <cma>0.1718</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -448,9 +448,9 @@
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
       <pose>-0.67 0 0.02 0 0 0</pose>
-      <cL_a0>0</cL_a0>
+      <cL0>0</cL0>
       <cLa>5.73</cLa>
-      <cm_a0>0</cm_a0>
+      <cm0>0</cm0>
       <cma>0.1718</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -467,9 +467,9 @@
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
       <pose>-0.14 0.2286 0.03 0.087 0 0</pose>
-      <cL_a0>-0.1047</cL_a0>
+      <cL0>0.50</cL0>
       <cLa>4.8128</cLa>
-      <cm_a0>0</cm_a0>
+      <cm0>0</cm0>
       <cma>-0.546</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -487,9 +487,9 @@
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
       <pose>-0.14 -0.2286 0.03 -0.087 0 0</pose>
-      <cL_a0>-0.1047</cL_a0>
+      <cL0>0.50</cL0>
       <cLa>4.8128</cLa>
-      <cm_a0>0</cm_a0>
+      <cm0>0</cm0>
       <cma>-0.546</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
