@@ -393,6 +393,7 @@
       <iMax>30</iMax>
       <r0>0.105</r0>
       <battV>7.4</battV>
+      <capacity>950</capacity>
       <axis_num>0</axis_num>
       <!--Design thrust assumes very high motor eff.-->
       <motor_eff>0.9</motor_eff>

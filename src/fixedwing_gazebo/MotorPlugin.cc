@@ -74,6 +74,9 @@ class gazebo::MotorPluginPrivate
   /// \brief battery voltage (max voltage)
   public: double battV;
 
+  /// \brief battery capacity (battery capacity mAh)
+  public: double capacity;
+
   /// \brief max current
   public: double iMax;
 
@@ -144,6 +147,19 @@ void MotorPlugin::Load(physics::ModelPtr _model,
 
   //gzdbg << "Motor Plugin loading, model: " << data->model->GetName() << "\n";
 
+
+  GZ_ASSERT(_sdf->HasElement("capacity"), "MotorPlugin must set capacity");
+  GZ_ASSERT(_sdf->HasElement("kV"), "MotorPlugin must set kV");
+  GZ_ASSERT(_sdf->HasElement("i0"), "MotorPlugin must set i0");
+  GZ_ASSERT(_sdf->HasElement("r0"), "MotorPlugin must set r0");
+  GZ_ASSERT(_sdf->HasElement("motor_eff"), "MotorPlugin must set motor_eff");
+  GZ_ASSERT(_sdf->HasElement("battV"), "MotorPlugin must set battV");
+  GZ_ASSERT(_sdf->HasElement("iMax"), "MotorPlugin must set iMax");
+  GZ_ASSERT(_sdf->HasElement("axis_num"), "MotorPlugin must set axis_num");
+  GZ_ASSERT(_sdf->HasElement("diameter"), "MotorPlugin must set diameter");
+  GZ_ASSERT(_sdf->HasElement("gztopic"), "MotorPlugin must set gztopic");
+
+  data->capacity = _sdf->Get<double>("capacity");
   data->kV = _sdf->Get<double>("kV");
   data->i0 = _sdf->Get<double>("i0");
   data->r0 = _sdf->Get<double>("r0");
@@ -283,17 +299,29 @@ void MotorPlugin::OnUpdate()
   // see http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
   double i = clamp((V - omega/kV)/data->r0 + data->i0, 0.0, data->iMax);
   double torque = data->motor_eff*(i - data->i0)/kV;
- 
+  double rate = i*1.0e3/3600; // mAh/sec
+  data->capacity -= rate*dt;
+  double endurance_min = 0;
+  if (data->capacity > 0) {
+    endurance_min = data->capacity/rate/60.0;
+  } else {
+    data->capacity = 0;
+    thrust = 0;
+    torque = 0;
+  }
+
   if (data->verbose) {
     gzdbg << std::fixed << std::setprecision(3)
      << "J:" <<  std::setw(5) << J
-     << " eta:" << std::setw(5) << eta
+     << " eff.:" << std::setw(5) << eta*data->motor_eff
      << " CP:" << std::setw(5) << CP
      << " CT:" << std::setw(5) << CT
      << " Thrust:" << std::setw(5) << thrust
-     << " Q Mtr:" << std::setw(5) << torque
-     << " Q Aero:" << std::setw(5) << aero_torque
+     //<< " Q Mtr:" << std::setw(5) << torque
+     //<< " Q Aero:" << std::setw(5) << aero_torque
      << " Volts:" << std::setw(5) << V
+     << " cap (mAh):" << std::setw(5) << data->capacity
+     << " end (min):" << std::setw(5) << endurance_min
      << " Amps:" << std::setw(5) << i
      << " RPM:" << std::setw(5) << std::setprecision(0) << n*60
      << std::endl;

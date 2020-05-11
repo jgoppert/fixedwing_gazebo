@@ -655,6 +655,7 @@
       <iMax>30</iMax>
       <r0>0.128</r0>
       <battV>7.4</battV>
+      <capacity>1000</capacity>
       <axis_num>0</axis_num>
       <motor_eff>0.7</motor_eff>
       <verbose>1</verbose>
