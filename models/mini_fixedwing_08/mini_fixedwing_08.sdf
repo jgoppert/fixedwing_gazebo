@@ -348,17 +348,18 @@
       <alpha_stall>0.288</alpha_stall>
       <cLa_stall>-3.85</cLa_stall>
       <cma_stall>-0.234</cma_stall>
-      <area>0.014</area>
+      <!--Rudder is very small currenlty, hard to turn-->
+      <!--<area>0.014</area>-->
+      <area>0.06</area>
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>rudder_joint</control_joint_name>
-      <!--Need a bigger rudder likely, increasing this to 16 from 4-->
-      <control_joint_rad_to_cL>16.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
-      <pose>-0.5 0 0 3.14 -0.0175 0</pose>
+      <pose>-0.5 0 0 3.14 0 0</pose>
       <cL0>0</cL0>
       <cLa>3.33</cLa>
       <cm0>0</cm0>
@@ -372,14 +373,16 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cL>4.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
-      <pose>-0.14 0.2 0.02 0.087 0 0</pose>
+      <!--You need a lot more dihedral for a rudder controlled plane-->
+      <pose>-0.14 0.2 0.02 0.17 0 0</pose>
       <cL0>0.1529</cL0>
       <cLa>3.95</cLa>
+      <!--check cm0-->
       <cm0>0</cm0>
       <cma>-0.1749</cma>
       <cD0>0.03</cD0>
@@ -394,9 +397,11 @@
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
-      <pose>-0.14 -0.2 0.02 -0.087 0 0</pose>
+      <!--You need a lot more dihedral for a rudder controlled plane-->
+      <pose>-0.14 -0.2 0.02 -0.17 0 0</pose>
       <cL0>0.1529</cL0>
       <cLa>3.95</cLa>
+      <!--check cm0-->
       <cm0>0</cm0>
       <cma>-0.1749</cma>
       <cD0>0.03</cD0>
@@ -518,7 +523,7 @@
         <channel name="rudder">
           <input_index>5</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>-0.28</input_scaling>
+          <input_scaling>-0.4</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
@@ -529,8 +534,8 @@
             <d>0</d>
             <iMax>0</iMax>
             <iMin>0</iMin>
-            <cmdMax>0.28</cmdMax>
-            <cmdMin>-0.28</cmdMin>
+            <cmdMax>0.4</cmdMax>
+            <cmdMin>-0.4</cmdMin>
           </joint_control_pid>
         </channel>
         <channel name="puller">

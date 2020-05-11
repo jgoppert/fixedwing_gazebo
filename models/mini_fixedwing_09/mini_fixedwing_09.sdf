@@ -156,7 +156,7 @@
       <parent>fuselage</parent>
       <child>aileron_left</child>
       <axis>
-        <xyz>0 1 0</xyz>
+        <xyz>0 -1 0</xyz>
         <dynamics>
           <damping>0.1</damping>
         </dynamics>
@@ -202,7 +202,7 @@
       <parent>fuselage</parent>
       <child>aileron_right</child>
       <axis>
-        <xyz>0 1 0</xyz>
+        <xyz>0 -1 0</xyz>
         <dynamics>
           <damping>0.1</damping>
         </dynamics>
@@ -281,15 +281,15 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cL>3.6</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
       <pose>-0.391 0.21 0 0 -0.087 0</pose>
       <cL0>0.66</cL0>
       <cLa>4.053</cLa>
-      <cm0>0</cm0>
+      <cm0>-0.1</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -300,8 +300,8 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_left_joint</control_joint_name>
-      <control_joint_rad_to_cL>-4</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
       <verbose>0</verbose>
     </plugin>
 
@@ -309,7 +309,7 @@
       <pose>-0.391 -0.21 0 0 -0.087 0</pose>
       <cL0>0.66</cL0>
       <cLa>4.053</cLa>
-      <cm0>0</cm0>
+      <cm0>-0.1</cm0>
       <cma>-1.492</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -320,8 +320,8 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_right_joint</control_joint_name>
-      <control_joint_rad_to_cL>-4</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
       <verbose>0</verbose>
     </plugin>
 
@@ -396,7 +396,7 @@
       <gztopic>/throttle1</gztopic>
       <joint_name>propeller_joint</joint_name>
       <prop_name>propeller</prop_name>
-      <diameter>6</diameter>
+      <diameter>7</diameter>
       <ct>0.1025  -0.0258 0.2714  -0.6997 0.359</ct>
       <cp>0.0537  0.0096  0.2053  -0.4276 0.1702</cp>
       <kV>2300</kV>
@@ -443,7 +443,7 @@
         <channel name="aileron_left">
           <input_index>5</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>0.07</input_scaling>
+          <input_scaling>-0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
@@ -461,7 +461,7 @@
         <channel name="aileron_right">
           <input_index>6</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>0.07</input_scaling>
+          <input_scaling>-0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>

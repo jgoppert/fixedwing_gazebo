@@ -579,7 +579,7 @@
       <gztopic>/throttle1</gztopic>
       <joint_name>propeller_joint</joint_name>
       <prop_name>propeller</prop_name>
-      <diameter>6</diameter>
+      <diameter>7</diameter>
       <ct>0.1893 -0.0023 -0.4128 0.2894 -0.0921</ct>
       <cp>0.1518 -0.2083 0.3144 -0.3632 0.0912</cp>
       <kV>2280</kV>
