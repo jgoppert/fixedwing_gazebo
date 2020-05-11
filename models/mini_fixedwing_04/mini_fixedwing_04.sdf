@@ -276,8 +276,8 @@
       <pose>-0.01 0.175 0.027 0 0 0</pose>
       <cL0>0.2</cL0>
       <cLa>2.5926</cLa>
-      <!--Check cm0, reflex?-->
-      <cm0>0</cm0>
+      <!--Check cm0-->
+      <cm0>-0.01</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -297,8 +297,8 @@
       <pose>-0.01 -0.175 0.027 0 0 0</pose>
       <cL0>0.2</cL0>
       <cLa>2.5926</cLa>
-      <!--Check cm0, reflex?-->
-      <cm0>0</cm0>
+      <!--Check cm0-->
+      <cm0>-0.01</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -394,7 +394,8 @@
       <r0>0.105</r0>
       <battV>7.4</battV>
       <axis_num>0</axis_num>
-      <motor_eff>0.7</motor_eff>
+      <!--Design thrust assumes very high motor eff.-->
+      <motor_eff>0.9</motor_eff>
       <reverse>1</reverse>
       <verbose>1</verbose>
     </plugin>
@@ -412,7 +413,8 @@
       <r0>0.105</r0>
       <battV>7.4</battV>
       <axis_num>0</axis_num>
-      <motor_eff>0.7</motor_eff>
+      <!--Design thrust assumes very high motor eff.-->
+      <motor_eff>0.9</motor_eff>
       <verbose>1</verbose>
     </plugin>
 
@@ -439,20 +441,20 @@
       <control_channels>
         <channel name="left_prop">
           <input_index>0</input_index>
-          <input_offset>0.1</input_offset>
+          <input_offset>0</input_offset>
           <input_scaling>1.0</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
-          <zero_position_armed>0</zero_position_armed>
+          <zero_position_armed>0.05</zero_position_armed>
           <joint_control_type>position_gztopic</joint_control_type>
           <gztopic>/throttle_left</gztopic>
           <joint_name>propeller_left_joint</joint_name>
         </channel>
         <channel name="right_prop">
           <input_index>1</input_index>
-          <input_offset>0.1</input_offset>
+          <input_offset>0</input_offset>
           <input_scaling>1.0</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
-          <zero_position_armed>0</zero_position_armed>
+          <zero_position_armed>0.05</zero_position_armed>
           <joint_control_type>position_gztopic</joint_control_type>
           <gztopic>/throttle_right</gztopic>
           <joint_name>propeller_right_joint</joint_name>
@@ -462,7 +464,7 @@
           <input_offset>0</input_offset>
           <input_scaling>-0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
-          <zero_position_armed>0</zero_position_armed>
+          <zero_position_armed>-0.05</zero_position_armed>
           <joint_control_type>position</joint_control_type>
           <joint_name>elevon_left_joint</joint_name>
           <joint_control_pid>
@@ -480,7 +482,7 @@
           <input_offset>0</input_offset>
           <input_scaling>-0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
-          <zero_position_armed>0</zero_position_armed>
+          <zero_position_armed>-0.05</zero_position_armed>
           <joint_control_type>position</joint_control_type>
           <joint_name>elevon_right_joint</joint_name>
           <joint_control_pid>

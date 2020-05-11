@@ -242,10 +242,10 @@ void MotorPlugin::OnUpdate()
   if (data->reverse) {
     dir = -1;
   }
-  gzdbg << "reverse: " << data->reverse << std::endl;
+  //gzdbg << "reverse: " << data->reverse << std::endl;
   double omega = dir*data->joint->GetVelocity(0);
   omega = clamp(omega, 0.0, 10000.0);
-  gzdbg << "omega: " << omega << std::endl;
+  //gzdbg << "omega: " << omega << std::endl;
 
   const double rho = 1.225;
   auto vel_vect = data->propeller->RelativeLinearVel();
