@@ -55,7 +55,7 @@
         </geometry>
       </visual>
       <visual name='cp_htail'>
-        <pose>-0.94 0 -0.02</pose>
+        <pose>-0.94 0 -0.02 3.14 0 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -63,7 +63,7 @@
         </geometry>
       </visual>
       <visual name='cp_wing_left'>
-        <pose>-0.391 0.21 0 0 0 0</pose>
+        <pose>-0.391 0.21 0 0 -0.087 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -71,7 +71,7 @@
         </geometry>
       </visual>
       <visual name='cp_wing_right'>
-        <pose>-0.391 -0.21 0 0 0 0</pose>
+        <pose>-0.391 -0.21 0 0 -0.087 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -267,7 +267,7 @@
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
-      <pose>-0.94 0 -0.02</pose>
+      <pose>-0.94 0 -0.02 3.14 0 0</pose>
       <cL0>0.66</cL0>
       <cLa>4.053</cLa>
       <cm0>0</cm0>
@@ -281,12 +281,12 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cL>-3.6</control_joint_rad_to_cL>
+      <control_joint_rad_to_cL>3.6</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
-      <pose>-0.391 0.21 0 0 0 0</pose>
+      <pose>-0.391 0.21 0 0 -0.087 0</pose>
       <cL0>0.66</cL0>
       <cLa>4.053</cLa>
       <cm0>0</cm0>
@@ -306,7 +306,7 @@
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
-      <pose>-0.391 -0.21 0 0 0 0</pose>
+      <pose>-0.391 -0.21 0 0 -0.087 0</pose>
       <cL0>0.66</cL0>
       <cLa>4.053</cLa>
       <cm0>0</cm0>
@@ -432,7 +432,7 @@
       <control_channels>
         <channel name="puller">
           <input_index>4</input_index>
-          <input_offset>-0.1</input_offset>
+          <input_offset>0</input_offset>
           <input_scaling>1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>

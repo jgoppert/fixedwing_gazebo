@@ -54,7 +54,7 @@
         </geometry>
       </visual>
       <visual name='cp_vtail_right'>
-        <pose>-0.03 -0.15 0.05 -1.57 0 0</pose>
+        <pose>-0.03 -0.15 0.05 1.57 0 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -110,7 +110,7 @@
       <parent>fuselage</parent>
       <child>elevon_left</child>
       <axis>
-        <xyz>0 1 0</xyz>
+        <xyz>0 -1 0</xyz>
         <dynamics>
           <damping>0.1</damping>
         </dynamics>
@@ -156,7 +156,7 @@
       <parent>fuselage</parent>
       <child>elevon_right</child>
       <axis>
-        <xyz>0 1 0</xyz>
+        <xyz>0 -1 0</xyz>
         <dynamics>
           <damping>0.1</damping>
         </dynamics>
@@ -257,7 +257,7 @@
     </plugin>
 
     <plugin name="vtail_right" filename="libLiftDragPlugin2.so">
-      <pose>-0.03 -0.15 0.05 -1.57 0 0</pose>
+      <pose>-0.03 -0.15 0.05 1.57 0 0</pose>
       <cL0>0</cL0>
       <cLa>4.75</cLa>
       <cm0>0</cm0>
@@ -276,7 +276,8 @@
       <pose>-0.01 0.175 0.027 0 0 0</pose>
       <cL0>0.2</cL0>
       <cLa>2.5926</cLa>
-      <cm0>-0.1</cm0>
+      <!--Check cm0, reflex?-->
+      <cm0>0</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -287,8 +288,8 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>elevon_left_joint</control_joint_name>
-      <control_joint_rad_to_cL>1</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>1</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
       <verbose>0</verbose>
     </plugin>
 
@@ -296,7 +297,8 @@
       <pose>-0.01 -0.175 0.027 0 0 0</pose>
       <cL0>0.2</cL0>
       <cLa>2.5926</cLa>
-      <cm0>-0.1</cm0>
+      <!--Check cm0, reflex?-->
+      <cm0>0</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -307,8 +309,8 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>elevon_right_joint</control_joint_name>
-      <control_joint_rad_to_cL>1</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>1</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
       <verbose>0</verbose>
     </plugin>
 
@@ -393,6 +395,7 @@
       <battV>7.4</battV>
       <axis_num>0</axis_num>
       <motor_eff>0.7</motor_eff>
+      <reverse>1</reverse>
       <verbose>1</verbose>
     </plugin>
 
@@ -436,7 +439,7 @@
       <control_channels>
         <channel name="left_prop">
           <input_index>0</input_index>
-          <input_offset>0</input_offset>
+          <input_offset>0.1</input_offset>
           <input_scaling>1.0</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
@@ -446,7 +449,7 @@
         </channel>
         <channel name="right_prop">
           <input_index>1</input_index>
-          <input_offset>0</input_offset>
+          <input_offset>0.1</input_offset>
           <input_scaling>1.0</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>

@@ -63,7 +63,7 @@
         </geometry>
       </visual>
       <visual name='cp_htail'>
-        <pose>-0.38 0 0.024 0 0 0</pose>
+        <pose>-0.4 0 0.024 3.14 0 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -219,6 +219,7 @@
       </physics>
     </joint>
 
+    <!--The rear wheel doesn't stay in contact with the ground long.-->
     <!--<link name='wheel_rear'>-->
       <!--<pose>-0.362 0 -0.054 0 0 0</pose>-->
       <!--<inertial>-->
@@ -389,7 +390,7 @@
       <parent>fuselage</parent>
       <child>aileron_left</child>
       <axis>
-        <xyz>0 1 0</xyz>
+        <xyz>0 -1 0</xyz>
         <dynamics>
           <damping>0.1</damping>
         </dynamics>
@@ -435,7 +436,7 @@
       <parent>fuselage</parent>
       <child>aileron_right</child>
       <axis>
-        <xyz>0 1 0</xyz>
+        <xyz>0 -1 0</xyz>
         <dynamics>
           <damping>0.1</damping>
         </dynamics>
@@ -516,7 +517,7 @@
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
-      <pose>-0.4 0 0.024 0 0 0</pose>
+      <pose>-0.4 0 0.024 3.14 0 0</pose>
       <cL0>0</cL0>
       <cLa>4.75</cLa>
       <cm0>0</cm0>
@@ -530,8 +531,8 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cL>-4.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
       <verbose>0</verbose>
     </plugin>
 
@@ -539,7 +540,8 @@
       <pose>-0.17 0.19 0.01 0 0 0</pose>
       <cL0>0.285</cL0>
       <cLa>4.75</cLa>
-      <cm0>0</cm0>
+      <!--Check cm0, maybe need a larger htail-->
+      <cm0>0.05</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -550,15 +552,16 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_left_joint</control_joint_name>
-      <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
     </plugin>
 
     <plugin name="wing_right" filename="libLiftDragPlugin2.so">
       <pose>-0.17 -0.19 0.01 0 0 0</pose>
       <cL0>0.285</cL0>
       <cLa>4.75</cLa>
-      <cm0>0</cm0>
+      <!--Check cm0, maybe need a larger htail-->
+      <cm0>0.05</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -569,8 +572,8 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_right_joint</control_joint_name>
-      <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
     </plugin>
 
     <!--Start PX4 autopilot-->
@@ -678,27 +681,27 @@
       <use_tcp>true</use_tcp>
       <motorSpeedCommandPubTopic>/gazebo/command/motor_speed</motorSpeedCommandPubTopic>
       <control_channels>
-       <channel name="rudder">
-          <input_index>2</input_index>
-          <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
-          <zero_position_disarmed>0</zero_position_disarmed>
-          <zero_position_armed>0</zero_position_armed>
-          <joint_control_type>position</joint_control_type>
-          <joint_name>wheel_arm_joint</joint_name>
-          <joint_control_pid>
-            <p>10</p>
-            <i>0</i>
-            <d>0</d>
-            <iMax>0</iMax>
-            <iMin>0</iMin>
-            <cmdMax>0.28</cmdMax>
-            <cmdMin>-0.28</cmdMin>
-          </joint_control_pid>
-        </channel>
+       <!--<channel name="rudder">-->
+          <!--<input_index>2</input_index>-->
+          <!--<input_offset>0</input_offset>-->
+          <!--<input_scaling>0.28</input_scaling>-->
+          <!--<zero_position_disarmed>0</zero_position_disarmed>-->
+          <!--<zero_position_armed>0</zero_position_armed>-->
+          <!--<joint_control_type>position</joint_control_type>-->
+          <!--<joint_name>wheel_arm_joint</joint_name>-->
+          <!--<joint_control_pid>-->
+            <!--<p>10</p>-->
+            <!--<i>0</i>-->
+            <!--<d>0</d>-->
+            <!--<iMax>0</iMax>-->
+            <!--<iMin>0</iMin>-->
+            <!--<cmdMax>0.28</cmdMax>-->
+            <!--<cmdMin>-0.28</cmdMin>-->
+          <!--</joint_control_pid>-->
+        <!--</channel>-->
         <channel name="puller">
           <input_index>4</input_index>
-          <input_offset>0.1</input_offset>
+          <input_offset>0</input_offset>
           <input_scaling>1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
@@ -706,14 +709,14 @@
           <gztopic>/throttle1</gztopic>
           <joint_name>propeller_joint</joint_name>
         </channel>
-        <channel name="aileron_left">
+        <channel name="aileron_right">
           <input_index>5</input_index>
           <input_offset>0</input_offset>
           <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
-          <joint_name>aileron_left_joint</joint_name>
+          <joint_name>aileron_right_joint</joint_name>
           <joint_control_pid>
             <p>10</p>
             <i>0</i>
@@ -724,14 +727,14 @@
             <cmdMin>-0.28</cmdMin>
           </joint_control_pid>
         </channel>
-        <channel name="aileron_right">
+        <channel name="aileron_left">
           <input_index>6</input_index>
           <input_offset>0</input_offset>
           <input_scaling>0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
-          <joint_name>aileron_right_joint</joint_name>
+          <joint_name>aileron_left_joint</joint_name>
           <joint_control_pid>
             <p>10</p>
             <i>0</i>

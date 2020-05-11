@@ -109,6 +109,9 @@ class gazebo::MotorPluginPrivate
 
   /// \brief verbose output
   public: bool verbose{false};
+
+  /// \brief verbose output
+  public: bool reverse{false};
 };
 
 /////////////////////////////////////////////////
@@ -152,6 +155,10 @@ void MotorPlugin::Load(physics::ModelPtr _model,
   std::string gztopic = _sdf->Get<std::string>("gztopic");
   if (_sdf->HasElement("verbose")) {
     data->verbose = _sdf->Get<bool>("verbose");
+  }
+
+  if (_sdf->HasElement("reverse")) {
+    data->reverse = _sdf->Get<bool>("reverse");
   }
 
   std::string ct = _sdf->Get<std::string>("ct");
@@ -229,8 +236,17 @@ void MotorPlugin::OnUpdate()
 
   using ignition::math::clamp;
 
-  double omega = clamp(data->joint->GetVelocity(0), 0.0, 10000.0);
+  // if using approx method
   //double omega = data->omega;
+  double dir = 1;
+  if (data->reverse) {
+    dir = -1;
+  }
+  gzdbg << "reverse: " << data->reverse << std::endl;
+  double omega = dir*data->joint->GetVelocity(0);
+  omega = clamp(omega, 0.0, 10000.0);
+  gzdbg << "omega: " << omega << std::endl;
+
   const double rho = 1.225;
   auto vel_vect = data->propeller->RelativeLinearVel();
   double vel = vel_vect[data->axis_num];
@@ -255,7 +271,11 @@ void MotorPlugin::OnUpdate()
     thrust = CT*rho*pow(n, 2)*pow(D, 4); // Newton
     CP = clamp(data->cp_coeff[0] + data->cp_coeff[1]*J + data->cp_coeff[2]*pow(J, 2)
       + data->cp_coeff[3]*pow(J, 3) + data->cp_coeff[4]*pow(J, 4), 0.0, 1.0);
-    eta = CT*J/CP;
+    if (CP > 0) {
+      eta = CT*J/CP;
+    } else {
+      eta = 1;
+    }
     aero_torque = clamp((CP/(2*M_PI))*rho*pow(n, 2)*pow(D, 5), -100.0, 100.0);
     thrust = clamp(thrust, 0.0, 100.0);
   }
@@ -263,7 +283,7 @@ void MotorPlugin::OnUpdate()
   // see http://web.mit.edu/drela/Public/web/qprop/motor1_theory.pdf
   double i = clamp((V - omega/kV)/data->r0 + data->i0, 0.0, data->iMax);
   double torque = data->motor_eff*(i - data->i0)/kV;
-  
+ 
   if (data->verbose) {
     gzdbg << std::fixed << std::setprecision(3)
      << "J:" <<  std::setw(5) << J
@@ -283,13 +303,13 @@ void MotorPlugin::OnUpdate()
   GZ_ASSERT(isfinite(aero_torque), "non finite aero torque");
   if (data->axis_num==0) {
     data->propeller->AddRelativeForce(ignition::math::v4::Vector3d(thrust, 0, 0));
-    data->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(-aero_torque, 0, 0));
+    data->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(-dir*aero_torque, 0, 0));
   } else if (data->axis_num==1) {
     data->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, thrust, 0));
-    data->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, -aero_torque, 0));
+    data->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, -dir*aero_torque, 0));
   } else if (data->axis_num==2) {
     data->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, 0, thrust));
-    data->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, 0, -aero_torque));
+    data->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, 0, -dir*aero_torque));
   }
 
   // approximate approach
@@ -298,7 +318,7 @@ void MotorPlugin::OnUpdate()
   //data->omega = alpha*data->omega + (1 - alpha)*(0.8*kV*V);
   //data->joint->SetVelocity(0, data->omega*0.01);
   
-  data->joint->SetForce(0, torque);
+  data->joint->SetForce(0, dir*torque);
 }
 
 /////////////////////////////////////////////////

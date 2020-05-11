@@ -55,7 +55,7 @@
         </geometry>
       </visual>
       <visual name='cp_htail'>
-        <pose>-0.68 0 -0.0358 0 0 0</pose>
+        <pose>-0.68 0 -0.0358 3.14 0 0</pose>
         <geometry>
           <mesh>
             <scale>0.1 0.1 0.1</scale>
@@ -450,7 +450,7 @@
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
-      <pose>-0.68 0 -0.0358 0 0 0</pose>
+      <pose>-0.68 0 -0.0358 3.14 0 0</pose>
       <cL0>0.2334</cL0>
       <cLa>2.334</cLa>
       <cm0>0</cm0>
@@ -464,7 +464,7 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cL>-4.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cL>4.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 
@@ -633,7 +633,7 @@
         </channel>
         <channel name="puller">
           <input_index>4</input_index>
-          <input_offset>-0.15</input_offset>
+          <input_offset>0</input_offset>
           <input_scaling>1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
@@ -643,7 +643,7 @@
         </channel>
         <channel name="aileron_left">
           <input_index>5</input_index>
-          <input_offset>-0.01</input_offset>
+          <input_offset>0</input_offset>
           <input_scaling>0.1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
@@ -661,7 +661,7 @@
         </channel>
         <channel name="aileron_right">
           <input_index>6</input_index>
-          <input_offset>0.01</input_offset>
+          <input_offset>0</input_offset>
           <input_scaling>0.1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>

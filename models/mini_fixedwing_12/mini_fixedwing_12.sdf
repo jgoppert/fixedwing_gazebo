@@ -500,7 +500,7 @@
       <area>0.01</area>
       <air_density>1.225</air_density>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cL>-3.87</control_joint_rad_to_cL>
+      <control_joint_rad_to_cL>3.87</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
     </plugin>
 

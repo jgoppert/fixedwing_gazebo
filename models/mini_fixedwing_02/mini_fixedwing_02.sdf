@@ -333,7 +333,7 @@
       <parent>fuselage</parent>
       <child>aileron_left</child>
       <axis>
-        <xyz>0 1 0</xyz>
+        <xyz>0 -1 0</xyz>
         <dynamics>
           <damping>0.1</damping>
         </dynamics>
@@ -379,7 +379,7 @@
       <parent>fuselage</parent>
       <child>aileron_right</child>
       <axis>
-        <xyz>0 1 0</xyz>
+        <xyz>0 -1 0</xyz>
         <dynamics>
           <damping>0.1</damping>
         </dynamics>
@@ -443,14 +443,15 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>rudder_joint</control_joint_name>
-      <control_joint_rad_to_cL>4.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
     </plugin>
 
     <plugin name="htail" filename="libLiftDragPlugin2.so">
       <pose>-0.41 0 0.03 3.14 0 0</pose>
       <cL0>0.5</cL0>
       <cLa>6.51</cLa>
+      <!--Check cm0, maybe need a larger htail-->
       <cm0>0</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
@@ -462,14 +463,15 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>elevator_joint</control_joint_name>
-      <control_joint_rad_to_cL>4.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
     </plugin>
 
     <plugin name="wing_left" filename="libLiftDragPlugin2.so">
       <pose>-0.12 0.178 0.03 0 0 0</pose>
       <cL0>0.63</cL0>
       <cLa>6.322</cLa>
+      <!--Check cm0, maybe need a larger htail-->
       <cm0>0</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
@@ -481,8 +483,8 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_left_joint</control_joint_name>
-      <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
       <verbose>0</verbose>
     </plugin>
 
@@ -501,8 +503,8 @@
       <air_density>1.2041</air_density>
       <link_name>fuselage</link_name>
       <control_joint_name>aileron_right_joint</control_joint_name>
-      <control_joint_rad_to_cL>-2.0</control_joint_rad_to_cL>
-      <control_joint_rad_to_cm>0.0</control_joint_rad_to_cm>
+      <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
+      <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
       <verbose>0</verbose>
     </plugin>
 
@@ -631,7 +633,8 @@
         </channel>
         <channel name="puller">
           <input_index>4</input_index>
-          <input_offset>0</input_offset>
+          <!--Trim throttle-->
+          <input_offset>-0.1</input_offset>
           <input_scaling>1</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
@@ -641,8 +644,8 @@
         </channel>
         <channel name="aileron_left">
           <input_index>5</input_index>
-          <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_offset>0.03</input_offset>
+          <input_scaling>-0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
@@ -659,8 +662,8 @@
         </channel>
         <channel name="aileron_right">
           <input_index>6</input_index>
-          <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_offset>-0.03</input_offset>
+          <input_scaling>-0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
