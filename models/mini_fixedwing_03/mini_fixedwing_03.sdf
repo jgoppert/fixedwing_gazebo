@@ -541,7 +541,7 @@
       <cL0>0.285</cL0>
       <cLa>4.75</cLa>
       <!--Check cm0, maybe need a larger htail-->
-      <cm0>0.05</cm0>
+      <cm0>0.04</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -561,7 +561,7 @@
       <cL0>0.285</cL0>
       <cLa>4.75</cLa>
       <!--Check cm0, maybe need a larger htail-->
-      <cm0>0.05</cm0>
+      <cm0>0.04</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>

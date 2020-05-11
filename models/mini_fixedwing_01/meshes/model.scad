@@ -6,7 +6,7 @@ orig_dir = "stl_orig/";
 vscale = [0.001, 0.001, 0.001];
 vtrans = [0, 0, 0];
 markers = true;
-measure = true;
+measure = false;
 
 parts = ["fuselage", "aileron_left", "aileron_right",
     "elevator", "rudder", "wheel_left", "wheel_right", "propeller"];
