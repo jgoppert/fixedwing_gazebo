@@ -112,9 +112,9 @@
         <pose>-0.405 0 0.005 0 0 0</pose>
         <mass>0.002</mass>
         <inertia>
-          <ixx>9.41e-4</ixx>
-          <iyy>2.50e-5</iyy>
-          <izz>9.63e-4</izz>
+          <ixx>9.41e-5</ixx>
+          <iyy>2.50e-6</iyy>
+          <izz>9.63e-5</izz>
         </inertia>
       </inertial>
       <visual name='visual_elevator'>
@@ -136,9 +136,9 @@
         <pose>-0.1 0.320 -0.015 0.17 0 0</pose>
         <mass>0.0015</mass>
         <inertia>
-          <ixx>2.95e-5</ixx>
-          <iyy>1.65e-4</iyy>
-          <izz>1.94e-4</izz>
+          <ixx>2.95e-6</ixx>
+          <iyy>1.65e-5</iyy>
+          <izz>1.94e-5</izz>
         </inertia>
       </inertial>
       <visual name='visual_aileron_left'>
@@ -160,9 +160,9 @@
         <pose>-0.1 -0.320 -0.015 -0.17 0 0</pose>
         <mass>0.0015</mass>
         <inertia>
-          <ixx>2.95e-5</ixx>
-          <iyy>1.65e-4</iyy>
-          <izz>1.94e-4</izz>
+          <ixx>2.95e-6</ixx>
+          <iyy>1.65e-5</iyy>
+          <izz>1.94e-5</izz>
         </inertia>
       </inertial>
       <visual name='visual_aileron_right'>
@@ -430,9 +430,12 @@
     <plugin name='wing_left' filename='libLiftDragPlugin2.so'>
       <link_name>fuselage</link_name>
       <pose>0.013 0.23 -0.022 0.26 0 0</pose>
-      <cL0>1.085</cL0>
-      <cLa>7.75</cLa>
-      <cm0>-0.02</cm0>
+      <!--<cL0>1.085</cL0>-->
+      <!--<cLa>7.75</cLa>-->
+      <cL0>0.5</cL0>
+      <cLa>6</cLa>
+      <!--check cm0-->
+      <cm0>-0.01</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -450,9 +453,12 @@
     <plugin name='wing_right' filename='libLiftDragPlugin2.so'>
       <link_name>fuselage</link_name>
       <pose>0.013 -0.23 -0.022 -0.26 0 0</pose>
-      <cL0>1.085</cL0>
-      <cLa>7.75</cLa>
-      <cm0>-0.02</cm0>
+      <!--<cL0>1.085</cL0>-->
+      <!--<cLa>7.75</cLa>-->
+      <cL0>0.5</cL0>
+      <cLa>6</cLa>
+      <!--check cm0-->
+      <cm0>-0.01</cm0>
       <cma>0</cma>
       <cD0>0.03</cD0>
       <kcDcL>0.1</kcDcL>
@@ -464,6 +470,7 @@
       <control_joint_name>aileron_right_joint</control_joint_name>
       <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
+      <verbose>0</verbose>
     </plugin>
 
     <plugin name='vtail' filename='libLiftDragPlugin2.so'>
@@ -483,6 +490,7 @@
       <control_joint_name>rudder_joint</control_joint_name>
       <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
+      <verbose>0</verbose>
     </plugin>
 
     <plugin name='htail' filename='libLiftDragPlugin2.so'>
@@ -502,6 +510,7 @@
       <control_joint_name>elevator_joint</control_joint_name>
       <control_joint_rad_to_cL>1.0</control_joint_rad_to_cL>
       <control_joint_rad_to_cm>-0.25</control_joint_rad_to_cm>
+      <verbose>0</verbose>
     </plugin>
 
     <!--Start PX4 autopilot-->
@@ -613,7 +622,7 @@
         <channel name="rudder">
           <input_index>2</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>0.28</input_scaling>
+          <input_scaling>0.2</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
@@ -631,7 +640,7 @@
         <channel name="puller">
           <input_index>4</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>1</input_scaling>
+          <input_scaling>0.8</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position_gztopic</joint_control_type>
@@ -641,7 +650,7 @@
         <channel name="aileron_left">
           <input_index>5</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>-0.2</input_scaling>
+          <input_scaling>-0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
@@ -659,7 +668,7 @@
         <channel name="aileron_right">
           <input_index>6</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>-0.2</input_scaling>
+          <input_scaling>-0.28</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>0</zero_position_armed>
           <joint_control_type>position</joint_control_type>
