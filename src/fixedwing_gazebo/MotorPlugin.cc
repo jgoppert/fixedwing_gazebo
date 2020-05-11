@@ -147,7 +147,6 @@ void MotorPlugin::Load(physics::ModelPtr _model,
 
   //gzdbg << "Motor Plugin loading, model: " << data->model->GetName() << "\n";
 
-
   GZ_ASSERT(_sdf->HasElement("capacity"), "MotorPlugin must set capacity");
   GZ_ASSERT(_sdf->HasElement("kV"), "MotorPlugin must set kV");
   GZ_ASSERT(_sdf->HasElement("i0"), "MotorPlugin must set i0");
