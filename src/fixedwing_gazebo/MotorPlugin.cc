@@ -329,14 +329,14 @@ void MotorPlugin::OnUpdate()
   GZ_ASSERT(isfinite(torque), "non finite torque");
   GZ_ASSERT(isfinite(aero_torque), "non finite aero torque");
   if (data->axis_num==0) {
-    data->propeller->AddRelativeForce(ignition::math::v4::Vector3d(thrust, 0, 0));
-    data->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(-dir*aero_torque, 0, 0));
+    data->propeller->AddRelativeForce(ignition::math::Vector3d(thrust, 0, 0));
+    data->propeller->AddRelativeTorque(ignition::math::Vector3d(-dir*aero_torque, 0, 0));
   } else if (data->axis_num==1) {
-    data->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, thrust, 0));
-    data->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, -dir*aero_torque, 0));
+    data->propeller->AddRelativeForce(ignition::math::Vector3d(0, thrust, 0));
+    data->propeller->AddRelativeTorque(ignition::math::Vector3d(0, -dir*aero_torque, 0));
   } else if (data->axis_num==2) {
-    data->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, 0, thrust));
-    data->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, 0, -dir*aero_torque));
+    data->propeller->AddRelativeForce(ignition::math::Vector3d(0, 0, thrust));
+    data->propeller->AddRelativeTorque(ignition::math::Vector3d(0, 0, -dir*aero_torque));
   }
 
   // approximate approach
