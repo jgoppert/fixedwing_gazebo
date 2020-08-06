@@ -548,14 +548,14 @@ void PlanePlugin::OnUpdate()
       GZ_ASSERT(isfinite(ei->torque), "non finite torque");
       GZ_ASSERT(isfinite(aero_torque), "non finite aero torque");
       if (ei->axis_num==0) {
-        ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(thrust, 0, 0));
-        ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(-aero_torque, 0, 0));
+        ei->propeller->AddRelativeForce(ignition::math::Vector3d(thrust, 0, 0));
+        ei->propeller->AddRelativeTorque(ignition::math::Vector3d(-aero_torque, 0, 0));
       } else if (ei->axis_num==1) {
-        ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, thrust, 0));
-        ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, -aero_torque, 0));
+        ei->propeller->AddRelativeForce(ignition::math::Vector3d(0, thrust, 0));
+        ei->propeller->AddRelativeTorque(ignition::math::Vector3d(0, -aero_torque, 0));
       } else if (ei->axis_num==2) {
-        ei->propeller->AddRelativeForce(ignition::math::v4::Vector3d(0, 0, thrust));
-        ei->propeller->AddRelativeTorque(ignition::math::v4::Vector3d(0, 0, -aero_torque));
+        ei->propeller->AddRelativeForce(ignition::math::Vector3d(0, 0, thrust));
+        ei->propeller->AddRelativeTorque(ignition::math::Vector3d(0, 0, -aero_torque));
       }
       ei->joint->SetForce(0, ei->torque);
     }
